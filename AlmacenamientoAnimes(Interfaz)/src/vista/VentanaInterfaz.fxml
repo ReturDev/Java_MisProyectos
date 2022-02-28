@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="anchorBase" stylesheets="@../resources/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorPrincipal">
+   <children>
+      <TabPane layoutX="-257.0" layoutY="23.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+        <tabs>
+          <Tab text="Consultas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.6196660482374768" layoutX="368.0" layoutY="216.0" prefHeight="691.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minWidth="665.0" prefHeight="689.0" prefWidth="665.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.5007278020378457" layoutX="205.0" layoutY="183.0" orientation="VERTICAL" prefHeight="689.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="120.0" prefHeight="340.0" prefWidth="740.0">
+                                             <children>
+                                                <GridPane fx:id="raizConsulta" focusTraversable="true" onMouseClicked="#quitarFocoConsulta" prefHeight="341.0" prefWidth="663.0" styleClass="fondoConsultas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="82.0" />
+                                                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="148.0" />
+                                                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="203.0" />
+                                                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="131.0" />
+                                                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="30.0" prefHeight="80.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="30.0" prefHeight="220.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="-Infinity" prefHeight="40.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="41.0" text="Tipo:" GridPane.columnIndex="1" />
+                                                      <ComboBox fx:id="comboTiposConsulta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#eleccionTipo" prefHeight="25.0" prefWidth="204.0" styleClass="comboTipoConsultas" GridPane.columnIndex="2">
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <cursor>
+                                                            <Cursor fx:constant="DEFAULT" />
+                                                         </cursor>
+                                                      </ComboBox>
+                                                      <TextField fx:id="tituloConsulta" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#comprobacionTitulo" prefHeight="25.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="50.0" text="Estado:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <padding>
+                                                            <Insets right="5.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <ComboBox fx:id="comboEstadosConsulta" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#eleccionEstado" prefHeight="25.0" prefWidth="130.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </ComboBox>
+                                                      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="50.0" text="Titulo:" GridPane.rowIndex="1">
+                                                         <padding>
+                                                            <Insets right="5.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Button mnemonicParsing="false" onAction="#resetearConsultas" prefHeight="25.0" styleClass="botonResetC" text="Resetear" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                                         <GridPane.margin>
+                                                            <Insets bottom="5.0" right="5.0" />
+                                                         </GridPane.margin>
+                                                      </Button>
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="-Infinity" prefHeight="328.0" styleClass="fondoBotonSeleccion">
+                                             <children>
+                                                <GridPane minHeight="90.0" prefHeight="299.0" prefWidth="663.0" styleClass="fondoSeleccion" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="120.0" />
+                                                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="98.0" />
+                                                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" />
+                                                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="120.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="120.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="-Infinity" prefHeight="15.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="36.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="-Infinity" prefHeight="15.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="100.0" prefHeight="158.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <TextField fx:id="tempVSeleccion" editable="false" onKeyTyped="#comprobacionTitulo" styleClass="campoTempTElemento" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <TextField fx:id="tempTSeleccion" editable="false" onKeyTyped="#comprobacionTitulo" styleClass="campoTempVElemento" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.vgrow="NEVER" />
+                                                      <TextField fx:id="estadoSeleccion" editable="false" onKeyTyped="#comprobacionTitulo" styleClass="campoEstadoElemento" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER" />
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="ID" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                                                         <padding>
+                                                            <Insets right="5.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Temporadas Vistas" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
+                                                         <padding>
+                                                            <Insets right="5.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Estado" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                                                         <padding>
+                                                            <Insets right="5.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Temporadas Totales" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                                         <padding>
+                                                            <Insets right="5.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="idSeleccion" editable="false" onKeyTyped="#comprobacionTitulo" styleClass="campoIdElemento" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.vgrow="NEVER" />
+                                                      <TextField fx:id="tituloSeleccion" alignment="CENTER" editable="false" prefHeight="0.0" prefWidth="663.0" styleClass="tituloSeleccion" GridPane.columnSpan="6">
+                                                         <GridPane.margin>
+                                                            <Insets left="5.0" right="5.0" top="5.0" />
+                                                         </GridPane.margin></TextField>
+                                                      <TableView fx:id="tablaTemporadas" maxWidth="304.0" minHeight="100.0" prefHeight="146.0" prefWidth="304.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                                         <columns>
+                                                            <TableColumn fx:id="columnaTemporadas" editable="false" prefWidth="78.3999924659729" resizable="false" sortable="false" text="Temporada" />
+                                                            <TableColumn fx:id="columnaCapV" editable="false" prefWidth="103.99999237060547" resizable="false" sortable="false" text="Capitulos Vistos" />
+                                                            <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" prefWidth="118.40000915527344" resizable="false" sortable="false" text="CapitulosTotales" />
+                                                         </columns>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <GridPane.margin>
+                                                            <Insets bottom="5.0" right="5.0" top="5.0" />
+                                                         </GridPane.margin>
+                                                         <columnResizePolicy>
+                                                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                         </columnResizePolicy>
+                                                      </TableView>
+                                                      <TextArea fx:id="sinopsisSeleccion" editable="false" maxWidth="600.0" prefHeight="36.0" prefWidth="302.0" styleClass="sinopsisSeleccion" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                                         <GridPane.margin>
+                                                            <Insets bottom="5.0" right="15.0" top="5.0" />
+                                                         </GridPane.margin>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                      </TextArea>
+                                                   </children>
+                                                </GridPane>
+                                                <Button fx:id="botonModificador" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#modificarElementos" prefHeight="5.0" text="Modificar Elemento" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane maxWidth="600.0" minWidth="200.0">
+                                 <children>
+                                    <ListView fx:id="listaElementosObtenidos" onMouseClicked="#obtenerElementoLista" prefHeight="689.0" prefWidth="245.0" styleClass="listaElementos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                    </ListView>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab onSelectionChanged="#resetearConsultas" text="Registrar">
+            <content>
+              <AnchorPane fx:id="raizRegistro" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorRegistro">
+                     <children>
+                        <GridPane layoutX="20.0" layoutY="14.0" onMouseClicked="#quitarFocoRegistro" prefHeight="573.0" prefWidth="1034.0" styleClass="fondoRegistro" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="125.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="135.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="135.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="180.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="135.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="135.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="125.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="25.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="25.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="25.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="100.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ComboBox fx:id="comboTiposRegistro" onAction="#eleccionTipo" prefHeight="25.0" prefWidth="187.0" GridPane.columnIndex="3">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </ComboBox>
+                              <Label prefHeight="26.0" prefWidth="40.0" text="Tipo:" GridPane.columnIndex="2" />
+                              <Label prefHeight="26.0" prefWidth="45.0" text="Titulo:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="tituloRegistro" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#quitarFocoCamposR" prefHeight="25.0" prefWidth="296.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="comboEstadosRegistro" disable="true" onAction="#eleccionEstado" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </ComboBox>
+                              <Label prefHeight="26.0" prefWidth="50.0" text="Estado:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <TextField fx:id="tempVRegistro" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#quitarFocoCamposR" onKeyReleased="#introduccionTempVRegistro" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                              <TextField fx:id="tempTRegistro" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#quitarFocoCamposR" onKeyTyped="#introduccionTempTRegistro" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                              <Label prefHeight="26.0" prefWidth="133.0" text="Temporadas Totales:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <Label prefHeight="26.0" prefWidth="127.0" text="Temporadas Vistas:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TableView fx:id="tablaTempRegistro" disable="true" editable="true" focusTraversable="false" maxWidth="290.0" minHeight="100.0" prefHeight="158.0" prefWidth="300.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                 <columns>
+                                    <TableColumn fx:id="colTempRegistro" editable="false" prefWidth="69.0" sortable="false" text="Temporada" />
+                                    <TableColumn fx:id="colCapVRegistro" onEditCommit="#introduccionCapV" prefWidth="105.0" sortable="false" text="Capitulos Vistos" />
+                                    <TableColumn fx:id="colCapTRegistro" onEditCommit="#introduccionCapT" prefWidth="113.0" sortable="false" text="CapitulosTotales" />
+                                 </columns>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="3.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" />
+                                 </GridPane.margin>
+                              </TableView>
+                              <TextArea fx:id="sinopsisRegistro" disable="true" maxWidth="600.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="20.0" right="20.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                           </children>
+                        </GridPane>
+                        <AnchorPane layoutX="10.0" layoutY="603.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="1076.0" styleClass="anchorBotonesRegistro" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
+                           <children>
+                              <Button fx:id="botonRegistrar" disable="true" layoutX="986.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrarDatos" prefHeight="26.0" prefWidth="70.0" text="Registrar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0" />
+                              <Button layoutX="14.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetearRegistro" prefHeight="26.0" prefWidth="70.0" text="Resetear" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <MenuBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="28.0" prefWidth="1076.0" styleClass="barraMenu" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Opciones">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Añadir directorio archivo." />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

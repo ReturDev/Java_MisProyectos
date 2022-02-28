@@ -1,0 +1,233 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/*
+ * #072227
+ * #35858B
+ * #4FBDBA
+ * #AEFEFF
+ * #D5FAFE
+ * #E8FEFF 
+ */
+ 
+ *{
+ 	-fx-text-fill: #072227;
+ 	-fx-font-size: 13px;
+ }
+ 
+ *:focused{
+ 	-fx-faint-focus-color: transparent;
+ 	-fx-focus-color: transparent;
+ }
+ 
+ .combo-box:hover, .button:hover, .menu:hover, .menu-item:hover, .combo-box .list-cell:hover{
+ 	-fx-cursor: hand;
+ }
+ 
+.label{
+	
+	-fx-font-family: Century;
+	
+}
+
+/*Se le da un color base al primer anchor panel. */
+.anchorBase{
+	-fx-background-color: #072227;
+}
+
+.menu-bar{
+	-fx-border-color: #AEFEFF;
+	-fx-border-radius: 10px;
+}
+/*Se cambia el fondo de la barra de menú, de los objetos del menú y del desplegable donde se muestran los objetos del menú*/
+.menu-bar, .menu-item, .context-menu{
+	-fx-background-color: #072227;
+	-fx-background-radius: 7px;
+}
+
+/*Se le cambia el color del texto del menú y de los objetos del menú.*/
+.menu .label, .menu-item .label, .tab-label{
+	-fx-text-fill: #AEFEFF;
+}
+
+.menu:hover, .menu:showing {
+	
+	-fx-background-color: #AEFEFF;
+}
+
+.menu:hover .label, .menu:showing .label{
+	
+	-fx-text-fill: #072227;
+
+}
+
+
+.tab{
+	-fx-border-color: #AEFEFF;
+	-fx-border-width: 2px 2px 0 2px;
+	-fx-border-radius: 5px 5px 0 0;
+}
+
+.tab:selected{
+	
+	-fx-background-color: #AEFEFF;
+	-fx-border-color: #35858B;
+	-fx-background-radius: 6px 6px 0 0;
+	-fx-border-width: 2px;
+
+}
+.tab:selected .tab-label{
+	
+	-fx-text-fill: #072227;
+}
+
+/*Se le cambia el fondo de la cabecera donde se encuentran las pestañas.*/
+.tab-pane .tab-header-area .tab-header-background, .tab{
+	-fx-background-color: #072227;
+}
+
+/*Se añade un borde a todo el panel que envuelve las pestañas.*/
+.tab-pane{
+	-fx-border-color: #072227;
+	-fx-border-width: 5px 3px 3px 3px;
+	-fx-border-style: solid;
+}
+
+.table-view{
+	
+	-fx-background-color: #E8FEFF;
+	-fx-background-radius: 3px;
+	-fx-border-color: #072227;
+	-fx-border-width: 2px;
+	-fx-border-radius: 3px;
+	
+}
+
+.listaElementos .list-cell{
+	
+	-fx-alignment: center;
+	-fx-font-weight: 700;
+	-fx-font-size: 12px;
+	
+}
+
+.combo-box, .text-field{
+	-fx-background-color: #4FBDBA;
+	-fx-border-color: #072227;
+	-fx-effect: dropshadow(gaussian,#36848a,10.0,0.10,-3,-3);
+	-fx-background-radius: 15px;
+	-fx-border-radius: 15px;
+}
+
+.combo-box .list-view, .combo-box .list-cell{
+	
+	-fx-background-color: transparent;
+	
+}
+
+.combo-box .list-view{
+	-fx-border-color: #072227;
+	-fx-border-radius: 15px;
+}
+/*
+ * Se cambia el fondo de la zona en consultas y de la zona donde se muestra los datos del elemento seleccionado.
+ * También se le redondea el fondo en las esquinas para que quede menos cuadrado.
+ */
+.fondoConsultas, .fondoSeleccion, .listaElementos{
+	
+	
+	-fx-background-color: linear-gradient(to top left, #AEFEFF 15%, #4FBDBA );
+	-fx-background-radius: 10px;
+}
+
+/*Se cambia el fondo del pie de la zona de muestra de elementos y los bordes y barras de desplazamiento del split pane*/
+.fondoBotonSeleccion, .split-pane,.split-pane .split-pane-divider{
+	-fx-background-color: #072227;
+}
+
+.button{
+	-fx-background-color: #4FBDBA;
+	-fx-text-fill: #072227;
+}
+
+
+
+ .listaElementos .list-cell{
+ 	
+ 	-fx-background-color: transparent;
+ 	
+ }
+ 
+ .botonResetC{
+ 	-fx-effect: dropshadow(gaussian,#36848a,10.0,0.47,-2,-2); 
+ 	
+ }
+
+.botonResetC:hover{
+	-fx-background-color: #AEFEFF;
+	-fx-scale-x: 1.07;
+	-fx-scale-y: 1.07;
+	
+}
+ 
+ 
+ /*****************************
+  ***ESTILOS PARTE SELECCION***
+  *****************************/
+
+.tituloSeleccion{
+	-fx-background-color: #35858B;
+	-fx-background-radius: 10px;
+	-fx-font-family: Elephant;
+	-fx-font-size: 18px;
+	-fx-text-fill: #E8FEFF;
+	-fx-border-style: solid;
+	-fx-border-color: #072227;
+	-fx-border-radius: 5px;
+	-fx-border-width: 2px;
+}
+
+.campoIdElemento, .campoEstadoElemento, .campoTempTElemento, .campoTempVElemento{
+	-fx-background-color: transparent;
+	-fx-border-width: 0;
+	-fx-effect: none;
+	-fx-font-weight: 700;
+	-fx-font-size: 14px;
+	/*Cambiar el color de la letra. */
+	-fx-text-fill: #35858B;
+	/*Quitar los bordes de los TextFields.*/
+	-fx-background-insets: 0;
+	
+}
+
+.sinopsisSeleccion .content{
+	-fx-background-color: #D5FAFE;
+}
+
+
+
+
+/*****************************
+ * ESTILOS PESTAÑA REGISTROS *
+ *****************************/
+
+.anchorRegistro{
+	
+	-fx-background-color:linear-gradient(to top left, #AEFEFF 15%, #4FBDBA );
+	-fx-background-radius: 15px;
+	-fx-border-color: #072227;
+	-fx-border-width: 2px;
+	
+	
+}
+
+.anchorBotonesRegistro{
+	-fx-background-color: #072227;
+}
+
+.fondoRegistro{
+	-fx-border-width: 3px 0.0 0.0 3px;
+	
+
+}
+
+

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tipospiezasaudiovisuales>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <animes>
+                            
+    
+        
+        <anime estado="SIGUIENDO" id="1" temp_totales="1" temp_vistas="0" titulo="gsdgdsg">
+                        
+            <sinopsis/>
+                        
+            <temporada cap_totales="21" cap_vistos="0" id="1"/>
+                    
+        </anime>
+            
+    </animes>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <series>
+                                                    
+    
+    
+    
+        
+        
+        <serie estado="VISTO" id="1" temp_totales="1" temp_vistas="1" titulo="sadaasSDA">
+                                    
+            
+            <sinopsis>Dasdsa</sinopsis>
+                                    
+            
+            <temporada cap_totales="52" cap_vistos="52" id="1"/>
+                                
+        
+        </serie>
+                    
+    
+        <serie estado="VISTO" id="2" temp_totales="1" temp_vistas="1" titulo="fghhhssgdfg">
+            <sinopsis/>
+            <temporada cap_totales="10" cap_vistos="10" id="1"/>
+        </serie>
+        <serie estado="VISTO" id="3" temp_totales="2" temp_vistas="2" titulo="asfsfasf">
+            <sinopsis/>
+            <temporada cap_totales="20" cap_vistos="20" id="1"/>
+            <temporada cap_totales="15" cap_vistos="15" id="2"/>
+        </serie>
+    </series>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <peliculas>
+                                                
+        
+        
+        
+        
+        <pelicula estado="VISTO" id="1" titulo="Peli">
+                                                                        
+            
+            
+            
+            
+            <sinopsis>edrfwef</sinopsis>
+                                                                    
+        
+        
+        
+        
+        </pelicula>
+                                            
+    
+    
+    
+    
+    </peliculas>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <peliculas_animes/>
+                                    
+
+
+
+
+
+
+
+
+</tipospiezasaudiovisuales>
