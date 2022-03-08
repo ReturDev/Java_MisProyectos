@@ -17,6 +17,7 @@
  *:focused{
  	-fx-faint-focus-color: transparent;
  	-fx-focus-color: transparent;
+ 	
  }
  
  .combo-box:hover, .button:hover, .menu:hover, .menu-item:hover, .combo-box .list-cell:hover{
@@ -34,22 +35,28 @@
 	-fx-background-color: #072227;
 }
 
+
+/****************************
+ **** Estilos Barra Menu ****
+ ****************************/
+
+
 .menu-bar{
 	-fx-border-color: #AEFEFF;
 	-fx-border-radius: 10px;
 }
-/*Se cambia el fondo de la barra de menú, de los objetos del menú y del desplegable donde se muestran los objetos del menú*/
+/*Se cambia el fondo de la barra de menï¿½, de los objetos del menï¿½ y del desplegable donde se muestran los objetos del menï¿½*/
 .menu-bar, .menu-item, .context-menu{
 	-fx-background-color: #072227;
 	-fx-background-radius: 7px;
 }
 
-/*Se le cambia el color del texto del menú y de los objetos del menú.*/
+/*Se le cambia el color del texto del menï¿½ y de los objetos del menï¿½.*/
 .menu .label, .menu-item .label, .tab-label{
 	-fx-text-fill: #AEFEFF;
 }
 
-.menu:hover, .menu:showing {
+.menu:hover, .menu:showing, .menu-item:hover {
 	
 	-fx-background-color: #AEFEFF;
 }
@@ -59,6 +66,30 @@
 	-fx-text-fill: #072227;
 
 }
+
+.menu:showing .menu-item .label{
+	
+	-fx-text-fill: #AEFEFF;
+	
+}
+
+.menu:showing .menu-item:hover .label{
+	
+	-fx-text-fill: #072227;
+	
+}
+
+.menu-item:hover{
+	
+	-fx-text-fill: #072227;
+	
+}
+
+
+
+/******************************
+ **** Estilos Ventanas Tab ****
+ ******************************/
 
 
 .tab{
@@ -80,12 +111,12 @@
 	-fx-text-fill: #072227;
 }
 
-/*Se le cambia el fondo de la cabecera donde se encuentran las pestañas.*/
+/*Se le cambia el fondo de la cabecera donde se encuentran las pestaï¿½as.*/
 .tab-pane .tab-header-area .tab-header-background, .tab{
 	-fx-background-color: #072227;
 }
 
-/*Se añade un borde a todo el panel que envuelve las pestañas.*/
+/*Se aï¿½ade un borde a todo el panel que envuelve las pestaï¿½as.*/
 .tab-pane{
 	-fx-border-color: #072227;
 	-fx-border-width: 5px 3px 3px 3px;
@@ -101,6 +132,29 @@
 	-fx-border-radius: 3px;
 	
 }
+
+.column-header{
+	
+	-fx-background-color: transparent;
+
+	
+}
+
+.column-header .label{
+		-fx-text-fill: #072227;
+}
+.column-header-background{
+	
+	-fx-background-color: #35858B;
+	
+}
+.table-column{
+	
+}
+
+
+
+
 
 .listaElementos .list-cell{
 	
@@ -130,7 +184,7 @@
 }
 /*
  * Se cambia el fondo de la zona en consultas y de la zona donde se muestra los datos del elemento seleccionado.
- * También se le redondea el fondo en las esquinas para que quede menos cuadrado.
+ * Tambiï¿½n se le redondea el fondo en las esquinas para que quede menos cuadrado.
  */
 .fondoConsultas, .fondoSeleccion, .listaElementos{
 	
@@ -207,7 +261,7 @@
 
 
 /*****************************
- * ESTILOS PESTAÑA REGISTROS *
+ * ESTILOS PESTAï¿½A REGISTROS *
  *****************************/
 
 .anchorRegistro{

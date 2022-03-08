@@ -139,11 +139,11 @@
                                                          <GridPane.margin>
                                                             <Insets left="5.0" right="5.0" top="5.0" />
                                                          </GridPane.margin></TextField>
-                                                      <TableView fx:id="tablaTemporadas" maxWidth="304.0" minHeight="100.0" prefHeight="146.0" prefWidth="304.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                                      <TableView fx:id="tablaTemporadas" focusTraversable="false" maxWidth="300.0" minHeight="100.0" prefHeight="146.0" prefWidth="300.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                                                          <columns>
-                                                            <TableColumn fx:id="columnaTemporadas" editable="false" prefWidth="78.3999924659729" resizable="false" sortable="false" text="Temporada" />
-                                                            <TableColumn fx:id="columnaCapV" editable="false" prefWidth="103.99999237060547" resizable="false" sortable="false" text="Capitulos Vistos" />
-                                                            <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" prefWidth="118.40000915527344" resizable="false" sortable="false" text="CapitulosTotales" />
+                                                            <TableColumn fx:id="columnaTemporadas" editable="false" maxWidth="73.0" minWidth="-Infinity" prefWidth="73.0" resizable="false" sortable="false" text="Temporada" />
+                                                            <TableColumn fx:id="columnaCapV" editable="false" maxWidth="106.0" minWidth="-Infinity" prefWidth="106.0" resizable="false" sortable="false" text="Capitulos Vistos" />
+                                                            <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" maxWidth="111.0" minWidth="0.0" prefWidth="111.0" resizable="false" sortable="false" text="CapitulosTotales" />
                                                          </columns>
                                                          <opaqueInsets>
                                                             <Insets />
@@ -155,7 +155,7 @@
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                          </columnResizePolicy>
                                                       </TableView>
-                                                      <TextArea fx:id="sinopsisSeleccion" editable="false" maxWidth="600.0" prefHeight="36.0" prefWidth="302.0" styleClass="sinopsisSeleccion" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                                      <TextArea fx:id="sinopsisSeleccion" editable="false" focusTraversable="false" maxWidth="600.0" prefHeight="36.0" prefWidth="302.0" styleClass="sinopsisSeleccion" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                                          <GridPane.margin>
                                                             <Insets bottom="5.0" right="15.0" top="5.0" />
                                                          </GridPane.margin>
