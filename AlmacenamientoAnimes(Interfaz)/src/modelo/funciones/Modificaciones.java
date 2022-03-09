@@ -3,6 +3,7 @@ package modelo.funciones;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import modelo.clases.PiezaAudiovisual;
+import modelo.clases.Serializable;
 import modelo.clases.Temporada;
 import modelo.enums.Estados;
 import modelo.envioDatos.EnvioDatos;
@@ -31,8 +32,8 @@ public class Modificaciones {
 	}
 	
 	/**
-	 * Método que desbloquea o bloquea los campos dependiendo si es serializable el tipo elegido y
-	 * resetea o da valores dependiendo de la situación.
+	 * Mï¿½todo que desbloquea o bloquea los campos dependiendo si es serializable el tipo elegido y
+	 * resetea o da valores dependiendo de la situaciï¿½n.
 	 * @param serializable
 	 * @param tempT
 	 * @param tempV
@@ -49,7 +50,7 @@ public class Modificaciones {
 			if(estado.equals(Estados.VISTO) || estado.equals(Estados.PENDIENTE) ) {
 				//Desactiva el campo de Temporadas Vistas.
 				tempV.setDisable(true);
-				//Desactiva la edición de la columna de Capitulos Vistos.
+				//Desactiva la ediciï¿½n de la columna de Capitulos Vistos.
 				capsV.setEditable(false);
 				//Si el estado es Pendiente, fija el valor a 0.
 				if (estado.equals(Estados.PENDIENTE)) {
@@ -58,20 +59,20 @@ public class Modificaciones {
 			}else {
 				//Activa el campo de Temporadas Vistas.
 				tempV.setDisable(false);
-				//Activa la edición de la columna de Capitulos Vistos.
+				//Activa la ediciï¿½n de la columna de Capitulos Vistos.
 				capsV.setEditable(true);
 			}
 			
 			//Activa el valor 
 			tempT.setDisable(false);
-			//Le da una Temporada Total temporada mínima obligatoria.
+			//Le da una Temporada Total temporada mï¿½nima obligatoria.
 			tempT.setText("1");
 			//Activa la tabla para editar las temporadas.
 			tablaTemporadas.setDisable(false);
 			
 			
 		
-		//Si por algún motivo el tipo se cambiara, desactivará los campos y los reseteara como al inicio excepto estado y titulo.
+		//Si por algï¿½n motivo el tipo se cambiara, desactivarï¿½ los campos y los reseteara como al inicio excepto estado y titulo.
 		}else {
 			
 			//Deshabilita el campo de Temporadas Totales y le quita el valor.
@@ -84,7 +85,7 @@ public class Modificaciones {
 			
 			//Deshabilita la Tabla de Temporadas
 			tablaTemporadas.setDisable(true);
-			//Se le sobreescribe su lista de elementos por una vacía(No se establece nula para ahorrar futuros errores)
+			//Se le sobreescribe su lista de elementos por una vacï¿½a(No se establece nula para ahorrar futuros errores)
 			tablaTemporadas.setItems(FXCollections.observableArrayList());
 			
 		}
@@ -92,8 +93,8 @@ public class Modificaciones {
 	}
 	
 	/**
-	 * Actualiza la lista de elementos almacenada en la clase Consultas y manda a través de la
-	 * clase EnvioDatos, la pieza cambiada para que se seleccione automáticamente una vez se cierre
+	 * Actualiza la lista de elementos almacenada en la clase Consultas y manda a travï¿½s de la
+	 * clase EnvioDatos, la pieza cambiada para que se seleccione automï¿½ticamente una vez se cierre
 	 * la ventana de modificado.
 	 * @param pieza
 	 */
@@ -113,5 +114,24 @@ public class Modificaciones {
 		}
 		
 	}
+	
+	public static boolean cambioTemporadas(Serializable nuevo, Serializable viejo) {
+		
+		boolean cambiado = false;
+		
+		for(int i = 0; i < nuevo.getTemporadas().size() && !cambiado; i++) {
+			
+			Temporada nTemp = nuevo.getTemporadas().get(i);
+			Temporada vTemp = viejo.getTemporadas().get(i);
+			
+			if(!nTemp.equals(vTemp)) {
+				cambiado = true;
+			}
+			
+		}
+		
+		return cambiado;
+	}
+	
 	
 }

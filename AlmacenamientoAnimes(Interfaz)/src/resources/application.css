@@ -9,26 +9,27 @@
  * #E8FEFF 
  */
  
+ 
+ /*Se establece un color y tamaño de letra por defecto a toda la interfaz.*/
  *{
  	-fx-text-fill: #072227;
  	-fx-font-size: 13px;
  }
  
+ 
+ /*Se elimina los efectos de todos los elementos en los que se establece el foco. */
  *:focused{
  	-fx-faint-focus-color: transparent;
  	-fx-focus-color: transparent;
  	
  }
  
+ 
+ /*Se establece un puntero de mano a ciertos campos.*/
  .combo-box:hover, .button:hover, .menu:hover, .menu-item:hover, .combo-box .list-cell:hover{
  	-fx-cursor: hand;
  }
  
-.label{
-	
-	-fx-font-family: Century;
-	
-}
 
 /*Se le da un color base al primer anchor panel. */
 .anchorBase{
@@ -40,33 +41,42 @@
  **** Estilos Barra Menu ****
  ****************************/
 
-
+/*Se cambia el borde de la zona donde se encuentra la barra de menú.*/
 .menu-bar{
 	-fx-border-color: #AEFEFF;
 	-fx-border-radius: 10px;
 }
-/*Se cambia el fondo de la barra de men�, de los objetos del men� y del desplegable donde se muestran los objetos del men�*/
+
+
+/*Se cambia el fondo de la barra de menú, de los objetos del menú y del desplegable donde se muestran los objetos del menú*/
 .menu-bar, .menu-item, .context-menu{
 	-fx-background-color: #072227;
 	-fx-background-radius: 7px;
 }
 
-/*Se le cambia el color del texto del men� y de los objetos del men�.*/
+
+/*Se le cambia el color del texto del menú y de los objetos del menú.*/
 .menu .label, .menu-item .label, .tab-label{
 	-fx-text-fill: #AEFEFF;
 }
 
+
+/*Cambia el color de fondo al estar encima del objeto del menú, al estar seleccionado y de la opcion dentro del menú.*/
 .menu:hover, .menu:showing, .menu-item:hover {
 	
 	-fx-background-color: #AEFEFF;
 }
 
+
+/*Se cambia el color de la letra de la opcion al estar encima y del menú al estar abierto.*/
 .menu:hover .label, .menu:showing .label{
 	
 	-fx-text-fill: #072227;
 
 }
 
+
+/*Se cambia el color de la letra de la opcion al estar encima y del menú al estar abierto.*/
 .menu:showing .menu-item .label{
 	
 	-fx-text-fill: #AEFEFF;
@@ -111,12 +121,12 @@
 	-fx-text-fill: #072227;
 }
 
-/*Se le cambia el fondo de la cabecera donde se encuentran las pesta�as.*/
+/*Se le cambia el fondo de la cabecera donde se encuentran las pestañas.*/
 .tab-pane .tab-header-area .tab-header-background, .tab{
 	-fx-background-color: #072227;
 }
 
-/*Se a�ade un borde a todo el panel que envuelve las pesta�as.*/
+/*Se añade un borde a todo el panel que envuelve las pestañas.*/
 .tab-pane{
 	-fx-border-color: #072227;
 	-fx-border-width: 5px 3px 3px 3px;
@@ -125,7 +135,7 @@
 
 .table-view{
 	
-	-fx-background-color: #E8FEFF;
+	-fx-background-color: transparent;
 	-fx-background-radius: 3px;
 	-fx-border-color: #072227;
 	-fx-border-width: 2px;
@@ -133,24 +143,71 @@
 	
 }
 
-.column-header{
-	
-	-fx-background-color: transparent;
-
-	
-}
-
-.column-header .label{
-		-fx-text-fill: #072227;
-}
-.column-header-background{
+.column-header-background , .column-header{
 	
 	-fx-background-color: #35858B;
 	
 }
-.table-column{
+
+.table-view .table-cell{
+	
+	-fx-alignment: center;
+	-fx-border-color: #072227;
+	-fx-border-width: 0; 
 	
 }
+
+.table-view .table-row-cell:even {
+	
+	-fx-background-color: #AEFEFF;
+	
+}
+
+.table-view .table-row-cell:odd{
+	
+	-fx-background-color: #4FBDBA;
+}
+.table-view .track, .table-view .scroll-bar{
+	
+	-fx-background-color: #D5FAFE;
+	
+}
+.table-view .increment-button, .table-view .decrement-button{
+	-fx-background-color:transparent;
+}
+
+.table-view .corner{
+	
+	-fx-background-color: transparent;
+	
+}
+
+ .table-view .thumb{
+ 	
+ 	-fx-background-color: #4FBDBA;
+ 	
+ }
+
+/* #072227
+ * #35858B
+ 
+ * #4FBDBA
+ * #AEFEFF
+ 
+ * #D5FAFE
+ * #E8FEFF
+ * 
+ */
+
+
+.column-header .label{
+	
+		-fx-text-fill: #072227;
+}
+
+
+
+
 
 
 
@@ -184,7 +241,7 @@
 }
 /*
  * Se cambia el fondo de la zona en consultas y de la zona donde se muestra los datos del elemento seleccionado.
- * Tambi�n se le redondea el fondo en las esquinas para que quede menos cuadrado.
+ * También se le redondea el fondo en las esquinas para que quede menos cuadrado.
  */
 .fondoConsultas, .fondoSeleccion, .listaElementos{
 	
@@ -200,7 +257,15 @@
 
 .button{
 	-fx-background-color: #4FBDBA;
+	-fx-effect: dropshadow(gaussian,#35858B,10.0,0.2,-2,-2); 
 	-fx-text-fill: #072227;
+}
+
+.button:hover{
+	-fx-background-color: #AEFEFF;
+	-fx-scale-x: 1.07;
+	-fx-scale-y: 1.07;
+	
 }
 
 
@@ -211,17 +276,8 @@
  	
  }
  
- .botonResetC{
- 	-fx-effect: dropshadow(gaussian,#36848a,10.0,0.47,-2,-2); 
- 	
- }
 
-.botonResetC:hover{
-	-fx-background-color: #AEFEFF;
-	-fx-scale-x: 1.07;
-	-fx-scale-y: 1.07;
-	
-}
+
  
  
  /*****************************

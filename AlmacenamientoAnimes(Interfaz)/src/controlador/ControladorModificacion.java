@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -26,7 +27,7 @@ import modulo.textoAlertas.MensajesAlertas;
 
 public class ControladorModificacion implements Initializable {
 
-	// Creación de elementos coincidiendo el nombre con la id en el FXML
+	// CreaciÃ³n de elementos coincidiendo el nombre con la id en el FXML
 	@FXML
 	private AnchorPane raiz;
 	@FXML
@@ -54,7 +55,7 @@ public class ControladorModificacion implements Initializable {
 
 	/*
 	 * TODO Comentar, arreglar lo del foco e intentar separar las acciones ya que
-	 * muchas de ellas serán iguales para el registro de elementos.
+	 * muchas de ellas serï¿½n iguales para el registro de elementos.
 	 */
 
 
@@ -83,14 +84,14 @@ public class ControladorModificacion implements Initializable {
 			
 			tempVistas.setText(serializable.getTemporadasVistas() + "");
 			
-			//Añadimos un evento cuando el campo pierda el foco.
+			//AÃ±adimos un evento cuando el campo pierda el foco.
 			tempVistas.focusedProperty().addListener(new ChangeListener<Boolean>() {
 				
 				@Override
 				public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldProperty, Boolean newProperty) {
 					//Comprobamos si antes tenia el foco y ahora lo ha perdido.
-					if(oldProperty&& !newProperty) {
-						//Si el campo una vez pierda el foco está vacío, se le dara un valor por defecto de 0.
+					if(oldProperty && !newProperty) {
+						//Si el campo una vez pierda el foco estï¿½ vacï¿½o, se le dara un valor por defecto de 0.
 						if(tempVistas.getText().isEmpty()) {
 							tempVistas.setText("0");
 						}
@@ -99,14 +100,14 @@ public class ControladorModificacion implements Initializable {
 				}
 			});
 			tempTotales.setText(serializable.getTemporadasTotales() + "");
-			//Añadimos un evento cuando el campo pierda el foco.
+			//Aï¿½adimos un evento cuando el campo pierda el foco.
 			tempTotales.focusedProperty().addListener(new ChangeListener<Boolean>() {
 
 				@Override
 				public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldProperty, Boolean newProperty) {
 					//Comprobamos si antes tenia el foco y ahora lo ha perdido.
 					if(oldProperty&& !newProperty) {
-						//Si el campo una vez pierda el foco está vacío, se le dara un valor por defecto de 0.
+						//Si el campo una vez pierda el foco estï¿½ vacï¿½o, se le dara un valor por defecto de 0.
 						if(tempTotales.getText().isEmpty()) {
 							tempTotales.setText("1");
 						}
@@ -127,8 +128,6 @@ public class ControladorModificacion implements Initializable {
 			ComprobacionesCampos.temporadasTextField(tempTotales);
 			ComprobacionesCampos.temporadasTextField(tempVistas);
 
-			Modificaciones.comprobarEstado(estado.getSelectionModel().getSelectedItem(), tempVistas, tempTotales,
-					tablaTemporadas, columnaCapV);
 			
 		} else {
 
@@ -141,7 +140,7 @@ public class ControladorModificacion implements Initializable {
 	}
 
 	/**
-	 * Controlador del evento del botón modificar.
+	 * Controlador del evento del botï¿½n modificar.
 	 * @param e
 	 */
 	@FXML
@@ -155,16 +154,14 @@ public class ControladorModificacion implements Initializable {
 			
 			if(valoresValidos) {
 				
-				//!TODO Guardar los datos modificados con xml. 
-				if(!pieza.equals(EnvioDatos.getInstance().getDatosTransferencia())) {
+				
+				boolean introducido = RegistroDatosXML.introducirDatosPieza(pieza, EnvioDatos.getInstance().getTipoTransferencia());
 					
-					boolean introducido = RegistroDatosXML.introducirDatosPieza(pieza, EnvioDatos.getInstance().getTipoTransferencia());
-					
-					if(introducido) {
+				if(introducido) {
 						Modificaciones.actualizarConsultasModificado(pieza);
 						Alertas.alertaInformativa(MensajesAlertas.T_MODIFICADO,MensajesAlertas.M_MODIFICADO);
-					}
 				}
+				
 				
 				//Se cierra la ventana
 				Stage stage = (Stage) nodo.getScene().getWindow();
@@ -204,7 +201,7 @@ public class ControladorModificacion implements Initializable {
 	}
 	
 	/**
-	 * Método para quitar foco Campos.
+	 * Mï¿½todo para quitar foco Campos.
 	 * @param e
 	 */
 	@FXML
@@ -263,7 +260,7 @@ public class ControladorModificacion implements Initializable {
 
 
 	/**
-	 * Controlador de la modificación de las celdas de la tabla de Capitulos Totales.
+	 * Controlador de la modificaciï¿½n de las celdas de la tabla de Capitulos Totales.
 	 * @param e
 	 */
 	@FXML
@@ -281,7 +278,7 @@ public class ControladorModificacion implements Initializable {
 	}
 
 	/**
-	 * Controlador de la modificación de las celdas de la tabla de Capitulos Vistas.
+	 * Controlador de la modificaciï¿½n de las celdas de la tabla de Capitulos Vistas.
 	 * @param e
 	 */
 	@FXML

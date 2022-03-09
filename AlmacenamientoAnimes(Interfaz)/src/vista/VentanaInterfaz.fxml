@@ -61,7 +61,7 @@
                                                          </cursor>
                                                       </ComboBox>
                                                       <TextField fx:id="tituloConsulta" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#comprobacionTitulo" prefHeight="25.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="50.0" text="Estado:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="56.0" text="Estado:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                          <opaqueInsets>
                                                             <Insets />
                                                          </opaqueInsets>
@@ -143,7 +143,7 @@
                                                          <columns>
                                                             <TableColumn fx:id="columnaTemporadas" editable="false" maxWidth="73.0" minWidth="-Infinity" prefWidth="73.0" resizable="false" sortable="false" text="Temporada" />
                                                             <TableColumn fx:id="columnaCapV" editable="false" maxWidth="106.0" minWidth="-Infinity" prefWidth="106.0" resizable="false" sortable="false" text="Capitulos Vistos" />
-                                                            <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" maxWidth="111.0" minWidth="0.0" prefWidth="111.0" resizable="false" sortable="false" text="CapitulosTotales" />
+                                                            <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" maxWidth="117.0" minWidth="-Infinity" prefWidth="117.0" resizable="false" sortable="false" text="CapitulosTotales" />
                                                          </columns>
                                                          <opaqueInsets>
                                                             <Insets />
@@ -154,6 +154,9 @@
                                                          <columnResizePolicy>
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                          </columnResizePolicy>
+                                                         <padding>
+                                                            <Insets top="-0.5" />
+                                                         </padding>
                                                       </TableView>
                                                       <TextArea fx:id="sinopsisSeleccion" editable="false" focusTraversable="false" maxWidth="600.0" prefHeight="36.0" prefWidth="302.0" styleClass="sinopsisSeleccion" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                                          <GridPane.margin>
@@ -165,7 +168,7 @@
                                                       </TextArea>
                                                    </children>
                                                 </GridPane>
-                                                <Button fx:id="botonModificador" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#modificarElementos" prefHeight="5.0" text="Modificar Elemento" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                                <Button fx:id="botonModificador" alignment="CENTER" disable="true" layoutX="524.0" layoutY="299.0" mnemonicParsing="false" onAction="#modificarElementos" prefHeight="5.0" text="Modificar Elemento" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="0.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -236,19 +239,19 @@
                               <Label prefHeight="26.0" prefWidth="127.0" text="Temporadas Vistas:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TableView fx:id="tablaTempRegistro" disable="true" editable="true" focusTraversable="false" maxWidth="290.0" minHeight="100.0" prefHeight="158.0" prefWidth="300.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                                  <columns>
-                                    <TableColumn fx:id="colTempRegistro" editable="false" prefWidth="69.0" sortable="false" text="Temporada" />
-                                    <TableColumn fx:id="colCapVRegistro" onEditCommit="#introduccionCapV" prefWidth="105.0" sortable="false" text="Capitulos Vistos" />
-                                    <TableColumn fx:id="colCapTRegistro" onEditCommit="#introduccionCapT" prefWidth="113.0" sortable="false" text="CapitulosTotales" />
+                                    <TableColumn fx:id="colTempRegistro" editable="false" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Temporada" />
+                                    <TableColumn fx:id="colCapVRegistro" maxWidth="105.0" onEditCommit="#introduccionCapV" prefWidth="105.0" sortable="false" text="Capitulos Vistos" />
+                                    <TableColumn fx:id="colCapTRegistro" maxWidth="105.0" onEditCommit="#introduccionCapT" prefWidth="105.0" sortable="false" text="CapitulosTotales" />
                                  </columns>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
-                                 <padding>
-                                    <Insets left="3.0" />
-                                 </padding>
                                  <GridPane.margin>
                                     <Insets bottom="5.0" />
                                  </GridPane.margin>
+                                 <padding>
+                                    <Insets top="-0.5" />
+                                 </padding>
                               </TableView>
                               <TextArea fx:id="sinopsisRegistro" disable="true" maxWidth="600.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                                  <GridPane.margin>
@@ -259,8 +262,8 @@
                         </GridPane>
                         <AnchorPane layoutX="10.0" layoutY="603.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="1076.0" styleClass="anchorBotonesRegistro" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
                            <children>
-                              <Button fx:id="botonRegistrar" disable="true" layoutX="986.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrarDatos" prefHeight="26.0" prefWidth="70.0" text="Registrar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="14.0" />
-                              <Button layoutX="14.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetearRegistro" prefHeight="26.0" prefWidth="70.0" text="Resetear" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" />
+                              <Button fx:id="botonRegistrar" disable="true" layoutX="982.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrarDatos" prefHeight="28.0" prefWidth="75.0" text="Registrar" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="14.0" />
+                              <Button layoutX="14.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetearRegistro" prefHeight="28.0" prefWidth="75.0" text="Resetear" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" />
                            </children>
                         </AnchorPane>
                      </children>

@@ -16,7 +16,7 @@ public class FuncionesApoyoControladores {
 
 	
 	/**
-	 * Método encargado de las acciones con la introducción de un valor en el campo de Temporadas Totales.
+	 * Mï¿½todo encargado de las acciones con la introducciï¿½n de un valor en el campo de Temporadas Totales.
 	 * @param tempTotales
 	 * @param tempVistas
 	 * @param tablaTemporadas
@@ -61,7 +61,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Método encargado de las acciones con la introducción de un valor en el campo de Temporadas Vistas.
+	 * Mï¿½todo encargado de las acciones con la introducciï¿½n de un valor en el campo de Temporadas Vistas.
 	 * @param tempVistas
 	 * @param tempTotales
 	 * @return
@@ -71,12 +71,12 @@ public class FuncionesApoyoControladores {
 		
 		if(!tempVistas.getText().isEmpty()) {
 			
-			//Se comprueba si el número introducido es mayor que la cantidad de Temporada Totales.
+			//Se comprueba si el nï¿½mero introducido es mayor que la cantidad de Temporada Totales.
 			if (Integer.parseInt(tempVistas.getText()) > Integer.parseInt(tempTotales.getText())) {
 				
 				Alertas.alertaError(MensajesAlertas.T_INTRO_TV, MensajesAlertas.M_INTRO_TV);
 				
-				//Se le da el valor máximo posible a las temporadas vistas.
+				//Se le da el valor mï¿½ximo posible a las temporadas vistas.
 				tempVistas.setText("0");
 			
 			//Se comprueba si el valor de temporadas vistas es el mismo que totales.
@@ -97,7 +97,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Método encargado de las acciones al modificar celdas de los Capitulos Totales.
+	 * Mï¿½todo encargado de las acciones al modificar celdas de los Capitulos Totales.
 	 * @param e
 	 * @param tablaTemporadas
 	 * @param estado
@@ -109,7 +109,7 @@ public class FuncionesApoyoControladores {
 		
 		//Se obtiene el nuevo valor de la celda.
 		Integer nuevoValor = e.getNewValue();
-		//Se comprueba que el valor no sea nulo, es decir, que la variable no esté vacía.
+		//Se comprueba que el valor no sea nulo, es decir, que la variable no estï¿½ vacï¿½a.
 		if (nuevoValor != null) {
 			//Se obtiene el valor de toda la fila, es decir, la temporada de esas celdas.
 			Temporada temporada = e.getRowValue();
@@ -121,7 +121,7 @@ public class FuncionesApoyoControladores {
 			
 			//Se actualiza la temporada modificada en la lista de temporadas de la tabla.
 			tablaTemporadas.getItems().set(indiceTempListaTabla, temporada);
-			//Se acualizan los capitulos vistos al máximo.
+			//Se acualizan los capitulos vistos al mï¿½ximo.
 			rellenarCapV(tablaTemporadas,tempV, estado);
 
 			valorValido = true;
@@ -137,7 +137,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Método encargado de las acciones al modificar celdas de los Capitulos Vistos.
+	 * Mï¿½todo encargado de las acciones al modificar celdas de los Capitulos Vistos.
 	 * @param e
 	 * @param tablaTemporadas
 	 */
@@ -149,7 +149,7 @@ public class FuncionesApoyoControladores {
 		//Se obtiene el nuevo valor de la celda.
 		Integer nuevoValor = e.getNewValue();
 
-		//Se comprueba que el valor no sea nulo, es decir, que la variable no esté vacía.
+		//Se comprueba que el valor no sea nulo, es decir, que la variable no estï¿½ vacï¿½a.
 		if (nuevoValor != null) {
 			
 			//Se obtiene el valor de toda la fila, es decir, la temporada de esas celdas.
@@ -187,7 +187,7 @@ public class FuncionesApoyoControladores {
 	
 	
 	/**
-	 * Método encargado de rellenar los Capitulos Vistos en las columnas que la cantidad de Capitulos Totales
+	 * Mï¿½todo encargado de rellenar los Capitulos Vistos en las columnas que la cantidad de Capitulos Totales
 	 * esten definidos, dependiendo de la cantidad de Temporadas Vistas recibida.
 	 * @param tempVistas Campo Temporadas Vistas.
 	 * @param tablaTemporadas Tabla de Temporadas.
@@ -201,7 +201,7 @@ public class FuncionesApoyoControladores {
 			//Se obtiene la temporada
 			Temporada temporada = temporadas.get(i);
 			/*
-			 * Si el valor de los Capitulos Totales está definido(es distinto a 0), se iguala el valor de los Capitulos Vistos
+			 * Si el valor de los Capitulos Totales estï¿½ definido(es distinto a 0), se iguala el valor de los Capitulos Vistos
 			 * a los totales.
 			 */
 			
@@ -219,7 +219,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Método encargado de buscar el índice en la lista de elementos de la tabla de temporadas 
+	 * Mï¿½todo encargado de buscar el ï¿½ndice en la lista de elementos de la tabla de temporadas 
 	 * que corresponda con la temporada a buscar.
 	 * @param tablaTemporadas
 	 * @param temporada
@@ -232,7 +232,7 @@ public class FuncionesApoyoControladores {
 		//Se recorre la lista de temporadas buscando la temporada con la misma id que la modificada.
 		for(int i = 0; i < tablaTemporadas.getItems().size() && indiceTempListaTabla == -1; i++) {
 			
-			//Se comprueba que los id coincidan y se almacena el íncide.
+			//Se comprueba que los id coincidan y se almacena el ï¿½ncide.
 			if(tablaTemporadas.getItems().get(i).getId() == temporada.getId() ) {
 				indiceTempListaTabla = i;
 			}
@@ -243,7 +243,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Método encargado de rellenar los Capitulos Vistos dependiendo del estado
+	 * Mï¿½todo encargado de rellenar los Capitulos Vistos dependiendo del estado
 	 * seleccionado.
 	 * @param tablaTemporadas
 	 * @param estado
@@ -297,7 +297,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Método encargado de crear y devolver un objeto de la clase correspondiente a cada tipo
+	 * Mï¿½todo encargado de crear y devolver un objeto de la clase correspondiente a cada tipo
 	 * de Pieza Audiovisual.
 	 * @param tipo
 	 * @return
@@ -351,8 +351,8 @@ public class FuncionesApoyoControladores {
 	
 	
 	/**
-	 * Verifica que el elemento obtenido por parámetro tenga todos los valores necesarios rellenos
-	 * y con valores válidos.
+	 * Verifica que el elemento obtenido por parï¿½metro tenga todos los valores necesarios rellenos
+	 * y con valores vï¿½lidos.
 	 * @param pieza
 	 * @return
 	 */
@@ -400,7 +400,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Verifica que los valores introducidos en los Capitulos sean válidos.
+	 * Verifica que los valores introducidos en los Capitulos sean vï¿½lidos.
 	 * @param temporadas
 	 * @param tempV
 	 * @return
@@ -412,13 +412,13 @@ public class FuncionesApoyoControladores {
 		for(int i = 0; i < temporadas.size() && capitulosValidos; i++) {
 			//Obtenemos la temporada en la que estamos.
 			Temporada temporada = temporadas.get(i);
-			//Comprobamos si el número de temporada que estamos recorriendo es menor que el total de Temporadas Vistas.
+			//Comprobamos si el nï¿½mero de temporada que estamos recorriendo es menor que el total de Temporadas Vistas.
 			if(i < tempV) {
 				
 				/*
 				 * Comprobamos si la temporada en la que estamos no tiene todos los Capitulos Vistos, pues si tenemos, por ejemplo,
-				 * 2 temporadas Vistas y la segunda temporada que recorremos, no tiene todos los capitulos vistos, no estaría la 
-				 * temporada vista, por lo que habría un error.
+				 * 2 temporadas Vistas y la segunda temporada que recorremos, no tiene todos los capitulos vistos, no estarï¿½a la 
+				 * temporada vista, por lo que habrï¿½a un error.
 				 */
 				if(temporada.getCapitulosVistos() != temporada.getCapitulosTotales()) {
 					capitulosValidos = false;
@@ -436,7 +436,7 @@ public class FuncionesApoyoControladores {
 			if(temporada.getCapitulosTotales() < 1) {
 				
 				capitulosValidos = false;
-				Alertas.alertaError("Error Capitulos Totales", "El valor de los capitulos totales tiene que ser mínimo de 1");
+				Alertas.alertaError("Error Capitulos Totales", "El valor de los capitulos totales tiene que ser mï¿½nimo de 1");
 			}
 			
 			if(temporada.getCapitulosVistos() > temporada.getCapitulosTotales()) {
@@ -502,7 +502,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * Método para eliminar el foco de un campo.
+	 * Mï¿½todo para eliminar el foco de un campo.
 	 */
 	public static void quitarFoco(Pane raiz) {
 		raiz.requestFocus();

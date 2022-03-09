@@ -28,7 +28,7 @@ import modulo.textoAlertas.MensajesAlertas;
 
 public class ControladorPrincipal implements Initializable {
 
-	// Creación de elementos Consulas.
+	// Creaciï¿½n de elementos Consulas.
 	@FXML
 	private GridPane raizConsulta;
 	@FXML
@@ -40,7 +40,7 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private Button resetConsulta;
 	
-	// Creación de elementos Registro.
+	// Creaciï¿½n de elementos Registro.
 	@FXML
 	private AnchorPane raizRegistro;
 	@FXML
@@ -68,7 +68,7 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private Button botonRegistrar;
 	
-	// Creación de elementos donde mostrar la seleccion.
+	// Creaciï¿½n de elementos donde mostrar la seleccion.
 	@FXML
 	private TextField tituloSeleccion;
 	@FXML
@@ -100,7 +100,7 @@ public class ControladorPrincipal implements Initializable {
 		
 		OpcionesDirectorioXML.creacionArchivos();
 
-		//Añadimos los elemento que mostrar en los ComboBox y le asignamos sus converters.
+		//Aï¿½adimos los elemento que mostrar en los ComboBox y le asignamos sus converters.
 		comboEstadosConsulta.setItems(ListasObservables.listaEstados());
 		comboEstadosConsulta.setConverter(new EstadosConverter());
 
@@ -113,14 +113,14 @@ public class ControladorPrincipal implements Initializable {
 		comboTiposRegistro.setItems(ListasObservables.listaTipos());
 		comboTiposRegistro.setConverter(new TiposConverter());
 		
-		//Añadimos un evento cuando el campo pierda el foco.
+		//Aï¿½adimos un evento cuando el campo pierda el foco.
 		tempTRegistro.focusedProperty().addListener(new ChangeListener<Boolean>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldProperty, Boolean newProperty) {
 				//Comprobamos si antes tenia el foco y ahora lo ha perdido.
 				if(oldProperty && !newProperty) {
-					//Si el campo una vez pierda el foco está vacío, se le dara un valor por defecto de 0.
+					//Si el campo una vez pierda el foco estï¿½ vacï¿½o, se le dara un valor por defecto de 0.
 					if(tempTRegistro.getText().isEmpty()) {
 						tempTRegistro.setText("1");
 					}
@@ -129,14 +129,14 @@ public class ControladorPrincipal implements Initializable {
 			}
 		});
 		
-		//Añadimos un evento cuando el campo pierda el foco.
+		//Aï¿½adimos un evento cuando el campo pierda el foco.
 		tempVRegistro.focusedProperty().addListener(new ChangeListener<Boolean>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldProperty, Boolean newProperty) {
 				//Comprobamos si antes tenia el foco y ahora lo ha perdido.
 				if(oldProperty&& !newProperty) {
-					//Si el campo una vez pierda el foco está vacío, se le dara un valor por defecto de 0.
+					//Si el campo una vez pierda el foco estï¿½ vacï¿½o, se le dara un valor por defecto de 0.
 					if(tempVRegistro.getText().isEmpty()) {
 						tempVRegistro.setText("0");
 					}
@@ -145,7 +145,7 @@ public class ControladorPrincipal implements Initializable {
 			}
 		});
 		
-		//Asignamos instrucciones para la pestaña registro.
+		//Asignamos instrucciones para la pestaï¿½a registro.
 		
 		colTempRegistro.setCellValueFactory(new PropertyValueFactory<Temporada, Integer>("id"));
 		colCapTRegistro.setCellValueFactory(new PropertyValueFactory<Temporada, Integer>("capitulosTotales"));
@@ -157,14 +157,14 @@ public class ControladorPrincipal implements Initializable {
 		ComprobacionesCampos.temporadasTextField(tempTRegistro);
 		ComprobacionesCampos.temporadasTextField(tempVRegistro);
 		
-		//Quitamos el texto que aparece en el medio de la tabla cuando esta vacía.
+		//Quitamos el texto que aparece en el medio de la tabla cuando esta vacï¿½a.
 		tablaTempRegistro.setPlaceholder(new Label(null));
 		tablaTemporadas.setPlaceholder(new Label(null));
 		
 	}
 
 	
-	//Controladores varias pestañas.
+	//Controladores varias pestaï¿½as.
 	
 	/**
 	 * Controlador del ComboBox encargado de elegir el tipo de Pieza Auidiovisual.
@@ -177,6 +177,8 @@ public class ControladorPrincipal implements Initializable {
 		
 		if(obj == comboTiposConsulta) {
 			
+			botonModificador.setDisable(true);
+			
 			if(comboTiposConsulta.getSelectionModel().getSelectedItem() != null) {
 				
 				Consultas.elegirTipo(comboTiposConsulta, tituloConsulta, comboEstadosConsulta, listaElementosObtenidos);
@@ -186,7 +188,7 @@ public class ControladorPrincipal implements Initializable {
 			
 			if( comboTiposRegistro.getSelectionModel().getSelectedItem() != null) {
 				
-				//Se llama al método para que prepare los siguientes campos del formulario.
+				//Se llama al mï¿½todo para que prepare los siguientes campos del formulario.
 				Registros.CambioTipo(comboTiposRegistro,comboEstadosRegistro, tempTRegistro, tempVRegistro, tablaTempRegistro, tituloRegistro,
 						sinopsisRegistro,botonRegistrar);
 				
@@ -206,6 +208,8 @@ public class ControladorPrincipal implements Initializable {
 		Object obj = e.getSource();
 		
 		if(obj == comboEstadosConsulta) {
+			
+			botonModificador.setDisable(true);
 			
 			Consultas.eleccionEstado(comboEstadosConsulta, listaElementosObtenidos, tituloConsulta);
 			
@@ -232,7 +236,7 @@ public class ControladorPrincipal implements Initializable {
 	/*
 	 * -------------------------------------*
 	 * 										*
-	 * Controladores pestaña consultas.		*
+	 * Controladores pestaï¿½a consultas.		*
 	 * 										*
 	 * -------------------------------------*
 	 */
@@ -245,6 +249,8 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private void comprobacionTitulo() {
 
+		botonModificador.setDisable(true);
+		
 		Consultas.comprobacionTitulo(tituloConsulta, listaElementosObtenidos);
 
 	}
@@ -258,13 +264,13 @@ public class ControladorPrincipal implements Initializable {
 		
 		Consultas.obtenerElementoLista(listaElementosObtenidos, botonModificador, tituloSeleccion,
 				idSeleccion, estadoSeleccion, sinopsisSeleccion, tempTSeleccion, tempVSeleccion,
-				tablaTemporadas, columnaTemporadas, columnaCapV, columnaCapT);
+				tablaTemporadas, columnaTemporadas, columnaCapT,columnaCapV);
 
 	}
 	
 
 	/**
-	 * Método que se encarga de controlar el evento al pulsar el botón par modificar
+	 * Mï¿½todo que se encarga de controlar el evento al pulsar el botï¿½n par modificar
 	 * el campo seleccionado en la ListView.
 	 * 
 	 * @param e
@@ -278,7 +284,7 @@ public class ControladorPrincipal implements Initializable {
 		Stage stage = (Stage) nodo.getScene().getWindow();
 		// Ocultamos el stage para que el usuario no pueda realizar acciones en el.
 		stage.hide();
-		// Obtenemos la instancia de la clase que no servirá para transferir datos.
+		// Obtenemos la instancia de la clase que no servirï¿½ para transferir datos.
 		EnvioDatos datos = EnvioDatos.getInstance();
 		// Obtenemos la pieza seleccionada en la ListView.
 		PiezaAudiovisual pieza = listaElementosObtenidos.getSelectionModel().getSelectedItem();
@@ -293,9 +299,9 @@ public class ControladorPrincipal implements Initializable {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/vista/VentanaModificacion.fxml"));
 			// Creamos la escena pasandole el AnchorPane como base.
 			Scene scene = new Scene(root);
-			// Modificamos el título.
+			// Modificamos el tï¿½tulo.
 			modificadorStage.setTitle("Modificar");
-			// Le asignamos un mínimo al escalado de la altura y longitud.
+			// Le asignamos un mï¿½nimo al escalado de la altura y longitud.
 			modificadorStage.setMinWidth(900);
 			modificadorStage.setMinHeight(480);
 			// Asignamos la escena al stage.
@@ -303,12 +309,12 @@ public class ControladorPrincipal implements Initializable {
 			// Mostramos el stage.
 			modificadorStage.show();
 			/*
-			 * Añadimos un evento de ventana al cerrar la nueva ventana(desde la X de la ventana) para que se vuelva a
+			 * Aï¿½adimos un evento de ventana al cerrar la nueva ventana(desde la X de la ventana) para que se vuelva a
 			 * mostrar la ventana principal.
 			 */
 			modificadorStage.setOnCloseRequest(event -> stage.show());
 			/*
-			 * Añadimos un evento para que se muestr la ventana principal al cerrar(Llamando al .close()) o al esconder la ventana.
+			 * Aï¿½adimos un evento para que se muestr la ventana principal al cerrar(Llamando al .close()) o al esconder la ventana.
 			 */
 			modificadorStage.setOnHidden(event -> {
 				stage.show();
@@ -327,8 +333,8 @@ public class ControladorPrincipal implements Initializable {
 	
 	
 	/**
-	 * Método encargado de controlar el evento al pusar el botón de resetear, que vaciará todos los campos
-	 * y deshabilitará los que deban estarlo para que quede como al inicio.
+	 * Mï¿½todo encargado de controlar el evento al pusar el botï¿½n de resetear, que vaciarï¿½ todos los campos
+	 * y deshabilitarï¿½ los que deban estarlo para que quede como al inicio.
 	 * @param e
 	 */
 	@FXML
@@ -356,7 +362,7 @@ public class ControladorPrincipal implements Initializable {
 	
 
 	/**
-	 * Controlador para quitar el foco en la pestaña Consultas.
+	 * Controlador para quitar el foco en la pestaï¿½a Consultas.
 	 */
 	@FXML
 	private void quitarFocoConsulta() {
@@ -369,7 +375,7 @@ public class ControladorPrincipal implements Initializable {
 	/*
 	 * -------------------------------------*
 	 * 										*
-	 * Controladores pestaña registros.		*
+	 * Controladores pestaï¿½a registros.		*
 	 * 										*
 	 * -------------------------------------*
 	 */
@@ -380,7 +386,7 @@ public class ControladorPrincipal implements Initializable {
 	private void introduccionTempTRegistro() {
 		
 		/*
-		 * Si el valor introducido en el TextField es válido se le quita el foco al
+		 * Si el valor introducido en el TextField es vï¿½lido se le quita el foco al
 		 * campo.
 		 */
 		if(!tempTRegistro.getText().isEmpty()) {
@@ -400,8 +406,8 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private void quitarFocoCamposR(ActionEvent e) {
 		/*
-		 * Se obtiene el objeto que ha activado el evento, se comparan y si el campo está vacío mostrará una
-		 * ventana emergente avisando que el campo está vacío y no perderá el foco. Solo perderá el foco si el
+		 * Se obtiene el objeto que ha activado el evento, se comparan y si el campo estï¿½ vacï¿½o mostrarï¿½ una
+		 * ventana emergente avisando que el campo estï¿½ vacï¿½o y no perderï¿½ el foco. Solo perderï¿½ el foco si el
 		 * campo que activa el evento tiene contenido.
 		 */
 		
@@ -449,7 +455,7 @@ public class ControladorPrincipal implements Initializable {
 	
 	
 	/**
-	 * Controlador encargado de la introducción de valores en el campo Temporadas Vistas.
+	 * Controlador encargado de la introducciï¿½n de valores en el campo Temporadas Vistas.
 	 */
 	@FXML
 	private void introduccionTempVRegistro() {
@@ -464,7 +470,7 @@ public class ControladorPrincipal implements Initializable {
 	
 	
 	/**
-	 * Controlador encargado de la introducción de valores en el campo Temporadas Vistas.
+	 * Controlador encargado de la introducciï¿½n de valores en el campo Temporadas Vistas.
 	 */
 	@FXML
 	private void introduccionCapT(CellEditEvent<Temporada, Integer> e) {
@@ -523,7 +529,7 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private void registrarDatos() {
 		
-		if(Alertas.alertaEleccion("Registro Datos", "¿Seguro que quieres ingresar los datos introducidos?")) {
+		if(Alertas.alertaEleccion("Registro Datos", "ï¿½Seguro que quieres ingresar los datos introducidos?")) {
 			
 			boolean datosIntroducidos = FuncionesApoyoControladores.registrar(comboTiposRegistro, tituloRegistro, comboEstadosRegistro, sinopsisRegistro,
 					tempTRegistro, tempVRegistro, tablaTempRegistro);
@@ -531,7 +537,7 @@ public class ControladorPrincipal implements Initializable {
 			
 			if(datosIntroducidos) {
 				
-				Alertas.alertaInformativa("Registro Exitoso", "Se han registrado los datos con éxito.");
+				Alertas.alertaInformativa("Registro Exitoso", "Se han registrado los datos con ï¿½xito.");
 				
 				resetearRegistro();
 				
