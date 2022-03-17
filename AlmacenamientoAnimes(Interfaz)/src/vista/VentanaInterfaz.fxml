@@ -276,7 +276,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Opciones">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#abrirConfiguracion" text="Añadir directorio archivo." />
+              <MenuItem fx:id="menuOpcionesArchivo" mnemonicParsing="false" onAction="#abrirConfiguracion" text="Añadir directorio archivo." />
             </items>
           </Menu>
         </menus>

@@ -28,7 +28,11 @@ import modulo.textoAlertas.MensajesAlertas;
 
 public class ControladorPrincipal implements Initializable {
 
-	// Creaci�n de elementos Consulas.
+	//Menú
+	@FXML
+	private MenuItem menuOpcionesArchivo;
+	
+	// Creación de elementos Consulas.
 	@FXML
 	private GridPane raizConsulta;
 	@FXML
@@ -40,7 +44,7 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private Button resetConsulta;
 	
-	// Creaci�n de elementos Registro.
+	// Creación de elementos Registro.
 	@FXML
 	private AnchorPane raizRegistro;
 	@FXML
@@ -68,7 +72,7 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private Button botonRegistrar;
 	
-	// Creaci�n de elementos donde mostrar la seleccion.
+	// Creación de elementos donde mostrar la seleccion.
 	@FXML
 	private TextField tituloSeleccion;
 	@FXML
@@ -165,12 +169,10 @@ public class ControladorPrincipal implements Initializable {
 	
 	
 	@FXML
-	private void abrirConfiguracion(ActionEvent e) {
-		
-		Node nodo = (Node) e.getTarget();
+	private void abrirConfiguracion() {
 		
 		// Obtenemos el stage con el que estamos trabajando.
-		Stage stage = (Stage) nodo.getScene().getWindow();
+		Stage stage = (Stage) raizConsulta.getScene().getWindow();
 		// Ocultamos el stage para que el usuario no pueda realizar acciones en el.
 		stage.hide();
 

@@ -16,7 +16,8 @@ public class OpcionesDirectorioXML {
 
 	//Direcci�n del archivo configuraci�n(Siempre ser� la misma).
 	private static final Path ARCHIVO_CONFIG = Paths.get("./src/resources/opciones.config");
-	private static final String NOMBRE_DOC_DATOS = "./src/resources/AlmacenamientoDatos.xml";
+	private static final String NOMBRE_DOC_DATOS = "/AlmacenamientoDatos.xml";
+	private static final String UBICACION_DATOS_DEFECTO = "./src/resources/AlmacenamientoDatos.xml";
 	private static final String NOMBRE_RAIZ = TiposPiezasAudiovisuales.class.getSimpleName().toLowerCase();
 	
 	private static Path rutaArchivo;
@@ -48,7 +49,7 @@ public class OpcionesDirectorioXML {
 				//Configura el archivo para que est� oculto.
 				Files.setAttribute(ARCHIVO_CONFIG,"dos:hidden",Boolean.TRUE,LinkOption.NOFOLLOW_LINKS);
 				//Escribe en el archivo config la direcci�n del documento almacenamiento por defecto.
-				Files.writeString(ARCHIVO_CONFIG, NOMBRE_DOC_DATOS, StandardOpenOption.WRITE);
+				Files.writeString(ARCHIVO_CONFIG, UBICACION_DATOS_DEFECTO, StandardOpenOption.WRITE);
 		}
 
 	}
@@ -107,16 +108,20 @@ public class OpcionesDirectorioXML {
 	}
 
 
+	public static void modificarConfig(String nuevaDireccion) throws IOException {
+		
+		String dirArchivo = nuevaDireccion + NOMBRE_DOC_DATOS;
+		Files.writeString(ARCHIVO_CONFIG, dirArchivo, StandardOpenOption.WRITE);
+		
+	}
+	
 	public static Path getRutaArchivo() {
 		return rutaArchivo;
 	}
 	
-	
-	public static void modificarConfig(String nuevaDireccion) throws IOException {
-		
-		Files.writeString(ARCHIVO_CONFIG, nuevaDireccion, StandardOpenOption.WRITE);
-		
-	}
+
+
+
 
 	
 }
