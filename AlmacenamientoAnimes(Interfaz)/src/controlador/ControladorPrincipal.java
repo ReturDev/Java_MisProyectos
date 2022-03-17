@@ -162,6 +162,51 @@ public class ControladorPrincipal implements Initializable {
 		tablaTemporadas.setPlaceholder(new Label(null));
 		
 	}
+	
+	
+	@FXML
+	private void abrirConfiguracion(ActionEvent e) {
+		
+		Node nodo = (Node) e.getTarget();
+		
+		// Obtenemos el stage con el que estamos trabajando.
+		Stage stage = (Stage) nodo.getScene().getWindow();
+		// Ocultamos el stage para que el usuario no pueda realizar acciones en el.
+		stage.hide();
+
+		try {
+			// Creamos el stage de la nueva ventana.
+			Stage configStage = new Stage();
+			// Obtenemos el AnchorPane de la nueva ventana a traves del archivo FXML.
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/vista/VentanaConfiguracion.fxml"));
+			// Creamos la escena pasandole el AnchorPane como base.
+			Scene scene = new Scene(root);
+			// Modificamos el t�tulo.
+			configStage.setTitle("Configuracion");
+			// Le asignamos falso el escalado.
+			configStage.setResizable(false);
+			// Asignamos la escena al stage.
+			configStage.setScene(scene);
+			// Mostramos el stage.
+			configStage.show();
+			/*
+			 * A�adimos un evento de ventana al cerrar la nueva ventana(desde la X de la ventana) para que se vuelva a
+			 * mostrar la ventana principal.
+			 */
+			configStage.setOnCloseRequest(event -> stage.show());
+			/*
+			 * A�adimos un evento para que se muestr la ventana principal al cerrar(Llamando al .close()) o al esconder la ventana.
+			 */
+			configStage.setOnHidden(event -> {
+				stage.show();
+				configStage.close();
+			});
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+	}
 
 	
 	//Controladores varias pesta�as.

@@ -29,12 +29,6 @@
  .combo-box:hover, .button:hover, .menu:hover, .menu-item:hover, .combo-box .list-cell:hover{
  	-fx-cursor: hand;
  }
- 
-
-/*Se le da un color base al primer anchor panel. */
-.anchorBase{
-	-fx-background-color: #072227;
-}
 
 
 /****************************
@@ -167,7 +161,7 @@
 	
 	-fx-background-color: #4FBDBA;
 }
-.table-view .track, .table-view .scroll-bar{
+.table-view .scroll-bar{
 	
 	-fx-background-color: #D5FAFE;
 	
@@ -178,81 +172,61 @@
 
 .table-view .corner{
 	
-	-fx-background-color: transparent;
+	-fx-background-color: #D5FAFE;
 	
 }
 
- .table-view .thumb{
+.table-view .thumb{
  	
  	-fx-background-color: #4FBDBA;
  	
- }
-
-/* #072227
- * #35858B
- 
- * #4FBDBA
- * #AEFEFF
- 
- * #D5FAFE
- * #E8FEFF
- * 
- */
-
+}
 
 .column-header .label{
 	
 		-fx-text-fill: #072227;
+		
 }
 
 
 
 
+.list-view .list-cell{
+ 	
+ 	-fx-background-color: transparent;
+ 	
+ }
 
 
-
-
-
-.listaElementos .list-cell{
+.combo-box .list-cell{
 	
 	-fx-alignment: center;
-	-fx-font-weight: 700;
 	-fx-font-size: 12px;
 	
 }
 
 .combo-box, .text-field{
+	
 	-fx-background-color: #4FBDBA;
 	-fx-border-color: #072227;
 	-fx-effect: dropshadow(gaussian,#36848a,10.0,0.10,-3,-3);
 	-fx-background-radius: 15px;
 	-fx-border-radius: 15px;
+	
 }
 
-.combo-box .list-view, .combo-box .list-cell{
+
+.combo-box .list-view{
 	
-	-fx-background-color: transparent;
+	-fx-background-color: #4FBDBA;
+	-fx-background-radius: 15px;
 	
 }
+
 
 .combo-box .list-view{
 	-fx-border-color: #072227;
 	-fx-border-radius: 15px;
-}
-/*
- * Se cambia el fondo de la zona en consultas y de la zona donde se muestra los datos del elemento seleccionado.
- * También se le redondea el fondo en las esquinas para que quede menos cuadrado.
- */
-.fondoConsultas, .fondoSeleccion, .listaElementos{
-	
-	
-	-fx-background-color: linear-gradient(to top left, #AEFEFF 15%, #4FBDBA );
-	-fx-background-radius: 10px;
-}
-
-/*Se cambia el fondo del pie de la zona de muestra de elementos y los bordes y barras de desplazamiento del split pane*/
-.fondoBotonSeleccion, .split-pane,.split-pane .split-pane-divider{
-	-fx-background-color: #072227;
 }
 
 .button{
@@ -268,17 +242,49 @@
 	
 }
 
+.text-area .content{
+	
+	-fx-background-color: #D5FAFE;
+	
+}
 
 
- .listaElementos .list-cell{
- 	
- 	-fx-background-color: transparent;
- 	
- }
+/*************************
+ ****VENTANA PRINCIPAL****
+ *************************/ 
+
+/*Se le da un color base al primer anchor panel. */
+.anchorBase{
+	-fx-background-color: #072227;
+}
+
+
+/*
+ * Se cambia el fondo de la zona en consultas y de la zona donde se muestra los datos del elemento seleccionado.
+ * También se le redondea el fondo en las esquinas para que quede menos cuadrado.
+ */
+.fondoConsultas, .fondoSeleccion, .list-view{
+	
+	
+	-fx-background-color: linear-gradient(to top left, #AEFEFF 15%, #4FBDBA );
+	-fx-background-radius: 10px;
+}
+
+/*Se cambia el fondo del pie de la zona de muestra de elementos y los bordes y barras de desplazamiento del split pane*/
+.fondoBotonSeleccion, .split-pane,.split-pane .split-pane-divider{
+	-fx-background-color: #072227;
+}
+
+.listaElementos .list-cell{
+	
+	-fx-alignment: center;
+	-fx-font-weight: 700;
+	-fx-font-size: 12px;
+	
+}
+
  
 
-
- 
  
  /*****************************
   ***ESTILOS PARTE SELECCION***
@@ -309,15 +315,10 @@
 	
 }
 
-.sinopsisSeleccion .content{
-	-fx-background-color: #D5FAFE;
-}
-
-
 
 
 /*****************************
- * ESTILOS PESTA�A REGISTROS *
+ * ESTILOS PESTAÑA REGISTROS *
  *****************************/
 
 .anchorRegistro{
@@ -327,17 +328,30 @@
 	-fx-border-color: #072227;
 	-fx-border-width: 2px;
 	
-	
 }
 
 .anchorBotonesRegistro{
+	
 	-fx-background-color: #072227;
+	
 }
 
 .fondoRegistro{
-	-fx-border-width: 3px 0.0 0.0 3px;
 	
+	-fx-border-width: 3px 0.0 0.0 3px;
 
 }
+
+ 
+/************************
+ **VENTANA MODIFICACION**
+ ************************/
+ 
+.fondoModificacion{
+	
+	-fx-background-color: linear-gradient(to top left, #AEFEFF 15%, #4FBDBA );
+	
+}
+ 
 
 

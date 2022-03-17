@@ -14,7 +14,7 @@ import modelo.enums.TiposPiezasAudiovisuales;
 
 public class OpcionesDirectorioXML {
 
-	//Dirección del archivo configuración(Siempre será la misma).
+	//Direcciï¿½n del archivo configuraciï¿½n(Siempre serï¿½ la misma).
 	private static final Path ARCHIVO_CONFIG = Paths.get("./src/resources/opciones.config");
 	private static final String NOMBRE_DOC_DATOS = "./src/resources/AlmacenamientoDatos.xml";
 	private static final String NOMBRE_RAIZ = TiposPiezasAudiovisuales.class.getSimpleName().toLowerCase();
@@ -36,7 +36,7 @@ public class OpcionesDirectorioXML {
 	
 	
 	/**
-	 * Método encargado de crear el archivo de configuración en caso de no existir de antemano.
+	 * Mï¿½todo encargado de crear el archivo de configuraciï¿½n en caso de no existir de antemano.
 	 * @throws IOException
 	 */
 	private static void creaArchivoConfig() throws IOException {
@@ -45,9 +45,9 @@ public class OpcionesDirectorioXML {
 			
 				//Crea el archivo en la ruta del programa.
 				Files.createFile(ARCHIVO_CONFIG);
-				//Configura el archivo para que esté oculto.
+				//Configura el archivo para que estï¿½ oculto.
 				Files.setAttribute(ARCHIVO_CONFIG,"dos:hidden",Boolean.TRUE,LinkOption.NOFOLLOW_LINKS);
-				//Escribe en el archivo config la dirección del documento almacenamiento por defecto.
+				//Escribe en el archivo config la direcciï¿½n del documento almacenamiento por defecto.
 				Files.writeString(ARCHIVO_CONFIG, NOMBRE_DOC_DATOS, StandardOpenOption.WRITE);
 		}
 
@@ -94,7 +94,7 @@ public class OpcionesDirectorioXML {
 		doc.appendChild(elementoPadre);
 		
 		Transformer tf = TransformerFactory.newInstance().newTransformer();
-		//Habilita la identación en el documento XML.
+		//Habilita la identaciÃ³n en el documento XML.
 		tf.setOutputProperty(OutputKeys.INDENT, "yes");
 		//Establece la cantidad de espacios de la identacion, pues por defecto es 0.
 		tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
@@ -111,6 +111,12 @@ public class OpcionesDirectorioXML {
 		return rutaArchivo;
 	}
 	
+	
+	public static void modificarConfig(String nuevaDireccion) throws IOException {
+		
+		Files.writeString(ARCHIVO_CONFIG, nuevaDireccion, StandardOpenOption.WRITE);
+		
+	}
 
 	
 }

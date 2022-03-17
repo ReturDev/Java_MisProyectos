@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="raiz" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorModificacion">
+<AnchorPane fx:id="raiz" prefHeight="720.0" prefWidth="1080.0" styleClass="fondoModificacion" stylesheets="@../resources/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorModificacion">
    <children>
-      <GridPane layoutX="10.0" layoutY="10.0" minHeight="90.0" prefHeight="685.0" prefWidth="1080.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutX="10.0" layoutY="10.0" minHeight="90.0" prefHeight="685.0" prefWidth="1080.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="120.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="98.0" />
@@ -34,8 +34,8 @@
             <RowConstraints minHeight="-Infinity" prefHeight="158.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="titulo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#quitarFocoCampos" prefHeight="25.0" prefWidth="270.0" styleClass="tituloDatos" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <ComboBox fx:id="estado" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#seleccionEstado" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <TextField fx:id="titulo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#quitarFocoCampos" prefHeight="28.0" prefWidth="270.0" styleClass="tituloDatos" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <ComboBox fx:id="estado" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#seleccionEstado" prefHeight="28.0" prefWidth="120.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -45,21 +45,21 @@
             </ComboBox>
             <TextField fx:id="tempTotales" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#quitarFocoCampos" onKeyTyped="#introduccionTempT" prefHeight="25.0" prefWidth="50.0" styleClass="campoTempVElemento" GridPane.columnIndex="4" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.vgrow="NEVER" />
             <TextField fx:id="tempVistas" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#quitarFocoCampos" onKeyTyped="#introduccionTempV" prefHeight="25.0" prefWidth="50.0" styleClass="campoTempTElemento" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TableView fx:id="tablaTemporadas" editable="true" maxWidth="290.0" minHeight="100.0" prefHeight="224.0" prefWidth="174.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+            <TableView fx:id="tablaTemporadas" editable="true" maxWidth="314.0" minHeight="100.0" prefHeight="218.0" prefWidth="314.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <columns>
-                  <TableColumn fx:id="columnaTemporada" editable="false" prefWidth="69.0" sortable="false" text="Temporada" />
-                  <TableColumn fx:id="columnaCapV" onEditCommit="#modificarCapV" prefWidth="105.0" sortable="false" text="Capitulos Vistos" />
-                  <TableColumn id="columnaCapT" fx:id="columnaCapT" onEditCommit="#modificarCapT" prefWidth="115.0" sortable="false" text="CapitulosTotales" />
+                  <TableColumn fx:id="columnaTemporada" editable="false" prefWidth="75.20001220703125" sortable="false" text="Temporada" />
+                  <TableColumn fx:id="columnaCapV" onEditCommit="#modificarCapV" prefWidth="110.39999389648438" sortable="false" text="Capitulos Vistos" />
+                  <TableColumn id="columnaCapT" fx:id="columnaCapT" onEditCommit="#modificarCapT" prefWidth="120.80006408691406" sortable="false" text="CapitulosTotales" />
                </columns>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <padding>
-                  <Insets left="3.0" />
-               </padding>
                <GridPane.margin>
                   <Insets right="5.0" top="5.0" />
                </GridPane.margin>
+               <padding>
+                  <Insets top="-0.5" />
+               </padding>
             </TableView>
             <TextArea fx:id="sinopsis" maxWidth="600.0" prefHeight="36.0" prefWidth="302.0" promptText="Sinopsis" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <GridPane.margin>

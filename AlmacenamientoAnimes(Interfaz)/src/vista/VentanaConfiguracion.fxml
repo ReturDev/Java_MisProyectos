@@ -11,8 +11,8 @@
          <children>
             <Button layoutX="470.0" layoutY="560.0" mnemonicParsing="false" text="Guardar" />
             <Label layoutX="7.0" layoutY="17.0" prefHeight="17.0" prefWidth="124.0" text="Ubicación archivo XML" />
-            <TextField editable="false" layoutX="131.0" layoutY="13.0" prefHeight="25.0" prefWidth="321.0" />
-            <Button layoutX="452.0" layoutY="13.0" mnemonicParsing="false" text="Examinar..." />
+            <TextField fx:id="direccion" editable="false" layoutX="131.0" layoutY="13.0" prefHeight="26.0" prefWidth="316.0" />
+            <Button fx:id="botonExaminar" layoutX="452.0" layoutY="13.0" mnemonicParsing="false" onAction="#examinar" text="Examinar..." />
          </children>
       </AnchorPane>
    </children>

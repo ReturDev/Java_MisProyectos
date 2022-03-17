@@ -52,7 +52,7 @@
                                                    </rowConstraints>
                                                    <children>
                                                       <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="41.0" text="Tipo:" GridPane.columnIndex="1" />
-                                                      <ComboBox fx:id="comboTiposConsulta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#eleccionTipo" prefHeight="25.0" prefWidth="204.0" styleClass="comboTipoConsultas" GridPane.columnIndex="2">
+                                                      <ComboBox fx:id="comboTiposConsulta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#eleccionTipo" prefHeight="28.0" prefWidth="204.0" styleClass="comboTipoConsultas" GridPane.columnIndex="2">
                                                          <opaqueInsets>
                                                             <Insets />
                                                          </opaqueInsets>
@@ -60,7 +60,7 @@
                                                             <Cursor fx:constant="DEFAULT" />
                                                          </cursor>
                                                       </ComboBox>
-                                                      <TextField fx:id="tituloConsulta" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#comprobacionTitulo" prefHeight="25.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="tituloConsulta" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#comprobacionTitulo" prefHeight="28.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                       <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="56.0" text="Estado:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                          <opaqueInsets>
                                                             <Insets />
@@ -69,7 +69,7 @@
                                                             <Insets right="5.0" />
                                                          </padding>
                                                       </Label>
-                                                      <ComboBox fx:id="comboEstadosConsulta" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#eleccionEstado" prefHeight="25.0" prefWidth="130.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                      <ComboBox fx:id="comboEstadosConsulta" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#eleccionEstado" prefHeight="28.0" prefWidth="130.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                          <opaqueInsets>
                                                             <Insets />
                                                          </opaqueInsets>
@@ -141,7 +141,7 @@
                                                          </GridPane.margin></TextField>
                                                       <TableView fx:id="tablaTemporadas" focusTraversable="false" maxWidth="300.0" minHeight="100.0" prefHeight="146.0" prefWidth="300.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                                                          <columns>
-                                                            <TableColumn fx:id="columnaTemporadas" editable="false" maxWidth="73.0" minWidth="-Infinity" prefWidth="73.0" resizable="false" sortable="false" text="Temporada" />
+                                                            <TableColumn fx:id="columnaTemporadas" editable="false" maxWidth="75.0" minWidth="-Infinity" prefWidth="75.0" resizable="false" sortable="false" text="Temporada" />
                                                             <TableColumn fx:id="columnaCapV" editable="false" maxWidth="106.0" minWidth="-Infinity" prefWidth="106.0" resizable="false" sortable="false" text="Capitulos Vistos" />
                                                             <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" maxWidth="117.0" minWidth="-Infinity" prefWidth="117.0" resizable="false" sortable="false" text="CapitulosTotales" />
                                                          </columns>
@@ -158,7 +158,7 @@
                                                             <Insets top="-0.5" />
                                                          </padding>
                                                       </TableView>
-                                                      <TextArea fx:id="sinopsisSeleccion" editable="false" focusTraversable="false" maxWidth="600.0" prefHeight="36.0" prefWidth="302.0" styleClass="sinopsisSeleccion" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                                      <TextArea fx:id="sinopsisSeleccion" editable="false" focusTraversable="false" maxWidth="600.0" prefHeight="36.0" prefWidth="302.0" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                                          <GridPane.margin>
                                                             <Insets bottom="5.0" right="15.0" top="5.0" />
                                                          </GridPane.margin>
@@ -168,7 +168,7 @@
                                                       </TextArea>
                                                    </children>
                                                 </GridPane>
-                                                <Button fx:id="botonModificador" alignment="CENTER" disable="true" layoutX="524.0" layoutY="299.0" mnemonicParsing="false" onAction="#modificarElementos" prefHeight="5.0" text="Modificar Elemento" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="0.0">
+                                                <Button fx:id="botonModificador" alignment="CENTER" disable="true" layoutX="524.0" layoutY="299.0" mnemonicParsing="false" onAction="#modificarElementos" prefHeight="5.0" text="Modificar Elemento" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="4.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -222,8 +222,8 @@
                               </ComboBox>
                               <Label prefHeight="26.0" prefWidth="40.0" text="Tipo:" GridPane.columnIndex="2" />
                               <Label prefHeight="26.0" prefWidth="45.0" text="Titulo:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField fx:id="tituloRegistro" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#quitarFocoCamposR" prefHeight="25.0" prefWidth="296.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="comboEstadosRegistro" disable="true" onAction="#eleccionEstado" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <TextField fx:id="tituloRegistro" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#quitarFocoCamposR" prefHeight="28.0" prefWidth="296.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="comboEstadosRegistro" disable="true" maxHeight="28.0" onAction="#eleccionEstado" prefHeight="28.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -237,11 +237,11 @@
                               <TextField fx:id="tempTRegistro" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#quitarFocoCamposR" onKeyTyped="#introduccionTempTRegistro" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                               <Label prefHeight="26.0" prefWidth="133.0" text="Temporadas Totales:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                               <Label prefHeight="26.0" prefWidth="127.0" text="Temporadas Vistas:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TableView fx:id="tablaTempRegistro" disable="true" editable="true" focusTraversable="false" maxWidth="290.0" minHeight="100.0" prefHeight="158.0" prefWidth="300.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                              <TableView fx:id="tablaTempRegistro" disable="true" editable="true" focusTraversable="false" maxWidth="294.0" minHeight="100.0" prefHeight="210.0" prefWidth="294.0" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                                  <columns>
                                     <TableColumn fx:id="colTempRegistro" editable="false" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Temporada" />
                                     <TableColumn fx:id="colCapVRegistro" maxWidth="105.0" onEditCommit="#introduccionCapV" prefWidth="105.0" sortable="false" text="Capitulos Vistos" />
-                                    <TableColumn fx:id="colCapTRegistro" maxWidth="105.0" onEditCommit="#introduccionCapT" prefWidth="105.0" sortable="false" text="CapitulosTotales" />
+                                    <TableColumn fx:id="colCapTRegistro" maxWidth="106.0" onEditCommit="#introduccionCapT" prefWidth="106.0" sortable="false" text="CapitulosTotales" />
                                  </columns>
                                  <opaqueInsets>
                                     <Insets />
@@ -276,7 +276,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Opciones">
             <items>
-              <MenuItem mnemonicParsing="false" text="Añadir directorio archivo." />
+              <MenuItem mnemonicParsing="false" onAction="#abrirConfiguracion" text="Añadir directorio archivo." />
             </items>
           </Menu>
         </menus>
