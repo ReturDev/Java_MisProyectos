@@ -1,5 +1,6 @@
 package modelo.funcionesXML;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -17,13 +18,13 @@ public class OpcionesDirectorioXML {
 	//Direcci�n del archivo configuraci�n(Siempre ser� la misma).
 	private static final Path ARCHIVO_CONFIG = Paths.get("./src/resources/opciones.config");
 	private static final String NOMBRE_DOC_DATOS = "/AlmacenamientoDatos.xml";
-	private static final String UBICACION_DATOS_DEFECTO = "./src/resources/AlmacenamientoDatos.xml";
+	public static final Path UBICACION_DATOS_DEFECTO = Paths.get("./src/resources").normalize().toAbsolutePath();
 	private static final String NOMBRE_RAIZ = TiposPiezasAudiovisuales.class.getSimpleName().toLowerCase();
 	
 	private static Path rutaArchivo;
 	
 	
-	public static void creacionArchivos() {
+	public static void creacionArchivos() throws FileNotFoundException {
 		
 		try {
 			creaArchivoConfig();
@@ -31,6 +32,7 @@ public class OpcionesDirectorioXML {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		comprobacionArchivoXML();
 		
 	}
@@ -49,18 +51,23 @@ public class OpcionesDirectorioXML {
 				//Configura el archivo para que est� oculto.
 				Files.setAttribute(ARCHIVO_CONFIG,"dos:hidden",Boolean.TRUE,LinkOption.NOFOLLOW_LINKS);
 				//Escribe en el archivo config la direcci�n del documento almacenamiento por defecto.
-				Files.writeString(ARCHIVO_CONFIG, UBICACION_DATOS_DEFECTO, StandardOpenOption.WRITE);
+				Files.writeString(ARCHIVO_CONFIG, UBICACION_DATOS_DEFECTO + NOMBRE_DOC_DATOS, StandardOpenOption.WRITE);
 		}
 
 	}
 	
 	private static void leerRutaArchivoConfig() throws IOException {
 		
-		rutaArchivo = Paths.get(Files.readString(ARCHIVO_CONFIG)).toAbsolutePath();
+		rutaArchivo = Paths.get(Files.readString(ARCHIVO_CONFIG));
 		
 	}
 	
-	private static void comprobacionArchivoXML() {
+	private static void comprobacionArchivoXML() throws FileNotFoundException {
+		
+		if(!Files.isDirectory(rutaArchivo.getParent())) {
+			throw new FileNotFoundException("El directorio donde se guarda el documento no existe.");
+		}
+		
 		if(Files.notExists(rutaArchivo)) {
 			
 			try {
@@ -70,6 +77,7 @@ public class OpcionesDirectorioXML {
 			}
 			
 		}
+		
 	}
 	
 	/**
@@ -111,7 +119,7 @@ public class OpcionesDirectorioXML {
 	public static void modificarConfig(String nuevaDireccion) throws IOException {
 		
 		String dirArchivo = nuevaDireccion + NOMBRE_DOC_DATOS;
-		Files.writeString(ARCHIVO_CONFIG, dirArchivo, StandardOpenOption.WRITE);
+		Files.writeString(ARCHIVO_CONFIG, dirArchivo,StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
 		
 	}
 	

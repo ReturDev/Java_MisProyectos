@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="raiz" prefHeight="720.0" prefWidth="1080.0" styleClass="fondoModificacion" stylesheets="@../resources/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorModificacion">
+<AnchorPane fx:id="raiz" onMouseClicked="#quitarFocoModificacion" prefHeight="720.0" prefWidth="1080.0" styleClass="fondoModificacion" stylesheets="@../resources/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorModificacion">
    <children>
-      <GridPane layoutX="10.0" layoutY="10.0" minHeight="90.0" prefHeight="685.0" prefWidth="1080.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutX="10.0" layoutY="10.0" minHeight="90.0" onMouseClicked="#quitarFocoModificacion" prefHeight="685.0" prefWidth="1080.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="120.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="98.0" />

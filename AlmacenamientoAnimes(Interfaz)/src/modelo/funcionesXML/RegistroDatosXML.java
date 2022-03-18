@@ -15,9 +15,8 @@ import modulo.alertas.Alertas;
 
 public class RegistroDatosXML {
 
-	public static boolean introducirDatosPieza(PiezaAudiovisual pieza, TiposPiezasAudiovisuales tipo) {
+	public static void introducirDatosPieza(PiezaAudiovisual pieza, TiposPiezasAudiovisuales tipo) throws TransformerException {
 		
-		boolean datoIntroducido = true;
 		
 		Document doc = ObtencionDatosXML.getDOC();
 		Element raiz = ObtencionDatosXML.getRAIZ();
@@ -56,32 +55,25 @@ public class RegistroDatosXML {
 		}
 		
 		
-		try {
+	
 			
-			if(modificar) {
-				Element eModificar= localizarEModificar(pieza.getId(),  elementoPadre.getElementsByTagName(nuevoElemento.getNodeName()));
-				
-				elementoPadre.replaceChild(nuevoElemento, eModificar);
-				
-				transmorfarXML(doc);
-				
-			}else {
-				
-				elementoPadre.appendChild(nuevoElemento);
-				
-				transmorfarXMLIdentado(doc);
-				
-			}
+		if(modificar) {
 			
-		} catch (TransformerException e) {
-			
-			datoIntroducido = false;
-			
-			Alertas.alertaError("Error Guardar Datos", "Ha ocurrido un error al guardar los datos." + e.getMessage());
+			Element eModificar= localizarEModificar(pieza.getId(),  elementoPadre.getElementsByTagName(nuevoElemento.getNodeName()));
+				
+			elementoPadre.replaceChild(nuevoElemento, eModificar);
+				
+			transmorfarXML(doc);
+				
+		}else {
+				
+			elementoPadre.appendChild(nuevoElemento);
+				
+			transmorfarXMLIdentado(doc);
+				
 		}
+			
 		
-		
-		return datoIntroducido;
 	}
 	
 
@@ -128,7 +120,7 @@ public class RegistroDatosXML {
 	public static void transmorfarXMLIdentado(Document doc) throws TransformerException {
 		//Transformamos los datos y sobreescribimos el archivo.
 				Transformer tf = TransformerFactory.newInstance().newTransformer();
-				//Habilita la identación en el documento XML.
+				//Habilita la identaciï¿½n en el documento XML.
 				tf.setOutputProperty(OutputKeys.INDENT, "yes");
 				//Establece la cantidad de espacios de la identacion, pues por defecto es 0.
 				tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
@@ -138,7 +130,7 @@ public class RegistroDatosXML {
 	}
 	
 	/**
-	 * Metodo encargado de Transformar el DOM modificado a XML sin identación.
+	 * Metodo encargado de Transformar el DOM modificado a XML sin identaciï¿½n.
 	 * @throws TransformerException
 	 */
 	public static void transmorfarXML(Document doc) throws TransformerException {

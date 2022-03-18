@@ -25,7 +25,7 @@
    <children>
       <TabPane layoutX="-257.0" layoutY="23.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
         <tabs>
-          <Tab text="Consultas">
+          <Tab fx:id="tabConsultas" disable="true" text="Consultas">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -194,7 +194,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab onSelectionChanged="#resetearConsultas" text="Registrar">
+          <Tab fx:id="tabRegistrar" closable="false" disable="true" onSelectionChanged="#resetearConsultas" text="Registrar">
             <content>
               <AnchorPane fx:id="raizRegistro" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorRegistro">
                      <children>

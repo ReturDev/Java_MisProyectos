@@ -17,8 +17,9 @@ public class ObtencionDatosXML {
 	
 	private static Document DOC;
 	private static Element RAIZ;
+
 	
-	static {
+	public static void obtenerRaiz() {
 		try {
 
 			DOC = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(OpcionesDirectorioXML.getRutaArchivo().toFile());
@@ -29,14 +30,14 @@ public class ObtencionDatosXML {
 	}
 	
 	/**
-	 * Método encargado de obtener los elementos de tipo de pieza audiovisual.
-	 * @param tipo Tipo de Pieza Audiovisual de la que se obtendrá sus elementos hijos.
+	 * Mï¿½todo encargado de obtener los elementos de tipo de pieza audiovisual.
+	 * @param tipo Tipo de Pieza Audiovisual de la que se obtendrï¿½ sus elementos hijos.
 	 * @return Devuelve la lista de elementos.
 	 */
 	private static NodeList obtenerElementos(TiposPiezasAudiovisuales tipo) {
 		
 		NodeList list = null;
-		//Obtenemos el nodo padre, que es el Tipo obtenido por parámetro en minuscula.
+		//Obtenemos el nodo padre, que es el Tipo obtenido por parï¿½metro en minuscula.
 		Node nodoPadre = RAIZ.getElementsByTagName(tipo.toString().toLowerCase()).item(0);
 		//Combrobamos que el nodoPadre exista en el documento.
 		if(nodoPadre != null) {

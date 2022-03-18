@@ -4,12 +4,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.xml.transform.TransformerException;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.*;
@@ -27,7 +27,7 @@ import modulo.textoAlertas.MensajesAlertas;
 
 public class ControladorModificacion implements Initializable {
 
-	// Creación de elementos coincidiendo el nombre con la id en el FXML
+	
 	@FXML
 	private AnchorPane raiz;
 	@FXML
@@ -54,16 +54,16 @@ public class ControladorModificacion implements Initializable {
 	private Button modificar;
 
 	/*
-	 * TODO Comentar, arreglar lo del foco e intentar separar las acciones ya que
-	 * muchas de ellas ser�n iguales para el registro de elementos.
+	 * TODO AÑADIR UN EVENTO AL QUITAR EL FOCO DE TITULO SI ESTE SE DEJA VACIO.
 	 */
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// Se obtiene los datos de la ventana anterior.
+		
+		// Se obtiene los datos de la ventana principal de los datos que se quieren modificar.
 		PiezaAudiovisual pieza = EnvioDatos.getInstance().getDatosTransferencia();
 
+		//Se le da los valores a mostrar al ComboBox.
 		estado.setItems(ListasObservables.listaEstados());
 		estado.setConverter(new EstadosConverter());
 		
@@ -72,11 +72,17 @@ public class ControladorModificacion implements Initializable {
 			estado.getItems().remove(Estados.SIGUIENDO);
 		}
 
+		/*
+		 * Se da los valores a cada elemento de la interfaz con los datos del elemento a modificar para mostrar
+		 * al usuario.
+		 */
 		titulo.setText(pieza.getTitulo());
 		id.setText(pieza.getId() + "");
 		estado.getSelectionModel().select(pieza.getEstado());
 		sinopsis.setText(pieza.getSinopsis());
 
+		
+		//Comprueba que el elemento es Serializable para rellenar los campos, en caso de no serlo se bloquearán los campos oportunos.
 		if (pieza instanceof Serializable) {
 
 			Serializable serializable = (Serializable) pieza;
@@ -84,14 +90,14 @@ public class ControladorModificacion implements Initializable {
 			
 			tempVistas.setText(serializable.getTemporadasVistas() + "");
 			
-			//Añadimos un evento cuando el campo pierda el foco.
+			//Añadimos un evento para cuando el campo Temporadas Vistas pierda el foco.
 			tempVistas.focusedProperty().addListener(new ChangeListener<Boolean>() {
 				
 				@Override
 				public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldProperty, Boolean newProperty) {
 					//Comprobamos si antes tenia el foco y ahora lo ha perdido.
 					if(oldProperty && !newProperty) {
-						//Si el campo una vez pierda el foco est� vac�o, se le dara un valor por defecto de 0.
+						//Si el campo una vez pierda el foco está vacáo, se le dara un valor por defecto de 0.
 						if(tempVistas.getText().isEmpty()) {
 							tempVistas.setText("0");
 						}
@@ -100,14 +106,15 @@ public class ControladorModificacion implements Initializable {
 				}
 			});
 			tempTotales.setText(serializable.getTemporadasTotales() + "");
-			//A�adimos un evento cuando el campo pierda el foco.
+			
+			//Añadimos un evento cuando el campo Temporadas Totales pierda el foco.
 			tempTotales.focusedProperty().addListener(new ChangeListener<Boolean>() {
 
 				@Override
 				public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldProperty, Boolean newProperty) {
 					//Comprobamos si antes tenia el foco y ahora lo ha perdido.
 					if(oldProperty&& !newProperty) {
-						//Si el campo una vez pierda el foco est� vac�o, se le dara un valor por defecto de 0.
+						//Si el campo una vez pierda el foco está vacío, se le dara un valor por defecto de 0.
 						if(tempTotales.getText().isEmpty()) {
 							tempTotales.setText("1");
 						}
@@ -131,7 +138,7 @@ public class ControladorModificacion implements Initializable {
 			
 		} else {
 
-			//Se bloquean los campos que pertenecen a series serializables.
+			//Se bloquean los campos que pertenecen a serializables.
 			tempTotales.setDisable(true);
 			tempVistas.setDisable(true);
 			tablaTemporadas.setDisable(true);
@@ -140,31 +147,46 @@ public class ControladorModificacion implements Initializable {
 	}
 
 	/**
-	 * Controlador del evento del bot�n modificar.
-	 * @param e
+	 * Controlador del evento del botón modificar.
 	 */
 	@FXML
-	private void modificarElemento(ActionEvent e) {
+	private void modificarElemento() {
 		
-		Node nodo = (Node) e.getTarget();
-		
+		/**
+		 * Se mostrará una ventana emergente que preguntará si se está seguro de modificar los elementos. Si el usuario
+		 * acepta, se procedera a guardar las modificaciones.
+		 */
 		if(Alertas.alertaEleccion(MensajesAlertas.T_CONFIRM_MODIF, MensajesAlertas.M_CONFIRM_MODIF)) {
-			PiezaAudiovisual pieza = obtenerElementos();
-			boolean valoresValidos = FuncionesApoyoControladores.verificacionCampos(pieza);
 			
-			if(valoresValidos) {
+			//Se llama al método para obtener todos los valores de los campos y almacenarlos.
+			PiezaAudiovisual pieza = obtenerElementos();
+			
+			
+			
+			//Comprueba llamando al método que los datos almacenados son válidos.
+			if(FuncionesApoyoControladores.verificacionCampos(pieza)) {
 				
-				
-				boolean introducido = RegistroDatosXML.introducirDatosPieza(pieza, EnvioDatos.getInstance().getTipoTransferencia());
+				/**
+				 * Se intentará introducir los datos obtenidos al XML que los almacena, se controlará si ocurre algún error
+				 * en el proceso, si este ocurriera aparecería una ventana emergente avisando al usuario.
+				 * Si se introducen los datos con exito, se actualizaran los elementos en la ventana de Consultas y se 
+				 * mostrará una ventana emergente avisando al usuario que los cambios se realizaron con exitos.
+				 */
+				try {
+					RegistroDatosXML.introducirDatosPieza(pieza, EnvioDatos.getInstance().getTipoTransferencia());
+					Modificaciones.actualizarConsultasModificado(pieza);
+					Alertas.alertaInformativa(MensajesAlertas.T_MODIFICADO,MensajesAlertas.M_MODIFICADO);
 					
-				if(introducido) {
-						Modificaciones.actualizarConsultasModificado(pieza);
-						Alertas.alertaInformativa(MensajesAlertas.T_MODIFICADO,MensajesAlertas.M_MODIFICADO);
+				} catch (TransformerException e) {
+					Alertas.alertaError(MensajesAlertas.T_ERROR_GUARDAR_DATOS, MensajesAlertas.M_ERROR_GUARDAR_DATOS + e.getMessage());
 				}
+		
 				
 				
-				//Se cierra la ventana
-				Stage stage = (Stage) nodo.getScene().getWindow();
+				
+				
+				//Obtiene la ventana y se cierra.
+				Stage stage = (Stage) modificar.getScene().getWindow();
 				
 				stage.close();
 			}
@@ -176,23 +198,23 @@ public class ControladorModificacion implements Initializable {
 	
 	/**
 	 * Controlador del ComboBox de Estados.
-	 * @param e
 	 */
 	@FXML
-	private void seleccionEstado(ActionEvent e) {
-		//Se comprueba si el elemento a modificar es serializable.
+	private void seleccionEstado() {
+		//Realiza las comprobaciones pertinentes a través del método.
 		Modificaciones.comprobarEstado(estado.getSelectionModel().getSelectedItem(), tempVistas, tempTotales, tablaTemporadas, columnaCapV);
 	}
 
 	/**
 	 * Controlador de evento del TextField de las Temporadas Totales.
-	 * @param e
 	 */
 	@FXML
 	private void introduccionTempT() {
 		
+		//Comprueba que el campo no se encuentre vacío.
 		if(!tempTotales.getText().isEmpty()) {
 			
+			//Se hacen las comprobaciones pertinentes a través del método.
 			FuncionesApoyoControladores.introduccionTempT(tempTotales, tempVistas, tablaTemporadas,
 					estado.getSelectionModel().getSelectedItem());
 			
@@ -200,15 +222,20 @@ public class ControladorModificacion implements Initializable {
 
 	}
 	
+	
 	/**
-	 * M�todo para quitar foco Campos.
+	 * Método para quitar el foco de los campos al pulsar intro.
 	 * @param e
 	 */
 	@FXML
 	private void quitarFocoCampos(ActionEvent e) {
+		
+		//Almacena el objeto que ha activado el evento.
 		Object obj = e.getSource();
 		
+		//Comprueba si el objeto es el Textfield de Temporada totales
 		if(obj == tempTotales) {
+			//Si el campo está vacío quitará el foco, si no avisará al usuario.
 			if(!tempTotales.getText().isEmpty()) {
 				
 				quitarFocoModificacion();
@@ -218,8 +245,11 @@ public class ControladorModificacion implements Initializable {
 				Alertas.alertaError(MensajesAlertas.T_QUITAR_F_C, MensajesAlertas.M_QUITAR_F_C_TT);
 				
 			}
+			
+		//Comprueba si el objeto es el Textfield de Temporada Vistas	
 		}else if (obj == tempVistas) {
 			
+			//Si el campo está vacío quitará el foco, si no avisará al usuario.
 			if(!tempVistas.getText().isEmpty()) {
 				
 				quitarFocoModificacion();
@@ -229,9 +259,11 @@ public class ControladorModificacion implements Initializable {
 				Alertas.alertaError(MensajesAlertas.T_QUITAR_F_C, MensajesAlertas.M_QUITAR_F_C_TV);
 				
 			}
+			
+		//Comprueba si el objeto es el Textfield de Titulo	
 		}else if (obj == titulo) {
 			
-			
+			//Si no está vacío quitará el foco.
 			if(!titulo.getText().isEmpty()) {
 				
 				quitarFocoModificacion();
@@ -241,9 +273,11 @@ public class ControladorModificacion implements Initializable {
 		}
 	}
 
+	
+	//TODO REVISION POR AQUI
+	
 	/**
 	 * Controlador de evento del TextField de las Temporadas Vistas.
-	 * @param e
 	 */
 	@FXML
 	private void introduccionTempV() {

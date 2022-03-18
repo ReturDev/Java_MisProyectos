@@ -1,6 +1,8 @@
 package controlador;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 
 
@@ -21,6 +23,7 @@ import modelo.converters.*;
 import modelo.enums.*;
 import modelo.envioDatos.EnvioDatos;
 import modelo.funciones.*;
+import modelo.funcionesXML.ObtencionDatosXML;
 import modelo.funcionesXML.OpcionesDirectorioXML;
 import modulo.alertas.Alertas;
 import modulo.listas.ListasObservables;
@@ -31,6 +34,12 @@ public class ControladorPrincipal implements Initializable {
 	//Menú
 	@FXML
 	private MenuItem menuOpcionesArchivo;
+	
+	@FXML
+	private Tab tabConsultas;
+	@FXML
+	private Tab tabRegistrar;
+	
 	
 	// Creación de elementos Consulas.
 	@FXML
@@ -102,9 +111,20 @@ public class ControladorPrincipal implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		OpcionesDirectorioXML.creacionArchivos();
+		try {
+			
+			OpcionesDirectorioXML.creacionArchivos();
+			ObtencionDatosXML.obtenerRaiz();
+			tabConsultas.setDisable(false);
+			tabRegistrar.setDisable(false);
+			
+		} catch (FileNotFoundException e) {
+			
+			Alertas.alertaError("Error", e.getMessage());
+			
+		}
 
-		//A�adimos los elemento que mostrar en los ComboBox y le asignamos sus converters.
+		//Añadimos los elemento que mostrar en los ComboBox y le asignamos sus converters.
 		comboEstadosConsulta.setItems(ListasObservables.listaEstados());
 		comboEstadosConsulta.setConverter(new EstadosConverter());
 
@@ -202,6 +222,11 @@ public class ControladorPrincipal implements Initializable {
 			configStage.setOnHidden(event -> {
 				stage.show();
 				configStage.close();
+				if(Files.isDirectory(OpcionesDirectorioXML.getRutaArchivo().getParent())) {
+					ObtencionDatosXML.obtenerRaiz();
+					tabConsultas.setDisable(false);
+					tabRegistrar.setDisable(false);
+				}
 			});
 
 		} catch (Exception ex) {
