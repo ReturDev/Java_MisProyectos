@@ -15,7 +15,14 @@ import modelo.enums.TiposPiezasAudiovisuales;
 
 public class OpcionesDirectorioXML {
 
-	//Direcci�n del archivo configuraci�n(Siempre ser� la misma).
+	
+	/**
+	 * Direcciones pruebas eclipse.
+	 * ./src/resources/opciones.config
+	 * ./src/resources
+	 */
+	
+	//Dirección del archivo configuraci�n(Siempre ser� la misma).
 	private static final Path ARCHIVO_CONFIG = Paths.get("./src/resources/opciones.config");
 	private static final String NOMBRE_DOC_DATOS = "/AlmacenamientoDatos.xml";
 	public static final Path UBICACION_DATOS_DEFECTO = Paths.get("./src/resources").normalize().toAbsolutePath();
@@ -65,7 +72,7 @@ public class OpcionesDirectorioXML {
 	private static void comprobacionArchivoXML() throws FileNotFoundException {
 		
 		if(!Files.isDirectory(rutaArchivo.getParent())) {
-			throw new FileNotFoundException("El directorio donde se guarda el documento no existe.");
+			throw new FileNotFoundException("El directorio donde se guarda el documento no existe.\n" + rutaArchivo);
 		}
 		
 		if(Files.notExists(rutaArchivo)) {

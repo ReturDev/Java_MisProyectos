@@ -358,7 +358,6 @@ public class InteraccionesXML {
 		//Añadimos el atributo id junto a su valor al nuevo elemento.
 		nuevoElemento.setAttribute(ID_ATT, id);
 		
-		//TODO Modificar para que no se pueda introducir ningun nuevo objeto con el mismo nombre que otro existente.
 		
 		//Pedimos el nombre para el nuevo elemento y lo añadimos como atributo junto a su valor.
 		System.out.println("\nIntroduce el nombre del elemento");

@@ -10,7 +10,7 @@ import modelo.enums.TiposPiezasAudiovisuales;
 public class Registros {
 	
 	/**
-	 * Método encargado de resetear los valores de los campos al cambio de tipo, habilitar los campos generales y
+	 * Mï¿½todo encargado de resetear los valores de los campos al cambio de tipo, habilitar los campos generales y
 	 * deshabilitar todo lo relacionado con objetos serializables.
 	 * @param estado
 	 * @param tempT
@@ -20,7 +20,7 @@ public class Registros {
 	 * @param sinopsis
 	 * @param botonRegistro 
 	 */
-	public static void CambioTipo(ComboBox<TiposPiezasAudiovisuales> tipo,ComboBox<Estados> estado, TextField tempT, TextField tempV, TableView<Temporada> tablaTemp,
+	public static void cambioTipo(ComboBox<TiposPiezasAudiovisuales> tipo,ComboBox<Estados> estado, TextField tempT, TextField tempV, TableView<Temporada> tablaTemp,
 			TextField titulo, TextArea sinopsis, Button botonRegistro) {
 		
 		//Se comprueba si el tipo elegido no es serializable.
@@ -30,7 +30,7 @@ public class Registros {
 		}else {
 			/*
 			 * Si el tipo es serializable, se comprueba si en los elementos del combo Estados se encuentra el estado Siguiendo.
-			 * Si no se encuentra, se le añade en la posición que debería estar.
+			 * Si no se encuentra, se le aï¿½ade en la posiciï¿½n que deberï¿½a estar.
 			 */
 			if(!estado.getItems().contains(Estados.SIGUIENDO)) {
 				estado.getItems().add(1, Estados.SIGUIENDO);
@@ -53,7 +53,7 @@ public class Registros {
 		tempV.setDisable(true);
 		tempV.setText("");
 		
-		//Deshabilita la tabla de temporadas y la deja vacía.
+		//Deshabilita la tabla de temporadas y la deja vacï¿½a.
 		tablaTemp.setDisable(true);
 		tablaTemp.setItems(FXCollections.observableArrayList());
 		
@@ -61,8 +61,8 @@ public class Registros {
 	
 	
 	/**
-	 * Método que desbloquea o bloquea los campos dependiendo si es serializable el tipo elegido y
-	 * resetea o da valores dependiendo de la situación.
+	 * Mï¿½todo que desbloquea o bloquea los campos dependiendo si es serializable el tipo elegido y
+	 * resetea o da valores dependiendo de la situaciï¿½n.
 	 * @param serializable
 	 * @param tempT
 	 * @param tempV
@@ -80,7 +80,7 @@ public class Registros {
 			if(estado.equals(Estados.VISTO) || estado.equals(Estados.PENDIENTE) ) {
 				//Desactiva el campo de Temporadas Vistas.
 				tempV.setDisable(true);
-				//Desactiva la edición de la columna de Capitulos Vistos.
+				//Desactiva la ediciï¿½n de la columna de Capitulos Vistos.
 				capsV.setEditable(false);
 				//Si el estado es Pendiente, fija el valor a 0.
 				if (estado.equals(Estados.PENDIENTE)) {
@@ -89,13 +89,13 @@ public class Registros {
 			}else {
 				//Activa el campo de Temporadas Vistas.
 				tempV.setDisable(false);
-				//Activa la edición de la columna de Capitulos Vistos.
+				//Activa la ediciï¿½n de la columna de Capitulos Vistos.
 				capsV.setEditable(true);
 			}
 			
 			//Activa el valor 
 			tempT.setDisable(false);
-			//Le da una Temporada Total temporada mínima obligatoria.
+			//Le da una Temporada Total temporada mï¿½nima obligatoria.
 			if(tempT.getText().isEmpty() || tempT.getText().equals("0")) {
 				tempT.setText("1");
 			}
@@ -106,7 +106,7 @@ public class Registros {
 			FuncionesApoyoControladores.rellenarCapV(tablaTemporadas,tempV, estado);
 			
 		
-		//Si por algún motivo el tipo se cambiara, desactivará los campos y los reseteara como al inicio excepto estado y titulo.
+		//Si por algï¿½n motivo el tipo se cambiara, desactivarï¿½ los campos y los reseteara como al inicio excepto estado y titulo.
 		}else {
 			
 			//Deshabilita el campo de Temporadas Totales y le quita el valor.
@@ -119,7 +119,7 @@ public class Registros {
 			
 			//Deshabilita la Tabla de Temporadas
 			tablaTemporadas.setDisable(true);
-			//Se le sobreescribe su lista de elementos por una vacía(No se establece nula para ahorrar futuros errores)
+			//Se le sobreescribe su lista de elementos por una vacï¿½a(No se establece nula para ahorrar futuros errores)
 			tablaTemporadas.setItems(FXCollections.observableArrayList());
 			
 		}

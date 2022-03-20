@@ -143,7 +143,7 @@
                                                          <columns>
                                                             <TableColumn fx:id="columnaTemporadas" editable="false" maxWidth="75.0" minWidth="-Infinity" prefWidth="75.0" resizable="false" sortable="false" text="Temporada" />
                                                             <TableColumn fx:id="columnaCapV" editable="false" maxWidth="106.0" minWidth="-Infinity" prefWidth="106.0" resizable="false" sortable="false" text="Capitulos Vistos" />
-                                                            <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" maxWidth="117.0" minWidth="-Infinity" prefWidth="117.0" resizable="false" sortable="false" text="CapitulosTotales" />
+                                                            <TableColumn id="columnaCapT" fx:id="columnaCapT" editable="false" maxWidth="117.0" minWidth="-Infinity" prefWidth="115.0" resizable="false" sortable="false" text="CapitulosTotales" />
                                                          </columns>
                                                          <opaqueInsets>
                                                             <Insets />

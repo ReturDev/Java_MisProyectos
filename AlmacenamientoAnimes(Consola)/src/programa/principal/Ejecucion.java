@@ -18,7 +18,6 @@ public class Ejecucion {
 		try {
 			CreacionConfigYArchivoXML.creacionArchivoConfig();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -26,7 +25,7 @@ public class Ejecucion {
 			try {
 				finDelPrograma = FuncionamientoMenus.funcionMenuPrincipal();
 			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
+		
 				e.printStackTrace();
 			}
 		}

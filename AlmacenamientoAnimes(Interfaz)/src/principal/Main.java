@@ -1,4 +1,4 @@
-package controlador;
+package principal;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;

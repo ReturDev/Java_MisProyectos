@@ -3,6 +3,10 @@ package modelo.envioDatos;
 import modelo.clases.PiezaAudiovisual;
 import modelo.enums.TiposPiezasAudiovisuales;
 
+/**
+ * Clase para pasar datos de una ventana a otra.
+ * @author Sergio
+ */
 public final class EnvioDatos {
 	
 	private static final EnvioDatos instancia = new EnvioDatos();

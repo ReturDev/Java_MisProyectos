@@ -1,4 +1,4 @@
-package modulo.listas;
+package modelo.listas;
 
 import java.util.ArrayList;
 import java.util.Arrays;

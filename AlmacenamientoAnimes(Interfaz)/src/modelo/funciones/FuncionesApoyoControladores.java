@@ -2,15 +2,17 @@ package modelo.funciones;
 
 import java.util.ArrayList;
 
+import javax.xml.transform.TransformerException;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import modelo.alertas.Alertas;
 import modelo.clases.*;
 import modelo.enums.*;
 import modelo.funcionesXML.RegistroDatosXML;
-import modulo.alertas.Alertas;
-import modulo.textoAlertas.MensajesAlertas;
+import modelo.textoAlertas.MensajesAlertas;
 
 public class FuncionesApoyoControladores {
 
@@ -372,7 +374,9 @@ public class FuncionesApoyoControladores {
 			
 		}
 		
-		//Compruba si el objeto es Serializable.
+		//TODO Añadir que si el título introducido ya se enctuentra que avise y no lo registre.
+		
+		//Comprueba si el objeto es Serializable.
 		if(pieza instanceof Serializable && piezaValida) {
 			
 			Serializable serializable = (Serializable) pieza;
@@ -387,7 +391,7 @@ public class FuncionesApoyoControladores {
 			if(serializable.getTemporadasVistas() > serializable.getTemporadasTotales()) {
 				
 				piezaValida = false;
-				Alertas.alertaError(MensajesAlertas.T__ERROR_TV, MensajesAlertas.M_INTRO_TV);
+				Alertas.alertaError(MensajesAlertas.T_ERROR_TV, MensajesAlertas.M_INTRO_TV);
 				
 			}
 			
@@ -459,16 +463,17 @@ public class FuncionesApoyoControladores {
 	 * @param tempT
 	 * @param tempV
 	 * @param tablaTemp
+	 * @throws TransformerException 
 	 */
-	public static boolean registrar(ComboBox<TiposPiezasAudiovisuales> tipos,TextInputControl titulo, ComboBox<Estados> estado, TextArea sinopsis, TextField tempT,
-			TextField tempV, TableView<Temporada> tablaTemp) {
+	public static void registrar(ComboBox<TiposPiezasAudiovisuales> tipos,TextInputControl titulo, ComboBox<Estados> estado, TextArea sinopsis, TextField tempT,
+			TextField tempV, TableView<Temporada> tablaTemp) throws TransformerException {
 		
 		PiezaAudiovisual pieza = FuncionesApoyoControladores.crearClaseMedianteTipo(tipos.getSelectionModel().getSelectedItem());
 		
 		pieza.setTitulo(titulo.getText());
 		pieza.setEstado(estado.getSelectionModel().getSelectedItem());
 		pieza.setSinopsis(sinopsis.getText());
-		boolean introduccionDatos = false;
+	
 		if(pieza instanceof Serializable) {
 			
 			Serializable serializable = (Serializable) pieza;
@@ -491,18 +496,18 @@ public class FuncionesApoyoControladores {
 		
 		if(verificacionCampos(pieza)) {
 			
-			introduccionDatos = RegistroDatosXML.introducirDatosPieza(pieza, tipos.getSelectionModel().getSelectedItem());
+			
+			RegistroDatosXML.introducirDatosPieza(pieza, tipos.getSelectionModel().getSelectedItem());
 			
 			
 			
 		}
 		
-		return introduccionDatos;
 		
 	}
 	
 	/**
-	 * M�todo para eliminar el foco de un campo.
+	 * Método para eliminar el foco de un campo.
 	 */
 	public static void quitarFoco(Pane raiz) {
 		raiz.requestFocus();

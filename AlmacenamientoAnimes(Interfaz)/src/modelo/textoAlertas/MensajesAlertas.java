@@ -1,10 +1,19 @@
-package modulo.textoAlertas;
+package modelo.textoAlertas;
 
 public final class MensajesAlertas {
 
 	
 	//Controlador Configuración.
 	public static final String TITULO_EXAMINADOR = "Elige la ubicación donde almacenar los datos.";
+	
+	//Controlador Principal.
+	public static final String T_ERROR_DIRECTORIO = "Error de ubicación";
+	
+	//Controlador Registro.
+	public static final String T_PREGUNTA_REGISTRO = "Registro Datos";
+	public static final String M_PREGUNTA_REGISTRO = "¿Seguro que quieres ingresar los datos introducidos?";
+	public static final String T_REGISTRO_EXITOSO = "Registro Exitoso";
+	public static final String M_REGISTRO_EXITOSO = "Se han registrado los datos con éxito.";
 	
 	//Controladores Registro y Modificación.
 	public static final String T_QUITAR_F_C = "Error campo vacío";
@@ -29,6 +38,7 @@ public final class MensajesAlertas {
 	public static final String M_VALOR_INV_CAPS = "Solo puedes introducir números.";
 	public static final String T_INTRO_CAPV = "Error Capitulos";
 	public static final String M_INTRO_CAPV = "No puedes introducir más capitulos vistos que los totales.";
+	
 	//Funciones apoyo controladores (comprobaciones).
 	public static final String T_TITULO_VACIO = "Titulo vacío";
 	public static final String M_TITULO_VACIO = "No has introducido un título.";
@@ -38,5 +48,7 @@ public final class MensajesAlertas {
 	public static final String T_COMP_CAPS = "Error Capitulos Vistos de las Temporadas Vistas";
 	public static final String M_COMP_CAPS = "Hay menos temporadas con todos los Capitulos Vistos que Temporadas Vistas.";
 	public static final String M_COMP_MAS_CAPS = "Hay m�s temporadas con todos los Capitulos Vistos que Temporadas Vistas.";
+
+
 }
 

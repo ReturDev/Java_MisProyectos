@@ -7,4 +7,6 @@ module MiProgramaInterfaz {
 	
 	opens controlador to javafx.graphics, javafx.fxml, javafx.base;
 	opens modelo.clases to javafx.graphics, javafx.fxml, javafx.base;
+	opens principal to javafx.graphics, javafx.fxml, javafx.base;
+	
 }

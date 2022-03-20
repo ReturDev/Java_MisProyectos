@@ -10,7 +10,6 @@ import org.w3c.dom.*;
 
 import modelo.clases.*;
 import modelo.enums.*;
-import modulo.alertas.Alertas;
 
 
 public class RegistroDatosXML {

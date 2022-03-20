@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import modelo.funcionesXML.OpcionesDirectorioXML;
-import modulo.textoAlertas.MensajesAlertas;
+import modelo.textoAlertas.MensajesAlertas;
 
 public class ControladorConfiguracion implements Initializable {
 

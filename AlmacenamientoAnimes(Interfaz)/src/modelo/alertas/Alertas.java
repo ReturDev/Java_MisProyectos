@@ -1,4 +1,4 @@
-package modulo.alertas;
+package modelo.alertas;
 
 import java.util.Optional;
 
@@ -8,6 +8,12 @@ import javafx.scene.control.ButtonType;
 
 public class Alertas {
 
+	
+	/**
+	 * Muestra una ventana emergente informativa al usuario
+	 * @param titulo Recibe el título que mostrar.
+	 * @param mensaje Recibe el mensaje que mostrar.
+	 */
 	public static void alertaInformativa(String titulo, String mensaje) {
 		
 		Alert alerta = new Alert(AlertType.INFORMATION);
@@ -18,6 +24,11 @@ public class Alertas {
 		
 	}
 
+	/**
+	 * Muestra una ventana emergente de un error al usuario
+	 * @param titulo Recibe el título que mostrar.
+	 * @param mensaje Recibe el mensaje que mostrar.
+	 */
 	public static void alertaError(String titulo, String mensaje) {
 		
 		Alert alerta = new Alert(AlertType.ERROR);
@@ -28,6 +39,12 @@ public class Alertas {
 		
 	}
 	
+	
+	/**
+	 * Muestra una ventana emergente para que el usuario acepte o rechace una opción.
+	 * @param titulo Recibe el título que mostrar.
+	 * @param mensaje Recibe el mensaje que mostrar.
+	 */
 	public static boolean alertaEleccion(String titulo, String mensaje) {
 		boolean eleccion = false;
 		

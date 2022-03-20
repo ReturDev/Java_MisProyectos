@@ -15,15 +15,15 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import modelo.alertas.Alertas;
 import modelo.clases.*;
 import modelo.converters.*;
 import modelo.enums.Estados;
 import modelo.envioDatos.EnvioDatos;
 import modelo.funciones.*;
 import modelo.funcionesXML.RegistroDatosXML;
-import modulo.alertas.Alertas;
-import modulo.listas.ListasObservables;
-import modulo.textoAlertas.MensajesAlertas;
+import modelo.listas.ListasObservables;
+import modelo.textoAlertas.MensajesAlertas;
 
 public class ControladorModificacion implements Initializable {
 
@@ -201,8 +201,10 @@ public class ControladorModificacion implements Initializable {
 	 */
 	@FXML
 	private void seleccionEstado() {
+		
 		//Realiza las comprobaciones pertinentes a través del método.
 		Modificaciones.comprobarEstado(estado.getSelectionModel().getSelectedItem(), tempVistas, tempTotales, tablaTemporadas, columnaCapV);
+	
 	}
 
 	/**
@@ -224,7 +226,7 @@ public class ControladorModificacion implements Initializable {
 	
 	
 	/**
-	 * Método para quitar el foco de los campos al pulsar intro.
+	 * Controlador para quitar el foco de los campos al pulsar intro.
 	 * @param e
 	 */
 	@FXML
@@ -274,7 +276,6 @@ public class ControladorModificacion implements Initializable {
 	}
 
 	
-	//TODO REVISION POR AQUI
 	
 	/**
 	 * Controlador de evento del TextField de las Temporadas Vistas.
@@ -282,10 +283,11 @@ public class ControladorModificacion implements Initializable {
 	@FXML
 	private void introduccionTempV() {
 		
+		//Se comprueba que el campo no esté vacío.
 		if(!tempVistas.getText().isEmpty()) {
 			
+			//Se llama al método para que realice las actualizaciones necesarias en los campos a partir del valor introducido.
 			FuncionesApoyoControladores.introduccionTempV(tempVistas, tempTotales, tablaTemporadas,estado);
-			
 			
 		}
 
@@ -294,12 +296,16 @@ public class ControladorModificacion implements Initializable {
 
 
 	/**
-	 * Controlador de la modificaci�n de las celdas de la tabla de Capitulos Totales.
+	 * Controlador de la modificación de las celdas de la tabla de Capitulos Totales.
 	 * @param e
 	 */
 	@FXML
 	private void modificarCapT(CellEditEvent<Temporada, Integer> e) {
 		
+		/*
+		 * Se llama al método para que realice las actualizaciones necesarias en los campos a partir del valor introducido.
+		 * Devolverá un booleano dependiendo de si la información introducida es válida. Si lo es quitara el foco del campo.
+		 */
 		boolean valorValido = FuncionesApoyoControladores.modificarCapT(e, tablaTemporadas, tempVistas, estado.getSelectionModel().getSelectedItem());
 
 		if (valorValido) {
@@ -318,7 +324,11 @@ public class ControladorModificacion implements Initializable {
 	@FXML
 	private void modificarCapV(CellEditEvent<Temporada, Integer> e) {
 	
-	boolean valorValido = FuncionesApoyoControladores.modificarCapV(e, tablaTemporadas,tempVistas,estado);
+		/*
+		 * Se llama al método para que realice las actualizaciones necesarias en los campos a partir del valor introducido.
+		 * Devolverá un booleano dependiendo de si la información introducida es válida. Si lo es quitara el foco del campo.
+		 */
+		boolean valorValido = FuncionesApoyoControladores.modificarCapV(e, tablaTemporadas,tempVistas,estado);
 
 		if (valorValido) {
 	
@@ -331,37 +341,59 @@ public class ControladorModificacion implements Initializable {
 		
 	}
 
+	
+	/**
+	 * Controlador para quitar el foco de los elementos en la ventana de modificaciones.
+	 */
 	@FXML
 	private void quitarFocoModificacion() {
+		
 		
 		FuncionesApoyoControladores.quitarFoco(raiz);
 		
 	}
 
 	
-
+	/**
+	 * Método encargado de obtener los valores de los campos y almacenarlos en un objeto de {@link PiezaAudiovisual}
+	 * @return Devuelve el objeto en el que se almacenaron los valores.
+	 */
 	private PiezaAudiovisual obtenerElementos() {
 
+		//Se guarda en una variable los datos base a los que se les hicieron las modificaciones.
 		PiezaAudiovisual pieza = EnvioDatos.getInstance().getDatosTransferencia();
+		//Se crea un objeto que almacenará los nuevos valores ya modificados.
 		PiezaAudiovisual nuevaPieza = null;
 
+		//Se obtiene los valores de los campos y se almacenan en variables.
+		
 		int id = Integer.parseInt(this.id.getText());
 		String titulo = this.titulo.getText();
 		Estados estado = this.estado.getSelectionModel().getSelectedItem();
 		String sinopsis = this.sinopsis.getText();
 
+		//Se comprueba si es un tipo serializable el elemento a modificar.
 		if (pieza instanceof Serializable) {
 			int tempTotales = Integer.parseInt(this.tempTotales.getText());
 			int tempVistas = Integer.parseInt(this.tempVistas.getText());
 			ArrayList<Temporada> temporadas = new ArrayList<Temporada>();
 			temporadas.addAll(tablaTemporadas.getItems());
 
+			/*
+			 * Comprueba de que clase es el elemento a modificar, para crear una instancia de esta y almacenar
+			 * los datos modificados.
+			 */
 			if (pieza instanceof Anime) {
 				nuevaPieza = new Anime(id, titulo, sinopsis, estado, tempTotales, tempVistas, temporadas);
 			} else {
 				nuevaPieza = new Serie(id, titulo, sinopsis, estado, tempTotales, tempVistas, temporadas);
 			}
+			
 		} else {
+			/*
+			 * Comprueba de que clase es el elemento a modificar, para crear una instancia de esta y almacenar
+			 * los datos modificados.
+			 */
 			if (pieza instanceof PeliculaAnime) {
 				nuevaPieza = new PeliculaAnime(id, titulo, sinopsis, estado);
 			} else {

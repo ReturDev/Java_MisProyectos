@@ -9,7 +9,7 @@ import modelo.clases.*;
 import modelo.converters.EstadosConverter;
 import modelo.enums.*;
 import modelo.funcionesXML.ObtencionDatosXML;
-import modulo.listas.ListasObservables;
+import modelo.listas.ListasObservables;
 
 
 public class Consultas {
@@ -23,7 +23,7 @@ public class Consultas {
 	
 	/**
 	 * Metodo que maneja el evento que se activa al seleccionar en el ComboBox un
-	 * elemento en el que se elige el tipo de Pieza Audiovisual que se buscará.
+	 * elemento en el que se elige el tipo de Pieza Audiovisual que se buscarÃ¡.
 	 * @param comboTiposConsulta
 	 * @param tituloConsulta
 	 * @param comboEstadosConsulta
@@ -50,9 +50,9 @@ public class Consultas {
 			//Borramos la variable que almacena los estados.
 			Consultas.setEstado(null);
 					
-			// Almacenamos el tipo elegido en la variable que lo almacenará.
+			// Almacenamos el tipo elegido en la variable que lo almacenarï¿½.
 			Consultas.setTipo(comboTiposConsulta.getSelectionModel().getSelectedItem());
-			// Hacemos que se almacene también la lista de los elementos del tipo elegido.
+			// Hacemos que se almacene tambiï¿½n la lista de los elementos del tipo elegido.
 			Consultas.setListaElementosBase();
 			// Actualizamos la ListView con los nuevos elementos.
 			Consultas.actualizarLista(listaElementosObtenidos, ListasObservables.listaPiezasTipos());
@@ -69,7 +69,7 @@ public class Consultas {
 	public static void eleccionEstado(ComboBox<Estados> comboEstadosConsulta, ListView<PiezaAudiovisual> listaElementosObtenidos,
 			TextField tituloConsulta) {
 
-		// Establecemos el estado elegído a la variable que lo almacenará.
+		// Establecemos el estado elegï¿½do a la variable que lo almacenarÃ¡.
 		Consultas.setEstado(comboEstadosConsulta.getSelectionModel().getSelectedItem());
 		// Actualizamos la ListView con los nuevos elementos.
 		Consultas.actualizarLista(listaElementosObtenidos, ListasObservables.listaBusquedaEstado());
@@ -118,7 +118,7 @@ public class Consultas {
 		
 		// Obtenemos el elemento seleccionado en la lista.
 				PiezaAudiovisual pieza = listaElementosObtenidos.getSelectionModel().getSelectedItem();
-				// Comprobamos que el objeto no sea null, es decir, que haya algún elemento
+				// Comprobamos que el objeto no sea null, es decir, que haya algï¿½n elemento
 				// seleccionado.
 				if (pieza != null) {
 					mostrarElementoSeleccionado(pieza, titulo, id, estado, sinopsis, tempT, tempV, tablaTemporadas, colTemporadas, colCapT, colCapV);
@@ -129,27 +129,27 @@ public class Consultas {
 	
 	
 	/**
-	 * Método que busca el elemento por el titulo almacenado en las variables.
+	 * Mï¿½todo que busca el elemento por el titulo almacenado en las variables.
 	 * @return Devuelve una lista de los elementos.
 	 */
 	public static HashSet<PiezaAudiovisual> busquedaPorNombre(){
-		//Se crea la variable que luego se devolverá.
+		//Se crea la variable que luego se devolverï¿½.
 		HashSet<PiezaAudiovisual> lista = new HashSet<PiezaAudiovisual>();
 		/*
-		 * Se añade todos los elementos que corresponden con el tipo elegido y que hay que
+		 * Se aÃ±ade todos los elementos que corresponden con el tipo elegido y que hay que
 		 * recoger.
 		 */
 		lista.addAll(listaElementosBase);
 		/*
-		 * Se comprueba hay algún estado guardado, si lo hay se filtrará primero por el estado
-		 * llamando al método.
+		 * Se comprueba hay algï¿½n estado guardado, si lo hay se filtrarï¿½ primero por el estado
+		 * llamando al mï¿½todo.
 		 */
 		
 		if(estado != null) {
 			lista = busquedaPorEstado();
 		}
 		/*
-		 * Se recorre la lista y se elimina too elemento que no contengan el título introducido
+		 * Se recorre la lista y se elimina too elemento que no contengan el tï¿½tulo introducido
 		 * por el usuario.
 		 */
 		HashSet<PiezaAudiovisual> listaFiltrada = new HashSet<PiezaAudiovisual>();
@@ -164,13 +164,13 @@ public class Consultas {
 	}
 	
 	/**
-	 * Método encargado de obtener los elementos que tienen el mismo estado que el alamcenado.
+	 * Mï¿½todo encargado de obtener los elementos que tienen el mismo estado que el alamcenado.
 	 * @return Devuelve una lista con los elementos que tengan el mismo estado.
 	 */
 	public static HashSet<PiezaAudiovisual> busquedaPorEstado(){
 		HashSet<PiezaAudiovisual> lista = new HashSet<PiezaAudiovisual>();
 		/*
-		 * Recorre la lista que se almacenó en la variable local con los elementos que correponden
+		 * Recorre la lista que se almacenï¿½ en la variable local con los elementos que correponden
 		 * con el tipo.
 		 */
 		for(PiezaAudiovisual pieza : listaElementosBase) {
@@ -183,8 +183,8 @@ public class Consultas {
 	}
 	
 	/**
-	 * Método encargado de dar el valor a los campos que mostraran los datos del
-	 * elemento seleccionado, y si el elemento lo necesita, rellenara también la
+	 * Mï¿½todo encargado de dar el valor a los campos que mostraran los datos del
+	 * elemento seleccionado, y si el elemento lo necesita, rellenara tambiï¿½n la
 	 * tabla.
 	 * @param pieza
 	 * @param titulo
@@ -203,7 +203,7 @@ public class Consultas {
 			TableView<Temporada> tablaTemporadas, TableColumn<Temporada, Integer> colTemporadas,
 			TableColumn<Temporada, Integer> colCapT, TableColumn<Temporada, Integer> colCapV) {
 		
-		// Le da el valor al título.
+		// Le da el valor al tï¿½tulo.
 		titulo.setText(pieza.getTitulo());
 		// Le da el valor a la id.
 		id.setText(pieza.getId() + "");
@@ -220,7 +220,7 @@ public class Consultas {
 			tempT.setText(serializable.getTemporadasTotales() + "");
 			// Da el valor al campo de las temporadas vistas.
 			tempV.setText(serializable.getTemporadasVistas() + "");
-			// Añade las temporadas que tiene el elemento a la tabla, para que esta pueda
+			// Aï¿½ade las temporadas que tiene el elemento a la tabla, para que esta pueda
 			// mostrarlas.
 			tablaTemporadas.setItems(ListasObservables.listaTemporadas(serializable.getTemporadas()));
 			/*
@@ -234,8 +234,8 @@ public class Consultas {
 		} else {
 			/*
 			 * En el caso de que no fuera serializable, se establecen todos los campos
-			 * serializables y la tabla a null, puesto que si anteriormente se mostró un
-			 * elemento serializable, quedarían los campos mostrados y se mezclarian con los
+			 * serializables y la tabla a null, puesto que si anteriormente se mostrï¿½ un
+			 * elemento serializable, quedarï¿½an los campos mostrados y se mezclarian con los
 			 * siguientes datos que se introduzcan.
 			 */
 			tablaTemporadas.setItems(null);
@@ -246,21 +246,21 @@ public class Consultas {
 	
 	
 	/**
-	 * Método para actualizar la lista con los elementos a mostrar.
+	 * Mï¿½todo para actualizar la lista con los elementos a mostrar.
 	 * @param listaInterfaz La lista que se quiere actualizar.
 	 * @param elementos Los elementos con los que actualizar la lista.
 	 */
 	public static void actualizarLista(ListView<PiezaAudiovisual> listaInterfaz,
 			ObservableList<PiezaAudiovisual> elementos) {
 		
-		//Comprobamos si la lista de los elementos recibidos no está vacía.
+		//Comprobamos si la lista de los elementos recibidos no estï¿½ vacï¿½a.
 		if(!elementos.isEmpty()) {
 			
 			listaInterfaz.setItems(elementos);
 		
 		}else {
 			/*
-			 * Si está vacía se le da el valor nulo para que se borren los elementos
+			 * Si estï¿½ vacï¿½a se le da el valor nulo para que se borren los elementos
 			 * anteriores que de hubieran mostrado.
 			 */
 			
