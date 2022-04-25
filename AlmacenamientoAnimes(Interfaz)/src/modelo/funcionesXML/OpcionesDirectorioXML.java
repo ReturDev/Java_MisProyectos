@@ -23,9 +23,9 @@ public class OpcionesDirectorioXML {
 	 */
 	
 	//Dirección del archivo configuraci�n(Siempre ser� la misma).
-	private static final Path ARCHIVO_CONFIG = Paths.get("./src/resources/opciones.config");
+	private static final Path ARCHIVO_CONFIG = Paths.get("./opciones.config");
 	private static final String NOMBRE_DOC_DATOS = "/AlmacenamientoDatos.xml";
-	public static final Path UBICACION_DATOS_DEFECTO = Paths.get("./src/resources").normalize().toAbsolutePath();
+	public static final Path UBICACION_DATOS_DEFECTO = Paths.get(".").normalize().toAbsolutePath();
 	private static final String NOMBRE_RAIZ = TiposPiezasAudiovisuales.class.getSimpleName().toLowerCase();
 	
 	private static Path rutaArchivo;
