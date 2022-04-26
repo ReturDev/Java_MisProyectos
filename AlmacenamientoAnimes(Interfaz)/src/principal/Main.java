@@ -15,7 +15,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Mi programa");
 			primaryStage.setMinWidth(900);
-			primaryStage.setMinHeight(480);
+			primaryStage.setMinHeight(680);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
