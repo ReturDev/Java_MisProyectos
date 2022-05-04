@@ -9,13 +9,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 
+/**
+ * Clase funcional de apoyo para ayudar a las comprobaciones de los campos.
+ * @author Sergio
+ *
+ */
 public class ComprobacionesCampos {
 	
 	//TODO continuar desde aquí.
 
 	/**
 	 * Se encarga de añadir un listener a campos TextField encargados de las temporadas para comprobar
-	 * si los valores introducidos son digitos y la máxima cantidad de valores permitida sean 2 dígitos.
+	 * si los valores introducidos son dígitos y que sean maximo 2.
 	 * @param campo TextField al que añadir el listener.
 	 */
 	public static void listenerTextoTemporadasTextField(TextField campo){
@@ -33,8 +38,12 @@ public class ComprobacionesCampos {
 			        }
 		    		//Si la longitud del nuevo valor supera los dos caracteres, el tercer caracter no se mostrará.
 			        if(newValue.length() >= 3) {
+			        	
 			        	campo.setText(newValue.substring(0,2));
+			        	
 			        }
+			        
+			        
 		    	}
 		    }
 		});
@@ -57,7 +66,7 @@ public class ComprobacionesCampos {
 					if(tempVistas.getText().isEmpty()) {
 						
 						tempVistas.setText("0");
-						
+												
 					}
 					
 				}
@@ -80,7 +89,7 @@ public class ComprobacionesCampos {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldProperty, Boolean newProperty) {
 				//Comprobamos si antes tenia el foco y ahora lo ha perdido.
-				if(oldProperty&& !newProperty) {
+				if(oldProperty && !newProperty) {
 					//Si el campo una vez pierda el foco está vacío, se le dara un valor por defecto de 0.
 					if(tempTotales.getText().isEmpty()) {
 						tempTotales.setText("1");
@@ -135,7 +144,7 @@ public class ComprobacionesCampos {
 		//Almacenamos la cantidad total de elementos en la lista.
 		int cantidadElementos = temporadasBase.size();
 		
-		//Comprobamos si el usuario quiere menos o mÁs temporadas de las ya incluidas en la lista.
+		//Comprobamos si el usuario quiere menos o más temporadas de las ya incluidas en la lista.
 		if( temporadasTotales < cantidadElementos) {
 			
 			/*

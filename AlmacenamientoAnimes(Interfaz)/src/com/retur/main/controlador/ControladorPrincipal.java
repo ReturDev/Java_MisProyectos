@@ -14,6 +14,7 @@ import com.retur.main.modelo.elementos.*;
 import com.retur.main.modelo.enums.*;
 import com.retur.main.modelo.envio.datos.EnvioDatos;
 import com.retur.main.modelo.excepciones.CampoInvalidoException;
+import com.retur.main.modelo.excepciones.ObraYaRegistradaException;
 import com.retur.main.modelo.funciones.*;
 import com.retur.main.modelo.funciones.xml.ObtencionDatosXML;
 import com.retur.main.modelo.funciones.xml.OpcionesDirectorioXML;
@@ -187,7 +188,7 @@ public class ControladorPrincipal implements Initializable {
 			Stage configStage = new Stage();
 			
 			// Obtenemos el AnchorPane de la nueva ventana a traves del archivo FXML.
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/vista/VentanaConfiguracion.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("../vista/VentanaConfiguracion.fxml"));
 			// Creamos la escena pasandole el AnchorPane como base.
 			Scene scene = new Scene(root);
 			// Modificamos el título.
@@ -236,27 +237,37 @@ public class ControladorPrincipal implements Initializable {
 		//Almacena el elemento que ha activado el evento.
 		Object obj = e.getSource();
 		
-		//Comprueba que elemento activó el evento.
+		//Comprueba que comboBox activó el evento.
 		if(obj == comboTiposConsulta) {
 			
-			//Habilita el botón para modificar el elemento.
+			//Deshabilita el botón para modificar el elemento.
 			botonModificador.setDisable(true);
 			
 			/*
 			 * Comprueba que haya algun elemento seleccionado en el ComboBox (necesario para evitar el error
 			 * al resetear los campos mediante el botón de reseteo.)
 			 */
-			
-			//TODO Desde aqui.
 			if(comboTiposConsulta.getSelectionModel().getSelectedItem() != null) {
 				
-				//Llama el método para que realice los cambios necesarios para obtener los elementos del tipo que se quiere obtener.
-				Consultas.elegirTipo(comboTiposConsulta, tituloConsulta, comboEstadosConsulta, listaElementosObtenidos);
+				//Llama el método para que realice los cambios necesarios para obtener los elementos del tipo que se quiere.
+				Consultas.elegirTipo(comboTiposConsulta, comboEstadosConsulta, listaElementosObtenidos);
+				
+				// Activamos los campos para que sea posible rellenarlos.
+				tituloConsulta.setDisable(false);
+				comboEstadosConsulta.setDisable(false);
+				// Borramos los datos de los campos si ya estaban activos.
+				tituloConsulta.setText("");
+				// Colocamos el combobox de estados por defecto.
+				comboEstadosConsulta.valueProperty().set(null);
 				
 			}
+			
 		}else {
 			
-			//Comprueba que haya algun elemento seleccionado en el ComboBox( necesario para el botón resetear).
+			/*
+			 * Comprueba que haya algun elemento seleccionado en el ComboBox (necesario para evitar el error
+			 * al resetear los campos mediante el botón de reseteo.)
+			 */
 			if(comboTiposRegistro.getSelectionModel().getSelectedItem() != null) {
 				
 				//Se llama al método para que prepare los siguientes campos del formulario.
@@ -282,7 +293,7 @@ public class ControladorPrincipal implements Initializable {
 		//Comprueba que elemento activó el evento.
 		if(obj == comboEstadosConsulta) {
 			
-			//Habilita el botón para modificar el elemento.
+			//Deshabilita el botón para modificar el elemento.
 			botonModificador.setDisable(true);
 			
 			//Se llama al método para que prepare los siguientes campos del formulario.
@@ -338,17 +349,25 @@ public class ControladorPrincipal implements Initializable {
 	@FXML
 	private void obtenerElementoLista() {
 		
-		//Se llama al método encarcado de obtener el elemento de la lista.
-		Consultas.obtenerElementoLista(listaElementosObtenidos, botonModificador, tituloSeleccion,
-				idSeleccion, estadoSeleccion, sinopsisSeleccion, tempTSeleccion, tempVSeleccion,
-				tablaTemporadas, columnaTemporadas, columnaCapT,columnaCapV);
+		// Obtenemos el elemento seleccionado en la lista.
+		PiezaAudiovisual pieza = listaElementosObtenidos.getSelectionModel().getSelectedItem();
+		// Comprobamos que el objeto no sea null, es decir, que haya alg�n elemento
+		// seleccionado.
+		if (pieza != null) {
+			
+			Consultas.mostrarElementoSeleccionado(pieza, tituloSeleccion, idSeleccion, estadoSeleccion,
+					sinopsisSeleccion, tempTSeleccion, tempVSeleccion, tablaTemporadas,
+					columnaTemporadas, columnaCapT, columnaCapV);
+			botonModificador.setDisable(false);
+			
+		}
 
 	}
 	
 
 	/**
-	 * Método que se encarga de controlar el evento al pulsar el botón par modificar
-	 * el campo seleccionado en la ListView.
+	 * Método que se encarga de controlar el evento al pulsar el botón para modificar
+	 * el elemento seleccionado en la Listview.
 	 * @param e
 	 */
 	@FXML
@@ -360,7 +379,7 @@ public class ControladorPrincipal implements Initializable {
 		Stage stage = (Stage) nodo.getScene().getWindow();
 		// Ocultamos el stage para que el usuario no pueda realizar acciones en el.
 		stage.hide();
-		// Obtenemos la instancia de la clase que no servirá para transferir datos.
+		// Obtenemos la instancia de la clase que nos servirá para transferir datos.
 		EnvioDatos datos = EnvioDatos.getInstance();
 		// Obtenemos la pieza seleccionada en la ListView.
 		PiezaAudiovisual pieza = listaElementosObtenidos.getSelectionModel().getSelectedItem();
@@ -372,8 +391,8 @@ public class ControladorPrincipal implements Initializable {
 			// Creamos el stage de la nueva ventana.
 			Stage modificadorStage = new Stage();
 			// Obtenemos el AnchorPane de la nueva ventana a traves del archivo FXML.
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/vista/VentanaModificacion.fxml"));
-			// Creamos la escena pasandole el AnchorPane como base.
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("../vista/VentanaModificacion.fxml"));
+			// Creamos la escena pasandole el AnchorPane como raíz.
 			Scene scene = new Scene(root);
 			// Modificamos el título.
 			modificadorStage.setTitle("Modificar");
@@ -395,15 +414,19 @@ public class ControladorPrincipal implements Initializable {
 			modificadorStage.setOnHidden(event -> {
 				stage.show();
 				//Se actualiza la ventana consulta al salir de la ventana de modificación.
-				int elemento = listaElementosObtenidos.getSelectionModel().getSelectedIndex();
-				listaElementosObtenidos.getItems().set(elemento, EnvioDatos.getInstance().getDatosTransferencia());
-				listaElementosObtenidos.getSelectionModel().select(elemento);
+				int posElemento = listaElementosObtenidos.getSelectionModel().getSelectedIndex();
+				listaElementosObtenidos.getItems().set(posElemento, EnvioDatos.getInstance().getDatosTransferencia());
+				listaElementosObtenidos.getSelectionModel().select(posElemento);
+				//Se obtiene el elemento de la lista actualizado para que se muestre en la ventana de datos.
 				obtenerElementoLista();
 				modificadorStage.close();
+				
 			});
 
 		} catch (Exception ex) {
+			
 			ex.printStackTrace();
+			
 		}
 
 	}
@@ -463,11 +486,10 @@ public class ControladorPrincipal implements Initializable {
 	private void introduccionTempTRegistro() {
 		
 		/*
-		 * Si el valor introducido en el TextField es v�lido se le quita el foco al
+		 * Si el valor introducido en el TextField es válido se le quita el foco al
 		 * campo.
 		 */
 		if(!tempTRegistro.getText().isEmpty()) {
-			
 		
 			FuncionesApoyoControladores.introduccionTempT(tempTRegistro, tempVRegistro, tablaTempRegistro,
 					comboEstadosRegistro.getSelectionModel().getSelectedItem());
@@ -628,7 +650,7 @@ public class ControladorPrincipal implements Initializable {
 				PiezaAudiovisual pieza = FuncionesApoyoControladores.crearPiezaRegistro(comboTiposRegistro, tituloRegistro, comboEstadosRegistro, sinopsisRegistro,
 						tempTRegistro, tempVRegistro, tablaTempRegistro);
 				
-				FuncionesApoyoControladores.verificacionCampos(pieza);
+				FuncionesApoyoControladores.verificacionCampos(pieza, comboTiposRegistro.getSelectionModel().getSelectedItem());
 				RegistroDatosXML.introducirDatosPieza(pieza, comboTiposRegistro.getSelectionModel().getSelectedItem());
 				
 				//Se mostrará una ventana emergente avisando al usuario que los datos se han registrado con éxito.
@@ -645,6 +667,10 @@ public class ControladorPrincipal implements Initializable {
 			} catch (CampoInvalidoException e) {
 				
 				Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+				
+			} catch (ObraYaRegistradaException e) {
+				
+				Alertas.alertaError(MensajesAlertas.T_TITULO_REPETIDO, e.getMessage());
 				
 			}
 			

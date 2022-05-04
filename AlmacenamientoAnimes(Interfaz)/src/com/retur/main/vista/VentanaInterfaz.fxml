@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="anchorBase" stylesheets="@../resources/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorPrincipal">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="anchorBase" stylesheets="@../../../../resources/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.retur.main.controlador.ControladorPrincipal">
    <children>
       <TabPane layoutX="-257.0" layoutY="23.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
         <tabs>
@@ -241,7 +241,7 @@
                                  <columns>
                                     <TableColumn fx:id="colTempRegistro" editable="false" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Temporada" />
                                     <TableColumn fx:id="colCapVRegistro" maxWidth="105.0" onEditCommit="#introduccionCapV" prefWidth="105.0" sortable="false" text="Capitulos Vistos" />
-                                    <TableColumn fx:id="colCapTRegistro" maxWidth="106.0" onEditCommit="#introduccionCapT" prefWidth="106.0" sortable="false" text="CapitulosTotales" />
+                                    <TableColumn fx:id="colCapTRegistro" maxWidth="112.0" onEditCommit="#introduccionCapT" prefWidth="109.0" sortable="false" text="CapitulosTotales" />
                                  </columns>
                                  <opaqueInsets>
                                     <Insets />

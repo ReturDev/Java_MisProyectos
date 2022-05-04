@@ -6,7 +6,7 @@ import javafx.util.StringConverter;
 
 
 /**
- * Convertidor para convertir los tipos de piezas audiovisuales de {@link TiposPiezasAudiovisuales} a String y viceversa.
+ * Convertidor para pasar los tipos de piezas audiovisuales de {@link TiposPiezasAudiovisuales} a String y viceversa.
  * @author Sergio
  */
 public class TiposConverter extends StringConverter<TiposPiezasAudiovisuales> {
@@ -32,9 +32,11 @@ public class TiposConverter extends StringConverter<TiposPiezasAudiovisuales> {
 			//Almacena el nombre del tipo con la primera letra en mayúscula y remplazando los guiones bajos por espacios.
 			texto = (tipo.toString().charAt(0) + tipo.toString().substring(1).toLowerCase());
 			texto = texto.replace('_', ' ');
+			
 		}
 		
 		return texto;
+		
 	}
 	
 }

@@ -5,6 +5,11 @@ import java.util.Objects;
 import com.retur.main.modelo.convertidores.EstadosConverter;
 import com.retur.main.modelo.enums.Estados;
 
+/**
+ * Clase padre de cualquier obra.
+ * @author Sergio
+ *
+ */
 public abstract class PiezaAudiovisual {
 
 	private int id;

@@ -6,6 +6,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
+/**
+ * Clase funcional que a través de sus métodos se invocan alertas que se les mostrarán al usuario.
+ * @author Sergio
+ *
+ */
 public class Alertas {
 
 	

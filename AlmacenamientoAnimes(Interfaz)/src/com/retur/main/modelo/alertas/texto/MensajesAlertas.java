@@ -1,5 +1,11 @@
 package com.retur.main.modelo.alertas.texto;
 
+
+/**
+ * Almacena constantes con mensajes personalizados para las alertas.
+ * @author Sergio
+ *
+ */
 public final class MensajesAlertas {
 
 	public static final String T_ERROR_GENERICO = "Ha ocurrido un error.";
@@ -47,9 +53,10 @@ public final class MensajesAlertas {
 	public static final String M_ERROR_TT = "No puede haber menos de una temporada.";
 	public static final String M_MENOS_CAPS = "Hay menos temporadas con todos los Capitulos Vistos que Temporadas Vistas.";
 	public static final String M_MAS_CAPS = "Hay más temporadas con todos los Capitulos Vistos que Temporadas Vistas.";
-	public static final String M_MIN_CAPST = "El valor de los capitulos totales tiene que ser mínimo de 1";
-	public static final String M_MAX_CAPST = "El valor de los capitulos vistos no puede ser mayor que los capitulos totales.";
-
+	public static final String M_MIN_CAPST = "El valor de los Capitulos Totales tiene que ser mínimo de 1";
+	public static final String M_MAX_CAPSV = "El valor de los Capitulos Vistos no puede ser mayor que los Capitulos Totales.";
+	public static final String T_TITULO_REPETIDO = "Título ya existente";
+	public static final String M_TITULO_REPETIDO = "El título introducido ya pertenece a una obra.";
 
 }
 

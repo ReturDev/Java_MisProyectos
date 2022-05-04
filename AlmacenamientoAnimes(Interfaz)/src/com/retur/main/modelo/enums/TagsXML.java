@@ -1,6 +1,10 @@
 package com.retur.main.modelo.enums;
 
-
+/**
+ * Representas los nombre de las etiquetas en el xml.
+ * @author Sergio
+ *
+ */
 public enum TagsXML {
 
 	ID,

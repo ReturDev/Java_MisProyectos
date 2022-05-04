@@ -5,6 +5,11 @@ import java.util.Objects;
 
 import com.retur.main.modelo.enums.Estados;
 
+/**
+ * Representa a una obra que se compone de temporadas.
+ * @author Sergio
+ *
+ */
 public abstract class Serializable extends PiezaAudiovisual{
 	
 
@@ -20,45 +25,76 @@ public abstract class Serializable extends PiezaAudiovisual{
 		this.temporadasVistas = temporadasVistas;
 		this.temporadas = temporadas;
 	}
+	
 	public Serializable() {}
 
+	
 	public int getTemporadasTotales() {
+		
 		return temporadasTotales;
+		
 	}
+	
 	public void setTemporadasTotales(int temporadasTotales) {
+		
 		this.temporadasTotales = temporadasTotales;
+		
 	}
+	
 	public int getTemporadasVistas() {
+		
 		return temporadasVistas;
+		
 	}
+	
 	public void setTemporadasVistas(int temporadasVistas) {
+		
 		this.temporadasVistas = temporadasVistas;
+		
 	}
+	
 	public ArrayList<Temporada> getTemporadas() {
+		
 		return temporadas;
+		
 	}
+	
 	public void setTemporadas(ArrayList<Temporada> temporadas) {
+		
 		this.temporadas = temporadas;
+		
 	}
+	
 	@Override
 	public int hashCode() {
+		
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + Objects.hash(temporadas, temporadasTotales, temporadasVistas);
 		return result;
+		
 	}
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
+			
 			return true;
+		
 		if (!super.equals(obj))
+			
 			return false;
+		
 		if (getClass() != obj.getClass())
+			
 			return false;
+		
 		Serializable other = (Serializable) obj;
+		
 		return Objects.equals(temporadas, other.temporadas) && temporadasTotales == other.temporadasTotales
 				&& temporadasVistas == other.temporadasVistas;
+		
 	}
 	
 	

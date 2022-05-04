@@ -1,12 +1,15 @@
 package com.retur.main.modelo.funciones;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.retur.main.modelo.alertas.Alertas;
 import com.retur.main.modelo.alertas.texto.MensajesAlertas;
 import com.retur.main.modelo.elementos.*;
 import com.retur.main.modelo.enums.*;
 import com.retur.main.modelo.excepciones.CampoInvalidoException;
+import com.retur.main.modelo.excepciones.ObraYaRegistradaException;
+import com.retur.main.modelo.funciones.xml.ObtencionDatosXML;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -15,6 +18,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 
 public class FuncionesApoyoControladores {
 
+	//TODO Por aqui.
 	
 	/**
 	 * M�todo encargado de las acciones con la introducción de un valor en el campo de Temporadas Totales.
@@ -356,14 +360,23 @@ public class FuncionesApoyoControladores {
 	 * @param pieza
 	 * @return
 	 * @throws CampoInvalidoException 
+	 * @throws ObraYaRegistradaException 
 	 */
-	public static void verificacionCampos(PiezaAudiovisual pieza) throws CampoInvalidoException {
+	public static void verificacionCampos(PiezaAudiovisual pieza, TiposPiezasAudiovisuales tipo) throws CampoInvalidoException, ObraYaRegistradaException {
 		
-		if(pieza.getTitulo() == null || pieza.getTitulo().isEmpty()) {
+		if(pieza.getTitulo().isEmpty()) {
 			
 			throw new CampoInvalidoException(MensajesAlertas.M_TITULO_VACIO);
 			
 		}
+		
+		if(pieza.getId() == 0) {
+			
+			comprobarTituloExistente(pieza.getTitulo(), tipo);
+			
+		}
+		
+		
 		
 		//TODO Añadir que si el título introducido ya se enctuentra que avise y no lo registre.
 		
@@ -391,25 +404,41 @@ public class FuncionesApoyoControladores {
 		
 	}
 	
+	private static void comprobarTituloExistente(String titulo, TiposPiezasAudiovisuales tipo) throws ObraYaRegistradaException {
+		
+		HashSet<PiezaAudiovisual> lista = ObtencionDatosXML.obtenerListaElementosTipo(tipo);
+		
+		for(PiezaAudiovisual pieza : lista) {
+			
+			if(titulo.equals(pieza.getTitulo())) {
+				
+				throw new ObraYaRegistradaException(MensajesAlertas.M_TITULO_REPETIDO);
+				
+			}
+			
+		}
+		
+	}
+	
 	/**
-	 * Verifica que los valores introducidos en los Capitulos sean v�lidos.
+	 * Verifica que los valores introducidos en los Capitulos sean válidos.
 	 * @param temporadas
-	 * @param tempV
+	 * @param cantidadTempV
 	 * @return
 	 * @throws CampoInvalidoException 
 	 */
-	private static void comprobacionesCapitulos(ArrayList<Temporada> temporadas, int tempV) throws CampoInvalidoException {
+	private static void comprobacionesCapitulos(ArrayList<Temporada> temporadas, int cantidadTempV) throws CampoInvalidoException {
 		
-		//Recorremos las todas las temporadas.
+		//Recorremos todas las temporadas.
 		for(int i = 0; i < temporadas.size(); i++) {
 			//Obtenemos la temporada en la que estamos.
 			Temporada temporada = temporadas.get(i);
-			//Comprobamos si el n�mero de temporada que estamos recorriendo es menor que el total de Temporadas Vistas.
-			if(i < tempV) {
+			//Comprobamos si el número de temporada que estamos recorriendo es menor que el total de Temporadas Vistas.
+			if(i < cantidadTempV) {
 				
 				/*
 				 * Comprobamos si la temporada en la que estamos no tiene todos los Capitulos Vistos, pues si tenemos, por ejemplo,
-				 * 2 temporadas Vistas y la segunda temporada que recorremos, no tiene todos los capitulos vistos, no estar�a la 
+				 * 2 temporadas Vistas y la segunda temporada que recorremos no tiene todos los capitulos vistos, no estaría la 
 				 * temporada vista, por lo que habrá un error.
 				 */
 				if(temporada.getCapitulosVistos() != temporada.getCapitulosTotales()) {
@@ -418,8 +447,14 @@ public class FuncionesApoyoControladores {
 					
 				}
 				
-			}else {
+			//Comprobamos si el número de temporada que estamos recorriendo es mayor que el total de Temporadas Vistas.
+			}else if(i > cantidadTempV) {
 				
+				/*
+				 * Se comprueba que no haya los mismos capitulos vistos que totales, cuando el número de la temporada
+				 * que estamos reccorriendo es mayor que el total de temporadas vistas, pues en este caso significaría que 
+				 * hay más temporadas vistas de las que hemos indicado.
+				 */
 				if(temporada.getCapitulosVistos() == temporada.getCapitulosTotales()) {
 					
 					throw new CampoInvalidoException(MensajesAlertas.M_MAS_CAPS);
@@ -427,25 +462,28 @@ public class FuncionesApoyoControladores {
 				}
 				
 			}
+			
+			// Se comprueba que no haya menos de un capitulo total.
 			if(temporada.getCapitulosTotales() < 1) {
 				
 				throw new CampoInvalidoException(MensajesAlertas.M_MIN_CAPST);
 				
 			}
 			
+			//Se comprueba que no haya más capitulos vistos que totales.
 			if(temporada.getCapitulosVistos() > temporada.getCapitulosTotales()) {
 				
-				throw new CampoInvalidoException(MensajesAlertas.M_MAX_CAPST);
+				throw new CampoInvalidoException(MensajesAlertas.M_MAX_CAPSV);
 				
 			}
 		}
 		
 	}
 	
-	//TODO Comentar.
 	
 	/**
-	 * Almacena los valores de los campos en una clase.
+	 * Almacena los valores de los campos en su clase correspondiente para preparar los datos para 
+	 * registrarlo en el base de datos.
 	 * @param tipos
 	 * @param titulo
 	 * @param estado
@@ -459,7 +497,7 @@ public class FuncionesApoyoControladores {
 		
 		PiezaAudiovisual pieza = FuncionesApoyoControladores.crearClaseMedianteTipo(tipos.getSelectionModel().getSelectedItem());
 		
-		pieza.setTitulo(titulo.getText());
+		pieza.setTitulo(titulo.getText().toUpperCase());
 		pieza.setEstado(estado.getSelectionModel().getSelectedItem());
 		pieza.setSinopsis(sinopsis.getText());
 	

@@ -13,6 +13,7 @@ import com.retur.main.modelo.elementos.*;
 import com.retur.main.modelo.enums.Estados;
 import com.retur.main.modelo.envio.datos.EnvioDatos;
 import com.retur.main.modelo.excepciones.CampoInvalidoException;
+import com.retur.main.modelo.excepciones.ObraYaRegistradaException;
 import com.retur.main.modelo.funciones.*;
 import com.retur.main.modelo.funciones.xml.RegistroDatosXML;
 import com.retur.main.modelo.listas.ListasObservables;
@@ -170,7 +171,7 @@ public class ControladorModificacion implements Initializable {
 			 */
 			try {
 				
-				FuncionesApoyoControladores.verificacionCampos(pieza);
+				FuncionesApoyoControladores.verificacionCampos(pieza, null);
 				RegistroDatosXML.introducirDatosPieza(pieza, EnvioDatos.getInstance().getTipoTransferencia());
 				Modificaciones.actualizarConsultasModificado(pieza);
 				Alertas.alertaInformativa(MensajesAlertas.T_MODIFICADO,MensajesAlertas.M_MODIFICADO);
@@ -183,7 +184,7 @@ public class ControladorModificacion implements Initializable {
 				
 				Alertas.alertaError(MensajesAlertas.T_ERROR_GUARDAR_DATOS, MensajesAlertas.M_ERROR_GUARDAR_DATOS + e.getMessage());
 
-			} catch (CampoInvalidoException e) {
+			} catch (CampoInvalidoException | ObraYaRegistradaException e) {
 				
 				Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
 				
@@ -366,7 +367,7 @@ public class ControladorModificacion implements Initializable {
 		//Se obtiene los valores de los campos y se almacenan en variables.
 		
 		int id = Integer.parseInt(this.id.getText());
-		String titulo = this.titulo.getText();
+		String titulo = this.titulo.getText().toUpperCase();
 		Estados estado = this.estado.getSelectionModel().getSelectedItem();
 		String sinopsis = this.sinopsis.getText();
 
