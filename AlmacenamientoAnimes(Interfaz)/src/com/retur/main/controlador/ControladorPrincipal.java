@@ -499,7 +499,7 @@ public class ControladorPrincipal implements Initializable {
 	}
 	
 	/**
-	 * Quita el foco de los campos al pulsar enter.
+	 * Quita el foco de los campos de registro al pulsar enter.
 	 * @param e
 	 */
 	@FXML

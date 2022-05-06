@@ -21,51 +21,51 @@ public class FuncionesApoyoControladores {
 	//TODO Por aqui.
 	
 	/**
-	 * M�todo encargado de las acciones con la introducción de un valor en el campo de Temporadas Totales.
-	 * @param tempTotales
-	 * @param tempVistas
-	 * @param tablaTemporadas
-	 * @param estado
+	 * Comprueba los valores introducidos en Temporadas Totales y crea o borra la cantidad de temporadas dependiendo 
+	 * del la cantidad de Temporadas Totales. Si se deja el campo vacío o se , se asignará 1 
+	 * @param tempTotales TextField donde se introducen las Temporadas Totales.
+	 * @param tempVistas TextField donde se introducen las Temporadas Vistas.
+	 * @param tablaTemporadas Tabla que almacenas las temporadas.
+	 * @param estado Estado en el que se encuentra la obra.
 	 */
 	public static void introduccionTempT(TextField tempTotales, TextField tempVistas, TableView<Temporada> tablaTemporadas,
 			Estados estado) {
 
-		// Comprobamos que el valor del campo es distinto a 0.
-		if(!tempTotales.getText().isEmpty()) {
-			
-			if (Integer.parseInt(tempTotales.getText()) != 0) {
+		if (Integer.parseInt(tempTotales.getText()) != 0) {
 
-				// Se comprueba la diferencia de temporadas con el valor introducido y se crean
-				// o borran las necesarias.
-				ComprobacionesCampos.crearBorrarTemporadas(tablaTemporadas.getItems(),
-						Integer.parseInt(tempTotales.getText()));
-				// Comprobamos que si el estado es visto, se le da el mismo valor a las
-				// temporadas vistas que las totales.
-				if (estado.equals(Estados.VISTO)) {
-					tempVistas.setText(tempTotales.getText());
-				}else {
-					tempVistas.setText("0");
-				}
-
-			} else {
+			/*
+			 *  Se comprueba la diferencia de temporadas con el valor introducido y se crean
+			 *  o borran las necesarias.
+			 */
+			ComprobacionesCampos.crearBorrarTemporadas(tablaTemporadas.getItems(),
+					Integer.parseInt(tempTotales.getText()));
+			/*
+			 * Comprobamos que si el estado es visto, se le da el mismo valor a las
+			 * temporadas vistas que las totales.
+			 */
+			if (estado.equals(Estados.VISTO)) {
 				
-				//Se muestra un mensaje de error.
-				Alertas.alertaError(MensajesAlertas.T_INTRO_TT, MensajesAlertas.M_INTRO_TT);
+				tempVistas.setText(tempTotales.getText());
 				
-				tempTotales.setText("1");
-
+			}else {
+				
+				tempVistas.setText("0");
+				
 			}
+
+		} else {
 			
-		}else {
+			//Se muestra un mensaje de error.
+			Alertas.alertaError(MensajesAlertas.T_INTRO_TT, MensajesAlertas.M_INTRO_TT);
 			
 			tempTotales.setText("1");
-			
+
 		}
 
 	}
 	
 	/**
-	 * M�todo encargado de las acciones con la introducci�n de un valor en el campo de Temporadas Vistas.
+	 * Comprueba los valores introducidos en Temporadas Totales
 	 * @param tempVistas
 	 * @param tempTotales
 	 * @return
@@ -73,26 +73,18 @@ public class FuncionesApoyoControladores {
 	public static void introduccionTempV(TextField tempVistas, TextField tempTotales, TableView<Temporada> tablaTemporadas,
 			ComboBox<Estados> estado) {
 		
-		if(!tempVistas.getText().isEmpty()) {
+		//Se comprueba si el n�mero introducido es mayor que la cantidad de Temporada Totales.
+		if (Integer.parseInt(tempVistas.getText()) > Integer.parseInt(tempTotales.getText())) {
 			
-			//Se comprueba si el n�mero introducido es mayor que la cantidad de Temporada Totales.
-			if (Integer.parseInt(tempVistas.getText()) > Integer.parseInt(tempTotales.getText())) {
-				
-				Alertas.alertaError(MensajesAlertas.T_INTRO_TV, MensajesAlertas.M_INTRO_TV);
-				
-				//Se le da el valor m�ximo posible a las temporadas vistas.
-				tempVistas.setText("0");
+			Alertas.alertaError(MensajesAlertas.T_INTRO_TV, MensajesAlertas.M_INTRO_TV);
 			
-			//Se comprueba si el valor de temporadas vistas es el mismo que totales.
-			}else if(Integer.parseInt(tempVistas.getText()) == Integer.parseInt(tempTotales.getText())) {
-				//Si los valores son iguales, se establece el estado en visto.
-				estado.getSelectionModel().select(Estados.VISTO);
-				
-			}
-			
-		}else {
-			
+			//Se le da el valor m�ximo posible a las temporadas vistas.
 			tempVistas.setText("0");
+		
+		//Se comprueba si el valor de temporadas vistas es el mismo que totales.
+		}else if(Integer.parseInt(tempVistas.getText()) == Integer.parseInt(tempTotales.getText())) {
+			//Si los valores son iguales, se establece el estado en visto.
+			estado.getSelectionModel().select(Estados.VISTO);
 			
 		}
 		
