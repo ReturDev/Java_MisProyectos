@@ -37,13 +37,10 @@ public final class MensajesAlertas {
 	public static final String M_MODIFICADO = "Los datos se han modificado con éxito.";
 	
 	//Funciones apoyo controladores.
-	public static final String T_INTRO_TT = "Temporadas necesarias.";
+
 	public static final String M_INTRO_TT = "Tienes que introducir al menos 1 temporada.";
-	public static final String T_INTRO_TV = "Cantidad no válida";
 	public static final String M_INTRO_TV = "No puede haber más temporadas vistas que totales.";
-	public static final String T_VALOR_INV_CAPS = "Valor no válido"; 
 	public static final String M_VALOR_INV_CAPS = "Solo puedes introducir números.";
-	public static final String T_INTRO_CAPV = "Error Capitulos";
 	public static final String M_INTRO_CAPV = "No puedes introducir más capitulos vistos que los totales.";
 	
 	//Funciones apoyo controladores (comprobaciones).

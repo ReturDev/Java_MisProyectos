@@ -3,7 +3,6 @@ package com.retur.main.modelo.funciones;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.retur.main.modelo.alertas.Alertas;
 import com.retur.main.modelo.alertas.texto.MensajesAlertas;
 import com.retur.main.modelo.elementos.*;
 import com.retur.main.modelo.enums.*;
@@ -18,71 +17,77 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 
 public class FuncionesApoyoControladores {
 
-	//TODO Por aqui.
+	
 	
 	/**
-	 * Comprueba los valores introducidos en Temporadas Totales y crea o borra la cantidad de temporadas dependiendo 
+	 * Comprueba los valores introducidos en el campo de Temporadas Totales y crea o borra la cantidad de temporadas dependiendo 
 	 * del la cantidad de Temporadas Totales. Si se deja el campo vacío o se , se asignará 1 
-	 * @param tempTotales TextField donde se introducen las Temporadas Totales.
-	 * @param tempVistas TextField donde se introducen las Temporadas Vistas.
-	 * @param tablaTemporadas Tabla que almacenas las temporadas.
+	 * @param tempTotales Campo de Temporadas Totales.
+	 * @param tempVistas Campo de Temporadas Vistas.
+	 * @param tablaTemporadas Tabla que almacena las temporadas.
 	 * @param estado Estado en el que se encuentra la obra.
+	 * @throws CampoInvalidoException 
 	 */
 	public static void introduccionTempT(TextField tempTotales, TextField tempVistas, TableView<Temporada> tablaTemporadas,
-			Estados estado) {
-
-		if (Integer.parseInt(tempTotales.getText()) != 0) {
-
-			/*
-			 *  Se comprueba la diferencia de temporadas con el valor introducido y se crean
-			 *  o borran las necesarias.
-			 */
-			ComprobacionesCampos.crearBorrarTemporadas(tablaTemporadas.getItems(),
-					Integer.parseInt(tempTotales.getText()));
-			/*
-			 * Comprobamos que si el estado es visto, se le da el mismo valor a las
-			 * temporadas vistas que las totales.
-			 */
-			if (estado.equals(Estados.VISTO)) {
-				
-				tempVistas.setText(tempTotales.getText());
-				
-			}else {
-				
-				tempVistas.setText("0");
-				
-			}
-
-		} else {
-			
-			//Se muestra un mensaje de error.
-			Alertas.alertaError(MensajesAlertas.T_INTRO_TT, MensajesAlertas.M_INTRO_TT);
+			Estados estado) throws CampoInvalidoException {
+		
+		if(Integer.parseInt(tempTotales.getText()) == 0) {
 			
 			tempTotales.setText("1");
-
+			
+			throw new CampoInvalidoException(MensajesAlertas.M_INTRO_TT);
+			
 		}
+
+		/*
+		 *  Se comprueba la diferencia de temporadas con el valor introducido y se crean
+		 *  o borran las necesarias.
+		 */
+		ComprobacionesCampos.crearBorrarTemporadas(tablaTemporadas.getItems(),
+				Integer.parseInt(tempTotales.getText()));
+		/*
+		 * Comprobamos que si el estado es visto, se le da el mismo valor a las
+		 * temporadas vistas que las totales.
+		 */
+		if (estado.equals(Estados.VISTO)) {
+			
+			tempVistas.setText(tempTotales.getText());
+			
+		}else {
+			
+			tempVistas.setText("0");
+			
+		}
+
+		
 
 	}
 	
 	/**
-	 * Comprueba los valores introducidos en Temporadas Totales
-	 * @param tempVistas
-	 * @param tempTotales
-	 * @return
+	 * Comprueba los valores introducidos en el campo de Temporadas Vistas y, comprobando que no haya más
+	 * Temporadas Vistas que Totales, igualará los capitulos vistos a los totales en la cantidad de temporadas
+	 * que coincidan con el número de temporadas vistas. En el caso que las temporadas vistas sean las mismas que las
+	 * temporadas totales, se cambiará el {@link Estado} a VISTO.
+	 * @param tempVistas Campo Temporadas Vistas.
+	 * @param tempTotales Campo Temporadas Totales.
+	 * @param tablaTemporadas Tabla que almacena las temporadas.
+	 * @param estado Estado en el que se encuentra la obra.
+	 * @throws CampoInvalidoException 
 	 */
 	public static void introduccionTempV(TextField tempVistas, TextField tempTotales, TableView<Temporada> tablaTemporadas,
-			ComboBox<Estados> estado) {
+			ComboBox<Estados> estado) throws CampoInvalidoException {
 		
-		//Se comprueba si el n�mero introducido es mayor que la cantidad de Temporada Totales.
-		if (Integer.parseInt(tempVistas.getText()) > Integer.parseInt(tempTotales.getText())) {
+		if(Integer.parseInt(tempVistas.getText()) > Integer.parseInt(tempTotales.getText())) {
 			
-			Alertas.alertaError(MensajesAlertas.T_INTRO_TV, MensajesAlertas.M_INTRO_TV);
-			
-			//Se le da el valor m�ximo posible a las temporadas vistas.
+			//Se coloca el valor de las temporadas a 0 si el número introducido es mayor que las temporadas totales.
 			tempVistas.setText("0");
+			
+			throw new CampoInvalidoException(MensajesAlertas.M_INTRO_TV);
+			
+		}
 		
 		//Se comprueba si el valor de temporadas vistas es el mismo que totales.
-		}else if(Integer.parseInt(tempVistas.getText()) == Integer.parseInt(tempTotales.getText())) {
+		if(Integer.parseInt(tempVistas.getText()) == Integer.parseInt(tempTotales.getText())) {
 			//Si los valores son iguales, se establece el estado en visto.
 			estado.getSelectionModel().select(Estados.VISTO);
 			
@@ -93,98 +98,102 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * M�todo encargado de las acciones al modificar celdas de los Capitulos Totales.
-	 * @param e
-	 * @param tablaTemporadas
-	 * @param estado
+	 * Verifica que el valor introducido en la celda de Capitulos Totales sea un número y modifica si fuera necesario
+	 * los Capitulos Vistos de esa temporada. Para más información sobre el método que llama para la modificación de capitulos
+	 * consulta el método rellenarCapV.
+	 * @param event Evento que se dispara al modificar la celda de Capitulos Totales.
+	 * @param tablaTemporadas Tabla que almacena las temporadas.
+	 * @param tempV Campo de Temporadas Vistas.
+	 * @param estado Estado en el que se encuentra la obra.
+	 * @throws CampoInvalidoException 
 	 */
-	public static boolean modificarCapT (CellEditEvent<Temporada, Integer> e, TableView<Temporada> tablaTemporadas,
-			TextField tempV, Estados estado) {
-		
-		boolean valorValido = false;
+	public static void modificarCapT (CellEditEvent<Temporada, Integer> event, TableView<Temporada> tablaTemporadas,
+			TextField tempV, Estados estado) throws CampoInvalidoException {
 		
 		//Se obtiene el nuevo valor de la celda.
-		Integer nuevoValor = e.getNewValue();
-		//Se comprueba que el valor no sea nulo, es decir, que la variable no est� vac�a.
-		if (nuevoValor != null) {
-			//Se obtiene el valor de toda la fila, es decir, la temporada de esas celdas.
-			Temporada temporada = e.getRowValue();
-			//Se le asigna el nuevo valor de las temporadas totales a la temporada obtenida antes.
-			temporada.setCapitulosTotales(nuevoValor);
+		Integer nuevoValor = event.getNewValue();
 		
-			//Se obtiene el indice que ocupa la temporada obtenida en la lista de temporadas.
-			int indiceTempListaTabla = indiceTempTabla(tablaTemporadas, temporada);
+		//Si el nuevo valor es nulo, es decir, no es un número, lanzará una excepción.
+		if(nuevoValor == null) {
 			
-			//Se actualiza la temporada modificada en la lista de temporadas de la tabla.
-			tablaTemporadas.getItems().set(indiceTempListaTabla, temporada);
-			//Se acualizan los capitulos vistos al m�ximo.
-			rellenarCapV(tablaTemporadas,tempV, estado);
-
-			valorValido = true;
-		} else {
-			//Se muestra un mensaje de alerta.
-			Alertas.alertaError(MensajesAlertas.T_VALOR_INV_CAPS, MensajesAlertas.M_VALOR_INV_CAPS);
-			//Se refresca los valores de la tabla.
+			//Se refresca los valores de la tabla para que no aparezca el valor introducido.
 			tablaTemporadas.refresh();
+			
+			throw new CampoInvalidoException(MensajesAlertas.M_VALOR_INV_CAPS);
+			
 		}
 		
-		return valorValido;
+		//Se obtiene el valor de toda la fila, es decir, la temporada de esas celdas.
+		Temporada temporada = event.getRowValue();
+		//Se le asigna el nuevo valor de las temporadas totales a la temporada obtenida antes.
+		temporada.setCapitulosTotales(nuevoValor);
+	
+		//Se obtiene el indice que ocupa la temporada obtenida en la lista de temporadas.
+		int indiceTempListaTabla = indiceTempTabla(tablaTemporadas, temporada);
+		
+		//Se actualiza la temporada modificada en la lista de temporadas de la tabla.
+		tablaTemporadas.getItems().set(indiceTempListaTabla, temporada);
+		//Se acualizan los capitulos vistos dependiendo del estado en el que se encuentre la obra.
+		rellenarCapV(tablaTemporadas,tempV, estado);
+
 		
 	}
 	
 	/**
-	 * M�todo encargado de las acciones al modificar celdas de los Capitulos Vistos.
-	 * @param e
-	 * @param tablaTemporadas
+	 * Verifica que el valor introducido en la celda de Capitulos Vistos sea un número y modifica si fuera necesario
+	 * los Capitulos Vistos de esa temporada.
+	 * @param event Evento que se dispara al modificar la celda de Capitulos Totales.
+	 * @param tablaTemporadas Tabla que almacena las temporadas.
+	 * @param tempV Campo de Temporadas Vistas.
+	 * @param estado Estado en el que se encuentra la obra.
+	 * @throws CampoInvalidoException 
 	 */
-	public static boolean modificarCapV(CellEditEvent<Temporada, Integer> e, TableView<Temporada> tablaTemporadas, TextField tempV,
-			ComboBox<Estados> estado) {
-		
-		boolean valorValido = false;
-		
+	public static void modificarCapV(CellEditEvent<Temporada, Integer> e, TableView<Temporada> tablaTemporadas, TextField tempV,
+			TextField tempT, ComboBox<Estados> estado) throws CampoInvalidoException {
+	
 		//Se obtiene el nuevo valor de la celda.
 		Integer nuevoValor = e.getNewValue();
-
-		//Se comprueba que el valor no sea nulo, es decir, que la variable no est� vac�a.
-		if (nuevoValor != null) {
+		
+		//Si el nuevo valor es nulo, es decir, no es un número, lanzará una excepción.
+		if(nuevoValor == null) {
 			
-			//Se obtiene el valor de toda la fila, es decir, la temporada de esas celdas.
-			Temporada temporada = e.getRowValue();
-			
-			//Se comprueba que el valor sea menor o igual que los capitulos totales.
-			if (temporada.getCapitulosTotales() >= nuevoValor) {
-				//Se le asigna a la temporada obtenida el nuevo valor de los capitulos vistos.
-				temporada.setCapitulosVistos(nuevoValor);
-				
-				//Se obtiene el indice que ocupa la temporada obtenida en la lista de temporadas.
-				int indiceTempListaTabla = indiceTempTabla(tablaTemporadas, temporada);
-				
-				//Se actualiza la temporada modificada en la lista de temporadas de la tabla.
-				tablaTemporadas.getItems().set(indiceTempListaTabla, temporada);
-				
-				sumarTempVConCapV(tablaTemporadas, tempV, estado);
-				valorValido = true;
-			} else {
-				//Se muestra un mensaje de alerta.
-				Alertas.alertaError(MensajesAlertas.T_INTRO_CAPV,MensajesAlertas.M_INTRO_CAPV);
-				//Se refresca los valores de la tabla.
-				tablaTemporadas.refresh();
-			}
-		} else {
-			//Se muestra un mensaje de alerta.
-			Alertas.alertaError(MensajesAlertas.T_VALOR_INV_CAPS, MensajesAlertas.M_VALOR_INV_CAPS);
-			//Se refresca los valores de la tabla.
+			//Se refresca los valores de la tabla para que no aparezca el valor introducido.
 			tablaTemporadas.refresh();
+			
+			throw new CampoInvalidoException(MensajesAlertas.M_VALOR_INV_CAPS);
+			
 		}
 		
-		return valorValido;
+		//Se obtiene el valor de toda la fila, es decir, la temporada de esas celdas.
+		Temporada temporada = e.getRowValue();
 		
+		//Si el nuevo valor es mayor que el número de capitulos totales, lanzará una excepción.
+		if (temporada.getCapitulosTotales() < nuevoValor) {
+			
+			//Se refresca los valores de la tabla para que no aparezca el valor introducido.
+			tablaTemporadas.refresh();
+			
+			throw new CampoInvalidoException(MensajesAlertas.M_INTRO_CAPV);
+			
+		}
+		
+		//Se le asigna a la temporada obtenida el nuevo valor de los capitulos vistos.
+		temporada.setCapitulosVistos(nuevoValor);
+		
+		//Se obtiene el indice que ocupa la temporada obtenida en la lista de temporadas.
+		int indiceTempListaTabla = indiceTempTabla(tablaTemporadas, temporada);
+		
+		//Se actualiza la temporada modificada en la lista de temporadas de la tabla.
+		tablaTemporadas.getItems().set(indiceTempListaTabla, temporada);
+		
+		sumarTempVConCapV(tablaTemporadas, tempV, tempT, estado);
+
 	}
 	
 	
 	/**
-	 * M�todo encargado de rellenar los Capitulos Vistos en las columnas que la cantidad de Capitulos Totales
-	 * esten definidos, dependiendo de la cantidad de Temporadas Vistas recibida.
+	 * Método encargado de rellenar los Capitulos Vistos en todas las temporadas en las que los Capitulos Totales
+	 * esten definidos, teniendo en cuenta la cantidad de Temporadas Vistas indicadas en el campo.
 	 * @param tempVistas Campo Temporadas Vistas.
 	 * @param tablaTemporadas Tabla de Temporadas.
 	 */
@@ -197,16 +206,16 @@ public class FuncionesApoyoControladores {
 			//Se obtiene la temporada
 			Temporada temporada = temporadas.get(i);
 			/*
-			 * Si el valor de los Capitulos Totales est� definido(es distinto a 0), se iguala el valor de los Capitulos Vistos
+			 * Si el valor de los Capitulos Totales está definido(es distinto a 0), se iguala el valor de los Capitulos Vistos
 			 * a los totales.
 			 */
-			
 			if(temporada.getCapitulosTotales() != 0) {
 				
 				
 				temporada.setCapitulosVistos(temporada.getCapitulosTotales());
 				//Se modifica la temporada de la lista.
 				temporadas.set(i, temporada);
+				
 			}
 			
 		}
@@ -215,11 +224,11 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * M�todo encargado de buscar el �ndice en la lista de elementos de la tabla de temporadas 
-	 * que corresponda con la temporada a buscar.
+	 * Busca el índice en la lista de elementos de la tabla de temporadas que corresponda 
+	 * con la temporada que se quiere encontrar.
 	 * @param tablaTemporadas
 	 * @param temporada
-	 * @return
+	 * @return devuelve un entero.
 	 */
 	private static int indiceTempTabla(TableView<Temporada> tablaTemporadas, Temporada temporada) {
 		
@@ -228,9 +237,11 @@ public class FuncionesApoyoControladores {
 		//Se recorre la lista de temporadas buscando la temporada con la misma id que la modificada.
 		for(int i = 0; i < tablaTemporadas.getItems().size() && indiceTempListaTabla == -1; i++) {
 			
-			//Se comprueba que los id coincidan y se almacena el �ncide.
+			//Se comprueba que los id coincidan y se almacena el índice.
 			if(tablaTemporadas.getItems().get(i).getId() == temporada.getId() ) {
+				
 				indiceTempListaTabla = i;
+				
 			}
 			
 		}
@@ -239,8 +250,8 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * M�todo encargado de rellenar los Capitulos Vistos dependiendo del estado
-	 * seleccionado.
+	 * Establece la cantidad de Capitulos Vistos de cada temporada dependiendo del estado seleccionado y en caso de 
+	 * que el Estado sea siguiendo, trendrá en cuenta la cantidad de Temporadas Vistas.
 	 * @param tablaTemporadas
 	 * @param estado
 	 */
@@ -274,17 +285,7 @@ public class FuncionesApoyoControladores {
 
 		} else {
 			
-			if(!tempV.getText().isEmpty()) {
-				
-				for (int i = 0; i < Integer.parseInt(tempV.getText()); i++) {
-					Temporada temporada = temporadas.get(i);
-					temporada.setCapitulosVistos(temporada.getCapitulosTotales());
-					temporadas.set(i, temporada);
-				}
-				
-			}else {
-				tempV.setText("0");
-			}
+			autoRellenarCapV(tempV, tablaTemporadas);
 			
 		}
 		
@@ -293,8 +294,7 @@ public class FuncionesApoyoControladores {
 	}
 	
 	/**
-	 * M�todo encargado de crear y devolver un objeto de la clase correspondiente a cada tipo
-	 * de Pieza Audiovisual.
+	 * Crea la clase necesaria dependiendo del tipo de {@link TiposPiezasAudiovisuales} recibido.
 	 * @param tipo
 	 * @return
 	 */
@@ -324,22 +324,49 @@ public class FuncionesApoyoControladores {
 		
 	}
 	
-	private static void sumarTempVConCapV(TableView<Temporada> tablaTemporadas, TextField tempV, ComboBox<Estados> estado) {
+	/**
+	 * Recorre todas las temporadas contando todas las que tengan los mismos Capitulos Vistos que Totales,
+	 * si son más que las indicadas en el campo de Temporadas Vistas, se modifica el campo. Si llega a haber
+	 * la misma cantidad de Temporadas Vistas que Totales, se cambiará también el estado a VISTO. 
+	 * @param tablaTemporadas
+	 * @param tempV
+	 * @param temoT
+	 * @param estado
+	 * @throws CampoInvalidoException 
+	 */
+	private static void sumarTempVConCapV(TableView<Temporada> tablaTemporadas, TextField tempV, TextField tempT,
+			ComboBox<Estados> estado) throws CampoInvalidoException {
 		
+		//Se almacenan todas las temporadas para recorrerlas.
 		ArrayList<Temporada> temporadas = new ArrayList<Temporada>();
 		temporadas.addAll(tablaTemporadas.getItems());
+		
+		
 		int contadorTempV = 0;
+		
+		
 		for(int i = 0; i < temporadas.size(); i++) {
+			
 			Temporada temporada = temporadas.get(i);
-			if(temporada.getCapitulosVistos() == temporada.getCapitulosTotales()) {
+			
+			//Si los Capitulos Vistos son los mismos que los Totales si estos no son 0, se suma el contador.
+			if(temporada.getCapitulosVistos() == temporada.getCapitulosTotales() && temporada.getCapitulosTotales() != 0) {
+				
 				contadorTempV++;
+				
 			}
 			
 		}
 		
+		/*
+		 * Si hay más temporadas contadas que las del campo, se cambia el valor del campo.
+		 */
 		if(contadorTempV > Integer.parseInt(tempV.getText())) {
+			
+			
 			tempV.setText(contadorTempV + "");
-			FuncionesApoyoControladores.introduccionTempV(tempV, tempV, tablaTemporadas, estado);
+			FuncionesApoyoControladores.introduccionTempV(tempV, tempT, tablaTemporadas, estado);
+			
 		}
 		
 	}
@@ -347,12 +374,12 @@ public class FuncionesApoyoControladores {
 	
 	
 	/**
-	 * Verifica que el elemento obtenido por par�metro tenga todos los valores necesarios rellenos
-	 * y con valores válidos.
+	 * Verifica que el elemento obtenido por parámetro tenga todos los valores requeridos rellenos con valores
+	 * válidos.
 	 * @param pieza
-	 * @return
-	 * @throws CampoInvalidoException 
-	 * @throws ObraYaRegistradaException 
+	 * @param tipo
+	 * @throws CampoInvalidoException
+	 * @throws ObraYaRegistradaException
 	 */
 	public static void verificacionCampos(PiezaAudiovisual pieza, TiposPiezasAudiovisuales tipo) throws CampoInvalidoException, ObraYaRegistradaException {
 		
@@ -367,10 +394,6 @@ public class FuncionesApoyoControladores {
 			comprobarTituloExistente(pieza.getTitulo(), tipo);
 			
 		}
-		
-		
-		
-		//TODO Añadir que si el título introducido ya se enctuentra que avise y no lo registre.
 		
 		//Comprueba si el objeto es Serializable.
 		if(pieza instanceof Serializable) {
@@ -396,9 +419,16 @@ public class FuncionesApoyoControladores {
 		
 	}
 	
+	/**
+	 * Hace lo mismo que el método con el mismo nombre, pero recibiendo solo un parámetro y controlando
+	 * la excepcion ObraYaRegistradaException.
+	 * @param pieza
+	 * @throws CampoInvalidoException
+	 */
 	public static void verificacionCampos (PiezaAudiovisual pieza) throws CampoInvalidoException {
 		
 		try {
+			
 			verificacionCampos(pieza, null);
 		
 		} catch (ObraYaRegistradaException e) {
@@ -409,6 +439,12 @@ public class FuncionesApoyoControladores {
 		
 	}
 	
+	/**
+	 * Comprueba si el título recibido se encuentra ya en la base de datos, si es así lanzará una excepción.
+	 * @param titulo Titulo de la obra
+	 * @param tipo Tipo de la obra para la sección en la que buscar.
+	 * @throws ObraYaRegistradaException
+	 */
 	private static void comprobarTituloExistente(String titulo, TiposPiezasAudiovisuales tipo) throws ObraYaRegistradaException {
 		
 		HashSet<PiezaAudiovisual> lista = ObtencionDatosXML.obtenerListaElementosTipo(tipo);
@@ -513,15 +549,20 @@ public class FuncionesApoyoControladores {
 			if(!tempT.getText().isEmpty() && !tempV.getText().isEmpty()) {
 				
 				if(!tempT.getText().isEmpty()) {
+					
 					serializable.setTemporadasTotales(Integer.parseInt(tempT.getText()));
+					
 				}
 				if(!tempV.getText().isEmpty()) {
+					
 					serializable.setTemporadasVistas(Integer.parseInt(tempV.getText()));
+					
 				}
 				
 				ArrayList<Temporada> temporadas = new ArrayList<Temporada>();
 				temporadas.addAll(tablaTemp.getItems());
 				serializable.setTemporadas(temporadas);
+				
 			}
 			
 		}
@@ -534,7 +575,9 @@ public class FuncionesApoyoControladores {
 	 * Método para eliminar el foco de un campo.
 	 */
 	public static void quitarFoco(Pane raiz) {
+		
 		raiz.requestFocus();
+		
 	}
 	
 }

@@ -491,8 +491,16 @@ public class ControladorPrincipal implements Initializable {
 		 */
 		if(!tempTRegistro.getText().isEmpty()) {
 		
-			FuncionesApoyoControladores.introduccionTempT(tempTRegistro, tempVRegistro, tablaTempRegistro,
-					comboEstadosRegistro.getSelectionModel().getSelectedItem());
+			try {
+				
+				FuncionesApoyoControladores.introduccionTempT(tempTRegistro, tempVRegistro, tablaTempRegistro,
+						comboEstadosRegistro.getSelectionModel().getSelectedItem());
+				
+			} catch (CampoInvalidoException e) {
+
+				Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+				
+			}
 		
 		}
 		
@@ -561,8 +569,17 @@ public class ControladorPrincipal implements Initializable {
 		
 		//Comprueba que el campo no esté vacío.
 		if(!tempVRegistro.getText().isEmpty()) {
+			
 			//Se hacen las comprobaciones pertinentes a través del método.
-			FuncionesApoyoControladores.introduccionTempV(tempVRegistro, tempTRegistro,tablaTempRegistro,comboEstadosRegistro);
+			try {
+				
+				FuncionesApoyoControladores.introduccionTempV(tempVRegistro, tempTRegistro,tablaTempRegistro,comboEstadosRegistro);
+			
+			} catch (CampoInvalidoException e) {
+				
+				Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+				
+			}
 			
 		}
 	}
@@ -571,40 +588,53 @@ public class ControladorPrincipal implements Initializable {
 	
 	/**
 	 * Controlador encargado de la introducción de valores en las celda de Capitulos Totales.
+	 * @param event
 	 */
 	@FXML
-	private void introduccionCapT(CellEditEvent<Temporada, Integer> e) {
+	private void introduccionCapT(CellEditEvent<Temporada, Integer> event) {
 		
-		//Almacena si el valor introducido en los Capitulos Totales es válido.
-		boolean valorValido = FuncionesApoyoControladores.modificarCapT(e, tablaTempRegistro, tempVRegistro,
-				comboEstadosRegistro.getSelectionModel().getSelectedItem());
-
-		//Si el valor es válido quita el foco.
-		if (valorValido) {
+		try {
 			
+			FuncionesApoyoControladores.modificarCapT(event, tablaTempRegistro, tempVRegistro,
+					comboEstadosRegistro.getSelectionModel().getSelectedItem());
 			quitarFocoRegistro();
-
+			
+		} catch (CampoInvalidoException e) {
+		
+			Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+			
 		}
+			
+
 		
 	}
 	
 	
 	/**
 	 * Controlador encargado de la introducción de valores en las celda de Capitulos Vistos.
+	 * @param event
 	 */
 	@FXML
-	private void introduccionCapV(CellEditEvent<Temporada, Integer> e) {
+	private void introduccionCapV(CellEditEvent<Temporada, Integer> event) {
 		
-		//Almacena si el valor introducido en los Capitulos Totales es válido.
-		boolean valorValido = FuncionesApoyoControladores.modificarCapV(e, tablaTempRegistro, tempVRegistro,
-				comboEstadosRegistro);
-		
-		//Si el valor es válido quita el foco.
-		if(valorValido) {
+		try {
 			
+			FuncionesApoyoControladores.modificarCapV(event, tablaTempRegistro, tempVRegistro, tempTRegistro,
+					comboEstadosRegistro);
+			//Si el valor es válido quita el foco.
 			FuncionesApoyoControladores.quitarFoco(raizRegistro);
 			
+		} catch (CampoInvalidoException e) {
+			
+			Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+
 		}
+		
+		
+			
+			
+			
+		
 		
 	}
 	

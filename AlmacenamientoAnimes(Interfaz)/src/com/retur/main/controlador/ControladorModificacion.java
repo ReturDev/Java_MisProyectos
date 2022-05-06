@@ -215,8 +215,16 @@ public class ControladorModificacion implements Initializable {
 		if(!tempTotales.getText().isEmpty()) {
 			
 			//Se hacen las comprobaciones pertinentes a través del método.
-			FuncionesApoyoControladores.introduccionTempT(tempTotales, tempVistas, tablaTemporadas,
-					estado.getSelectionModel().getSelectedItem());
+			try {
+				
+				FuncionesApoyoControladores.introduccionTempT(tempTotales, tempVistas, tablaTemporadas,
+						estado.getSelectionModel().getSelectedItem());
+				
+			} catch (CampoInvalidoException e) {
+
+				Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+				
+			}
 			
 		}
 
@@ -285,7 +293,15 @@ public class ControladorModificacion implements Initializable {
 		if(!tempVistas.getText().isEmpty()) {
 			
 			//Se llama al método para que realice las actualizaciones necesarias en los campos a partir del valor introducido.
-			FuncionesApoyoControladores.introduccionTempV(tempVistas, tempTotales, tablaTemporadas,estado);
+			try {
+				
+				FuncionesApoyoControladores.introduccionTempV(tempVistas, tempTotales, tablaTemporadas,estado);
+				
+			} catch (CampoInvalidoException e) {
+				
+				Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+				
+			}
 			
 		}
 
@@ -295,47 +311,59 @@ public class ControladorModificacion implements Initializable {
 
 	/**
 	 * Controlador de la modificación de las celdas de la tabla de Capitulos Totales.
-	 * @param e
+	 * @param event
 	 */
 	@FXML
-	private void modificarCapT(CellEditEvent<Temporada, Integer> e) {
+	private void modificarCapT(CellEditEvent<Temporada, Integer> event) {
 		
 		/*
 		 * Se llama al método para que realice las actualizaciones necesarias en los campos a partir del valor introducido.
-		 * Devolverá un booleano dependiendo de si la información introducida es válida. Si lo es quitara el foco del campo.
+		 * Si la información introducida es válida quitara el foco del campo.
 		 */
-		boolean valorValido = FuncionesApoyoControladores.modificarCapT(e, tablaTemporadas, tempVistas, estado.getSelectionModel().getSelectedItem());
-
-		if (valorValido) {
-
+		
+		try {
+			
+			FuncionesApoyoControladores.modificarCapT(event, tablaTemporadas, tempVistas, estado.getSelectionModel().getSelectedItem());
 			quitarFocoModificacion();
-
+			
+		} catch (CampoInvalidoException e) {
+			
+			Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+			
 		}
+
+
 		
 		
 	}
 
 	/**
 	 * Controlador de la modificaci�n de las celdas de la tabla de Capitulos Vistas.
-	 * @param e
+	 * @param event
 	 */
 	@FXML
-	private void modificarCapV(CellEditEvent<Temporada, Integer> e) {
+	private void modificarCapV(CellEditEvent<Temporada, Integer> event) {
 	
 		/*
 		 * Se llama al método para que realice las actualizaciones necesarias en los campos a partir del valor introducido.
-		 * Devolverá un booleano dependiendo de si la información introducida es válida. Si lo es quitara el foco del campo.
+		 * Si el valor introducido no es válido, se mostrará una ventana al usuario.
 		 */
-		boolean valorValido = FuncionesApoyoControladores.modificarCapV(e, tablaTemporadas,tempVistas,estado);
-
-		if (valorValido) {
-	
+		try {
+			
+			FuncionesApoyoControladores.modificarCapV(event, tablaTemporadas, tempVistas, tempTotales, estado);
+			
 			//Se actualizan los capitulos vistos con la misma cantidad que los capitulos totales.
 			FuncionesApoyoControladores.rellenarCapV(tablaTemporadas, tempVistas, estado.getSelectionModel().getSelectedItem());
 			
 			quitarFocoModificacion();
-	
+			
+		} catch (CampoInvalidoException e) {
+			
+			Alertas.alertaError(MensajesAlertas.T_ERROR_CAMPO, e.getMessage());
+			
 		}
+
+		
 		
 	}
 

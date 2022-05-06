@@ -3,15 +3,16 @@ package com.retur.main.modelo.funciones;
 import com.retur.main.modelo.elementos.Temporada;
 import com.retur.main.modelo.enums.Estados;
 import com.retur.main.modelo.enums.TiposPiezasAudiovisuales;
+import com.retur.main.modelo.excepciones.CampoInvalidoException;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 
-
+//TODO Por aquí
 public class Registros {
 	
 	/**
-	 * M�todo encargado de resetear los valores de los campos al cambio de tipo, habilitar los campos generales y
+	 * Método encargado de resetear los valores de los campos al cambio de tipo, habilitar los campos generales y
 	 * deshabilitar todo lo relacionado con objetos serializables.
 	 * @param estado
 	 * @param tempT
@@ -102,8 +103,20 @@ public class Registros {
 			}
 			//Activa la tabla para editar las temporadas.
 			tablaTemporadas.setDisable(false);
-			//Obtiene el texto de las Temporadas Totales y crea las temporadas y oportunas
-			FuncionesApoyoControladores.introduccionTempT(tempT, tempV, tablaTemporadas, estado);
+			/*
+			 * Obtiene el texto de las Temporadas Totales y crea las temporadas y oportunas. La excepcion en este
+			 * caso nunca llegara a lanzarse.
+			 */
+			
+			try {
+				
+				FuncionesApoyoControladores.introduccionTempT(tempT, tempV, tablaTemporadas, estado);
+				
+			} catch (CampoInvalidoException e) {
+				
+				e.printStackTrace();
+				
+			}
 			FuncionesApoyoControladores.rellenarCapV(tablaTemporadas,tempV, estado);
 			
 		
