@@ -404,6 +404,19 @@ public class FuncionesApoyoControladores {
 		
 	}
 	
+	public static void verificacionCampos (PiezaAudiovisual pieza) throws CampoInvalidoException {
+		
+		try {
+			verificacionCampos(pieza, null);
+		
+		} catch (ObraYaRegistradaException e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
 	private static void comprobarTituloExistente(String titulo, TiposPiezasAudiovisuales tipo) throws ObraYaRegistradaException {
 		
 		HashSet<PiezaAudiovisual> lista = ObtencionDatosXML.obtenerListaElementosTipo(tipo);
