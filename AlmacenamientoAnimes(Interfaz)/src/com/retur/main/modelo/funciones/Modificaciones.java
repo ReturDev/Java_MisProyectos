@@ -1,7 +1,7 @@
 package com.retur.main.modelo.funciones;
 
+import com.retur.main.controlador.ControladorModificacion;
 import com.retur.main.modelo.elementos.PiezaAudiovisual;
-import com.retur.main.modelo.elementos.Serializable;
 import com.retur.main.modelo.elementos.Temporada;
 import com.retur.main.modelo.enums.Estados;
 import com.retur.main.modelo.envio.datos.EnvioDatos;
@@ -10,10 +10,15 @@ import com.retur.main.modelo.excepciones.CampoInvalidoException;
 
 import javafx.scene.control.*;
 
+/**
+ * Clase funcional para apoyar al {@link ControladorModificacion} con todo lo relacionado con consultas.
+ * @author Sergio
+ *
+ */
 public class Modificaciones {
 
 	/**
-	 * Dependiendo del valor del parámetro estado recibido, activará o desactivará campos dependiendo de este.
+	 * Dependiendo del valor del parámetro estado recibido, activará o desactivará campos dependiendo.
 	 * @param estado
 	 * @param tempV
 	 * @param tempT
@@ -83,24 +88,5 @@ public class Modificaciones {
 		}
 		
 	}
-	
-	public static boolean cambioTemporadas(Serializable nuevo, Serializable viejo) {
-		
-		boolean cambiado = false;
-		
-		for(int i = 0; i < nuevo.getTemporadas().size() && !cambiado; i++) {
-			
-			Temporada nTemp = nuevo.getTemporadas().get(i);
-			Temporada vTemp = viejo.getTemporadas().get(i);
-			
-			if(!nTemp.equals(vTemp)) {
-				cambiado = true;
-			}
-			
-		}
-		
-		return cambiado;
-	}
-	
 	
 }

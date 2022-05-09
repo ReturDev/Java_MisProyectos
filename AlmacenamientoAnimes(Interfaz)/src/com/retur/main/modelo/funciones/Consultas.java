@@ -226,7 +226,8 @@ public class Consultas {
 			colTemporadas.setCellValueFactory(new PropertyValueFactory<Temporada, Integer>("id"));
 			colCapT.setCellValueFactory(new PropertyValueFactory<Temporada, Integer>("capitulosTotales"));
 			colCapV.setCellValueFactory(new PropertyValueFactory<Temporada, Integer>("capitulosVistos"));
-
+			
+			
 		} else {
 			
 			/*
@@ -237,8 +238,11 @@ public class Consultas {
 			tablaTemporadas.setItems(null);
 			tempV.setText(null);
 			tempT.setText(null);
-			//TODO POr algun motivo al modificar valores de la trabla no se actualizan.
+			
 		}
+		
+		//Se refresca la tabla para que todo se muestre adecuadamente.
+		tablaTemporadas.refresh();
 		
 	}
 	

@@ -29,7 +29,9 @@ public class RegistroDatosXML {
 			nuevoElemento.setAttribute(TagsXML.ID.name().toLowerCase(), pieza.getId() + "");
 			
 		}else {
+			
 			nuevoElemento.setAttribute(TagsXML.ID.name().toLowerCase(), obtenerID(elementoPadre, pieza.getClass().getSimpleName().toLowerCase()));
+		
 		}
 		
 			

@@ -15,6 +15,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.TableColumn.CellEditEvent;
 
+/**
+ * Clase funcional de métodos estaticos que ayuda con funcionalidades específicas.
+ * @author Sergio
+ *
+ */
 public class FuncionesApoyoControladores {
 
 	

@@ -16,7 +16,6 @@ import javafx.scene.control.TextField;
  */
 public class ComprobacionesCampos {
 	
-	//TODO continuar desde aquí.
 
 	/**
 	 * Se encarga de añadir un listener a campos TextField encargados de las temporadas para comprobar

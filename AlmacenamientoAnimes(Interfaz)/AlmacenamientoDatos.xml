@@ -2,7 +2,7 @@
             
     
     <animes>
-        <anime estado="SIGUIENDO" id="1" temp_totales="3" temp_vistas="0" titulo="AAA"><sinopsis/><temporada cap_totales="4" cap_vistos="1" id="1"/><temporada cap_totales="3" cap_vistos="0" id="2"/><temporada cap_totales="5" cap_vistos="0" id="3"/></anime>
+        <anime estado="SIGUIENDO" id="1" temp_totales="3" temp_vistas="0" titulo="AAA"><sinopsis/><temporada cap_totales="2" cap_vistos="1" id="1"/><temporada cap_totales="3" cap_vistos="0" id="2"/><temporada cap_totales="15" cap_vistos="0" id="3"/></anime>
     </animes>
             
     

@@ -32,6 +32,11 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+/**
+ * Controlador principal de la aplicación.
+ * @author Sergio
+ *
+ */
 public class ControladorPrincipal implements Initializable {
 
 	//Menú

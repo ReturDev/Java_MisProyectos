@@ -55,5 +55,8 @@ public final class MensajesAlertas {
 	public static final String T_TITULO_REPETIDO = "Título ya existente";
 	public static final String M_TITULO_REPETIDO = "El título introducido ya pertenece a una obra.";
 
+	//Opciones directorio XML
+	public static final String M_RUTA_NO_EXISTE = "El directorio donde se guarda el documento no existe.";
+	
 }
 

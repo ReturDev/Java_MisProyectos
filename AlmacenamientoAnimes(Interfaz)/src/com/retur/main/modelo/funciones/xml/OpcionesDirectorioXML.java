@@ -11,18 +11,19 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.*;
 
+import com.retur.main.modelo.alertas.texto.MensajesAlertas;
 import com.retur.main.modelo.enums.TiposPiezasAudiovisuales;
 
+/**
+ * Comprueba la existencia de los archivos de configuración y de la base de datos, los crea si no existen y
+ * obtiene o escribe la ruta de los datos en el archivo de configuración.
+ * @author Sergio
+ *
+ */
 public class OpcionesDirectorioXML {
 
 	
-	/**
-	 * Direcciones pruebas eclipse.
-	 * ./src/resources/opciones.config
-	 * ./src/resources
-	 */
-	
-	//Dirección del archivo configuraci�n(Siempre ser� la misma).
+	//Dirección del archivo configuración(Siempre será la misma).
 	private static final Path ARCHIVO_CONFIG = Paths.get("./opciones.config");
 	private static final String NOMBRE_DOC_DATOS = "/AlmacenamientoDatos.xml";
 	public static final Path UBICACION_DATOS_DEFECTO = Paths.get(".").normalize().toAbsolutePath();
@@ -31,13 +32,22 @@ public class OpcionesDirectorioXML {
 	private static Path rutaArchivo;
 	
 	
+	/**
+	 * Busca el archivo de configuración, obtiene la dirección del archivo de datos de este o lo crea, y crea el
+	 * archivo de datos si tampoco lo encuentra.
+	 * @throws FileNotFoundException
+	 */
 	public static void creacionArchivos() throws FileNotFoundException {
 		
 		try {
+			
 			creaArchivoConfig();
-			leerRutaArchivoConfig();
+			leerArchivoConfig();
+			
 		} catch (IOException e) {
+			
 			e.printStackTrace();
+			
 		}
 		
 		comprobacionArchivoXML();
@@ -46,7 +56,7 @@ public class OpcionesDirectorioXML {
 	
 	
 	/**
-	 * M�todo encargado de crear el archivo de configuraci�n en caso de no existir de antemano.
+	 * Crea el archivo de configuración en caso de no existir de antemano.
 	 * @throws IOException
 	 */
 	private static void creaArchivoConfig() throws IOException {
@@ -55,7 +65,7 @@ public class OpcionesDirectorioXML {
 			
 				//Crea el archivo en la ruta del programa.
 				Files.createFile(ARCHIVO_CONFIG);
-				//Configura el archivo para que est� oculto.
+				//Configura el archivo para que esté oculto.
 				Files.setAttribute(ARCHIVO_CONFIG,"dos:hidden",Boolean.TRUE,LinkOption.NOFOLLOW_LINKS);
 				//Escribe en el archivo config la direcci�n del documento almacenamiento por defecto.
 				Files.writeString(ARCHIVO_CONFIG, UBICACION_DATOS_DEFECTO + NOMBRE_DOC_DATOS, StandardOpenOption.WRITE);
@@ -63,24 +73,38 @@ public class OpcionesDirectorioXML {
 
 	}
 	
-	private static void leerRutaArchivoConfig() throws IOException {
+	/**
+	 * Obtiene la ruta del archivo de datos leyendo el archivo de configuración.
+	 * @throws IOException
+	 */
+	private static void leerArchivoConfig() throws IOException {
 		
 		rutaArchivo = Paths.get(Files.readString(ARCHIVO_CONFIG));
 		
 	}
 	
+	/**
+	 * Comprueba que el archivo xml de datos existe, si no existe lo crea.
+	 * @throws FileNotFoundException Si la ruta escrita en el archivo de configuración no existe, lanza esta excepción.
+	 */
 	private static void comprobacionArchivoXML() throws FileNotFoundException {
 		
 		if(!Files.isDirectory(rutaArchivo.getParent())) {
-			throw new FileNotFoundException("El directorio donde se guarda el documento no existe.\n" + rutaArchivo);
+			
+			throw new FileNotFoundException( MensajesAlertas.M_RUTA_NO_EXISTE + "\n" + rutaArchivo);
+		
 		}
 		
 		if(Files.notExists(rutaArchivo)) {
 			
 			try {
+				
 				creacionArchivoXML();
+				
 			} catch (ParserConfigurationException | TransformerException e) {
+				
 				e.printStackTrace();
+				
 			}
 			
 		}
@@ -88,8 +112,8 @@ public class OpcionesDirectorioXML {
 	}
 	
 	/**
-	 * Crea el archivo XML con el elemento raiz y todas las etiquetas de los tipos de elementos que se almacenaran
-	 * {@link TiposPiezasAudiovisuales}
+	 * Crea el archivo XML con el elemento raiz y todas las etiquetas de los {@link TiposPiezasAudiovisuales}
+	 * de elementos que se almacenarán
 	 * @throws ParserConfigurationException
 	 * @throws TransformerException
 	 */
@@ -123,6 +147,11 @@ public class OpcionesDirectorioXML {
 	}
 
 
+	/**
+	 * Modifica la ruta almacenada en el archivo de configuración.
+	 * @param nuevaDireccion
+	 * @throws IOException
+	 */
 	public static void modificarConfig(String nuevaDireccion) throws IOException {
 		
 		String dirArchivo = nuevaDireccion + NOMBRE_DOC_DATOS;

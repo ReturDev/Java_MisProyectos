@@ -8,10 +8,15 @@ import org.w3c.dom.*;
 import com.retur.main.modelo.elementos.*;
 import com.retur.main.modelo.enums.*;
 
+/**
+ * Clase funcional que obtiene los datos del xml y lo transforma en elementos leibles por la aplicación.
+ * @author Sergio 
+ *
+ */
 public class TransformacionDatos {
 
 	/**
-	 * M�todo encargado de transformar una lista de nodos del xml a un ArrayList de PiezasAudiovisuales.
+	 * Transforma una lista de nodos recibida del xml a un ArrayList de PiezasAudiovisuales.
 	 * @param lista Lista de nodo perteneciente al XML
 	 * @param tipo Tipo de Pieza Audiovisual al que pertenecen los nodos.
 	 * @return
@@ -26,7 +31,7 @@ public class TransformacionDatos {
 				
 				//Comprueba que el nodo recorrido sea un nodo elemento.
 				if(lista.item(i).getNodeType() == Node.ELEMENT_NODE) {
-					//Se almacena nodo transformandolo en elemento para trabajar con �l.
+					//Se almacena nodo transformandolo en elemento para trabajar con él.
 					Element elemento = (Element) lista.item(i);
 					
 					//Se obtiene la instancia del tipo exacto de Pieza Audiovisual.
@@ -35,12 +40,12 @@ public class TransformacionDatos {
 					claseElemento.setId(Integer.parseInt(elemento.getAttribute(TagsXML.ID.name().toLowerCase())));
 					//Se obtiene el titulo del elemento.
 					claseElemento.setTitulo(elemento.getAttribute(TagsXML.TITULO.name().toLowerCase()));
-					//Se obtiene el estado del elemento, a trav�s del m�todo encargado de transformal el texto al valor del enum.
+					//Se obtiene el estado del elemento, a través del método encargado de transformar el texto al valor del enum.
 					claseElemento.setEstado(obtenerEstadoXML(elemento.getAttribute(TagsXML.ESTADO.name().toLowerCase())));
-					//Se obtiene la sinopsis del elemento a trav�s del m�todo encargado.
+					//Se obtiene la sinopsis del elemento a través del método encargado.
 					claseElemento.setSinopsis(obtenerSinopsisXML(elemento));
 				
-					//Se comprueba si es de tipo serializable
+					//Se comprueba si es de tipo Serializable
 					if(claseElemento instanceof Serializable) {
 						
 						//Se castea a serializable para dar valor a los campos que faltan
@@ -49,12 +54,12 @@ public class TransformacionDatos {
 						serializable.setTemporadasTotales(Integer.parseInt(elemento.getAttribute(TagsXML.TEMP_TOTALES.name().toLowerCase())));
 						//Se le da valor a las temporadas vistas.
 						serializable.setTemporadasVistas(Integer.parseInt(elemento.getAttribute(TagsXML.TEMP_VISTAS.name().toLowerCase())));
-						//Se le asigna las temporadas a trav�s del m�todo encargado de obtenerlas.
+						//Se le asigna las temporadas a través del método encargado de obtenerlas.
 						serializable.setTemporadas(obtenerTemporadas(elemento));
 						
 					}
 					
-					//Se a�ade el elemento a la lista.
+					//Se añade el elemento a la lista.
 					piezas.add(claseElemento);
 					
 				}
@@ -65,11 +70,10 @@ public class TransformacionDatos {
 		
 	}
 	
-	//Continuar comentando y desde aqui.
 	
 	/**
-	 * M�todo encargado de obtener las temporadas del archivo XML.
-	 * @param elemento Recibe el elemento al que le pertenecen las temporadas.
+	 * Obtiene las temporadas de un elemento del XML.
+	 * @param elemento Recibe el elemento del que obtener las temporadas.
 	 * @return
 	 */
 	private static ArrayList<Temporada> obtenerTemporadas(Element elemento) {
@@ -97,7 +101,7 @@ public class TransformacionDatos {
 	
 	
 	/**
-	 * M�todo encargado de transformar el valor del atributo estado en el XML a un valor del enum Estados.
+	 * Transforma el valor del atributo Estado en el XML a un valor del enum Estados.
 	 * @param stringEstado Recibe el valor del XML
 	 * @return
 	 */
@@ -106,18 +110,32 @@ public class TransformacionDatos {
 		Estados estado = null;
 		
 		if(stringEstado.toUpperCase().equals(Estados.PENDIENTE.toString())){
+			
 			estado = Estados.PENDIENTE;
+			
 		}else if(stringEstado.toUpperCase().equals(Estados.VISTO.toString())){
+			
 			estado = Estados.VISTO;
+			
 		}else if(stringEstado.toUpperCase().equals(Estados.SIGUIENDO.toString())){
+			
 			estado = Estados.SIGUIENDO;
+			
 		}else {
+			
 			estado = Estados.ABANDONADO;
+			
 		}
 		
 		return estado;
+		
 	}
 	
+	/**
+	 * Obtiene la sinopsis de un elemento.
+	 * @param elemento
+	 * @return
+	 */
 	private static String obtenerSinopsisXML(Element elemento) {
 		
 		Element element = (Element) elemento.getElementsByTagName(TagsXML.SINOPSIS.toString().toLowerCase()).item(0);
