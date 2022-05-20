@@ -31,7 +31,7 @@ public class ObtencionDatosXML {
 		try {
 
 			DOC = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(OpcionesDirectorioXML.getRutaArchivo().toFile());
-			RAIZ = (Element) DOC.getFirstChild();
+			RAIZ = (Element) DOC.getDocumentElement();
 			
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			

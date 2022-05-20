@@ -92,7 +92,7 @@ public class TransformacionDatos {
 			int capTotales = Integer.parseInt(element.getAttribute(TagsXML.CAP_TOTALES.name().toLowerCase()));
 			//Se obtiene los capitulos vistos de la temporada.
 			int capVistos = Integer.parseInt(element.getAttribute(TagsXML.CAP_VISTOS.name().toLowerCase()));
-			//Se a�ade la temporada que los almacena.
+			//Se añade la temporada que los almacena.
 			temporadas.add(new Temporada(id, capTotales, capVistos));
 		}
 		

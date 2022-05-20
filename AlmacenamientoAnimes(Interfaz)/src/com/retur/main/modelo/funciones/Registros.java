@@ -68,6 +68,8 @@ public class Registros {
 		tablaTemp.setDisable(true);
 		tablaTemp.setItems(FXCollections.observableArrayList());
 		
+		botonRegistro.setDisable(true);
+		
 	}
 	
 	
@@ -143,6 +145,8 @@ public class Registros {
 			FuncionesApoyoControladores.rellenarCapV(tablaTemporadas,tempV, estado);
 			
 		}
+		
+		botonRegistro.setDisable(false);
 		
 	}
 

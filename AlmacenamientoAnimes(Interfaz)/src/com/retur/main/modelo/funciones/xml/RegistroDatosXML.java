@@ -128,10 +128,8 @@ public class RegistroDatosXML {
 	public static void transmorfarXMLIdentado(Document doc) throws TransformerException {
 		//Transformamos los datos y sobreescribimos el archivo.
 				Transformer tf = TransformerFactory.newInstance().newTransformer();
-				//Habilita la identaci�n en el documento XML.
+				//Habilita la identación en el documento XML.
 				tf.setOutputProperty(OutputKeys.INDENT, "yes");
-				//Establece la cantidad de espacios de la identacion, pues por defecto es 0.
-				tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 				DOMSource source = new DOMSource(ObtencionDatosXML.getDOC());
 				StreamResult result = new StreamResult(OpcionesDirectorioXML.getRutaArchivo().toFile());
 				tf.transform(source, result);
