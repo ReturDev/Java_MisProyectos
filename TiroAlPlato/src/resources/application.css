@@ -1,0 +1,39 @@
+.raiz_vp{
+	
+	-fx-background-color: radial-gradient(focus-angle 180deg, focus-distance 20%, center 50% 50%,radius 100%, #ADB0AC 15%, #686868);
+	
+}
+
+
+.boton_start {
+	
+	-fx-background-color: linear-gradient(to top left,#740000 5%, #FF0000);
+	-fx-background-radius: 6px;
+	-fx-effect: dropshadow(gaussian,#000000,10.0,0.2,-2,-2); 
+	-fx-text-fill: #072227;
+	-fx-border-style: solid;
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+	-fx-border-width: 3px;
+	
+}
+
+.boton_start:hover {
+	
+	-fx-cursor: crosshair;
+	-fx-background-color: #FF0000;
+	-fx-scale-x: 1.07;
+	-fx-scale-y: 1.07;
+	-fx-border-width: 0;
+	
+}
+
+.boton_start:pressed {
+	
+	-fx-cursor: crosshair;
+	-fx-background-color: #FF0000;
+	-fx-scale-x: 0.75;
+	-fx-scale-y: 0.75;
+	-fx-border-width: 0;
+	
+}
