@@ -6,7 +6,6 @@ import java.io.File;
 import com.retur.modelo.juego.Juego;
 import com.retur.modelo.juego.interfaces.Disparable;
 import com.retur.modelo.juego.interfaces.Pintable;
-import com.retur.vista.VentanaJuego;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -32,9 +31,7 @@ public abstract class Volador extends Thread implements Disparable, Pintable{
 	private final int MAX_SPAWN_Y;
 	private final double DANYO;
 	private final int PUNTOS;
-	private final double ANCHO_VENTANA;
-	private final double ALTO_VENTANA;
-	private final Jugador JUGADOR;
+	private final Juego JUEGO;
 	
 	private double x;
 	private double y;
@@ -53,11 +50,9 @@ public abstract class Volador extends Thread implements Disparable, Pintable{
 	 * @param jugador El jugador para la gestión de puntos y vidas.
 	 * @param vj La ventana de juego para obtener las medidas y acceder al Canvas.
 	 */
-	public Volador(int dimensionImagen, File imgVolador, double danyo, int puntos, Jugador jugador, VentanaJuego vj) {
+	public Volador(int dimensionImagen, File imgVolador, double danyo, int puntos, Juego juego) {
 		
 		this.DIMENSION_IMAGEN = dimensionImagen;
-		this.ANCHO_VENTANA = vj.ANCHO_VENTANA;
-		this.ALTO_VENTANA = vj.ALTO_VENTANA;
 		this.IMAGEN_DISPARADO = new Image(new File("./src/resources/disparado.png").toURI().toString(),
 								DIMENSION_IMAGEN_DISPARADO,
 								DIMENSION_IMAGEN_DISPARADO,
@@ -70,15 +65,15 @@ public abstract class Volador extends Thread implements Disparable, Pintable{
 								true,
 								false);
 		
+		this.JUEGO = juego;
 		this.DESPAWN = -DIMENSION_IMAGEN;
-		this.MAX_SPAWN_Y = (int) (ALTO_VENTANA / 2.5);
+		this.MAX_SPAWN_Y = (int) (JUEGO.VJ.ALTO_VENTANA / 2.5);
 		this.DANYO = danyo;
 		this.PUNTOS = puntos;
 		this.contornoColision = new Rectangle(x,y,DIMENSION_IMAGEN,DIMENSION_IMAGEN);
-		this.x = ANCHO_VENTANA + DIMENSION_IMAGEN;
+		this.x = JUEGO.VJ.ANCHO_VENTANA + DIMENSION_IMAGEN;
 		this.y = generadorSpawnY();
 		this.velocidad = VELOCIDAD_DEFECTO;
-		this.JUGADOR = jugador;
 	
 	}
 	
@@ -215,11 +210,11 @@ public abstract class Volador extends Thread implements Disparable, Pintable{
 			
 			if(this instanceof Pajaro) {
 				
-				JUGADOR.reducirVidas(DANYO);
+				JUEGO.JUGADOR.reducirVidas(DANYO);
 				
 			}else {
 				
-				JUGADOR.aumentarPuntos(PUNTOS);
+				JUEGO.JUGADOR.aumentarPuntos(PUNTOS);
 				
 			}
 			
@@ -240,11 +235,11 @@ public abstract class Volador extends Thread implements Disparable, Pintable{
 	public void comprobarAlcanzado() {
 		
 		
-		if(JUGADOR.MIRILLA.getBala() != null) {
+		if(JUEGO.JUGADOR.MIRILLA.getBala() != null) {
 			
-			if(JUGADOR.MIRILLA.getBala().getRangoColision() != null) {
+			if(JUEGO.JUGADOR.MIRILLA.getBala().getRangoColision() != null) {
 				
-				Shape colision = Shape.intersect(JUGADOR.MIRILLA.getBala().getRangoColision(),contornoColision);
+				Shape colision = Shape.intersect(JUEGO.JUGADOR.MIRILLA.getBala().getRangoColision(),contornoColision);
 				
 				if(colision.getLayoutBounds().getWidth() != -1 || colision.getLayoutBounds().getHeight() != -1) {
 					
@@ -265,11 +260,11 @@ public abstract class Volador extends Thread implements Disparable, Pintable{
 		
 		if(this instanceof Plato) {
 			
-			JUGADOR.reducirVidas(DANYO);
+			JUEGO.JUGADOR.reducirVidas(DANYO);
 			
 		}else {
 			
-			JUGADOR.aumentarPuntos(PUNTOS);
+			JUEGO.JUGADOR.aumentarPuntos(PUNTOS);
 			
 		}
 		

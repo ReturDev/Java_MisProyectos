@@ -30,9 +30,9 @@ public class Juego extends Thread{
 	private static final int MILIS_ESPERA_VOLADORES = 750;
 	
 	private final GraphicsContext GC;
-	private final VentanaJuego VJ;
+	public final VentanaJuego VJ;
 	private final Fondo FONDO;
-	private final Jugador JUGADOR;
+	public final Jugador JUGADOR;
 	private final Volador[] VOLADORES;
 	
 	//TODO pintarFPS por pantalla;
@@ -286,7 +286,7 @@ public class Juego extends Thread{
 	private Volador voladorAleatorio() {
 		double num = Math.random();
 		
-		Volador volador = num < 0.9 ? new Plato(JUGADOR,VJ) : new Pajaro(JUGADOR,VJ);
+		Volador volador = num < 0.9 ? new Plato(this) : new Pajaro(this);
 		
 		return volador;
 	}
