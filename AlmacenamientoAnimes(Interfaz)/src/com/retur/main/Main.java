@@ -11,7 +11,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("./vista/VentanaInterfaz.fxml"));
+			//Aqui elimine ./
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("vista/VentanaInterfaz.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Mi programa");
 			primaryStage.setMinWidth(900);
