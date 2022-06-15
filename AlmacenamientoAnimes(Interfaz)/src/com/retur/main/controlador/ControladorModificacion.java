@@ -68,7 +68,6 @@ public class ControladorModificacion implements Initializable {
 		PiezaAudiovisual pieza = EnvioDatos.getInstance().getDatosTransferencia();
 
 		asignarValoresGenerales(pieza);
-		asignarValoresSerializables(pieza);
 		//Comprueba que el elemento es Serializable para rellenar los campos, en caso de no serlo se bloquearán los campos oportunos.
 		if (pieza instanceof Serializable) {
 
