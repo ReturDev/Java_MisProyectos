@@ -111,6 +111,7 @@ public class Juego extends Thread{
 			while(delta >= 1) {
 				
 				actualizarElementos();
+				pintarTodo();
 				delta--;
 				
 			}

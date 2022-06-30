@@ -396,7 +396,7 @@ public class ControladorPrincipal implements Initializable {
 			// Creamos el stage de la nueva ventana.
 			Stage modificadorStage = new Stage();
 			// Obtenemos el AnchorPane de la nueva ventana a traves del archivo FXML.
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("../vista/VentanaModificacion.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/com/retur/main/vista/VentanaModificacion.fxml"));
 			// Creamos la escena pasandole el AnchorPane como raíz.
 			Scene scene = new Scene(root);
 			// Modificamos el título.

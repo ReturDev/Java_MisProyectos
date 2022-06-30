@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <tipospiezasaudiovisuales>
-    <animes/>
+            
+    
+    <animes>
+                
+        <anime estado="SIGUIENDO" id="1" temp_totales="1" temp_vistas="0" titulo="HHDSGFDDSG">
+                        
+            <sinopsis/>
+                        
+            <temporada cap_totales="5" cap_vistos="0" id="1"/>
+                    
+        </anime>
+            
+    </animes>
+            
+    
     <series/>
-    <peliculas/>
+            
+    
+    <peliculas>
+        <pelicula estado="PENDIENTE" id="1" titulo="JHKLHKL">
+            <sinopsis/>
+        </pelicula>
+    </peliculas>
+            
+    
     <peliculas_animes/>
+        
+
 </tipospiezasaudiovisuales>
