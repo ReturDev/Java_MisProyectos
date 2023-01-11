@@ -253,7 +253,7 @@
                                     <Insets top="-0.5" />
                                  </padding>
                               </TableView>
-                              <TextArea fx:id="sinopsisRegistro" disable="true" maxWidth="600.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                              <TextArea fx:id="sinopsisRegistro" disable="true" maxWidth="600.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="20.0" right="20.0" />
                                  </GridPane.margin>
