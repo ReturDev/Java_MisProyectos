@@ -21,7 +21,7 @@ public class MainController implements Initializable{
 		try {
 			
 			
-			AnchorPane menuRoot = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/MenuView.fxml"));
+			AnchorPane menuRoot = (AnchorPane)FXMLLoader.load(getClass().getResource("/com/sergio/main/view/menu/MenuView.fxml"));
 			hbRoot.getChildren().add(0, menuRoot);
 			
 			
