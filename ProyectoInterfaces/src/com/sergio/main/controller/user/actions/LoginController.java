@@ -1,4 +1,4 @@
-package com.sergio.main.controller.user;
+package com.sergio.main.controller.user.actions;
 
 import java.net.URL;
 import java.util.ResourceBundle;

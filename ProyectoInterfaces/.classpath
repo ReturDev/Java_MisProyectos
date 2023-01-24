@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Programacion/Ejercicios Programacion/Java/Librerias/gson-2.8.2.jar">
+	<classpathentry kind="lib" path="C:/Programacion/EjerciciosProgramacion/Java/Librerias/gson-2.8.2.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

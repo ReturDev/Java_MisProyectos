@@ -83,7 +83,7 @@ public class MenuController implements Initializable{
 	@FXML
 	private void goToAnime() throws IOException {
 		
-		goToElement();
+		goToElementView();
 		
 		DataSaver.setDataType(ElementsTags.ANIME);
 		
@@ -92,7 +92,7 @@ public class MenuController implements Initializable{
 	@FXML
 	private void goToManga() throws IOException {
 		
-		goToElement();
+		goToElementView();
 
 		DataSaver.setDataType(ElementsTags.MANGA);
 		
@@ -105,7 +105,7 @@ public class MenuController implements Initializable{
 			
 			try {
 				
-				Pane userPane = (Pane) FXMLLoader.load(getClass().getResource("../view/UserView.fxml"));
+				Pane userPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/view/user/UserView.fxml"));
 				
 				Pane parent = (Pane) menuRoot.getParent();
 				HBox.setHgrow(userPane, Priority.ALWAYS);
@@ -123,7 +123,7 @@ public class MenuController implements Initializable{
 			
 			try {
 				
-				Pane loginPane = (Pane) FXMLLoader.load(getClass().getResource("../view/LoginView.fxml"));
+				Pane loginPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/view/user/LoginView.fxml"));
 				
 				Pane parent = (Pane) menuRoot.getParent();
 				HBox.setHgrow(loginPane, Priority.ALWAYS);
@@ -142,7 +142,7 @@ public class MenuController implements Initializable{
 		
 	}
 	
-	private void goToElement() throws IOException {
+	private void goToElementView() throws IOException {
 		
 		ScrollPane itemsPane = (ScrollPane) FXMLLoader.load(getClass().getResource("/com/sergio/main/view/items/ItemsRootView.fxml"));
 		
