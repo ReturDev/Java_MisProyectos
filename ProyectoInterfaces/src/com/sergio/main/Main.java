@@ -1,5 +1,8 @@
 package com.sergio.main;
 	
+import com.sergio.main.model.savers.DataSaver;
+import com.sergio.main.model.savers.UserDataSaver;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -16,6 +19,8 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("/resources/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			UserDataSaver.setUserLoged(true);
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

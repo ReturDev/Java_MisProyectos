@@ -1,4 +1,4 @@
-package com.sergio.main.model.items;
+package com.sergio.main.model.datasources;
 
 import java.util.List;
 

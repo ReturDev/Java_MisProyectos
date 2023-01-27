@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class StatusMenuItemsUserController implements Initializable {
+public class StatusItemsMenuUserController implements Initializable {
 	
 	
 	@FXML
@@ -34,19 +34,39 @@ public class StatusMenuItemsUserController implements Initializable {
 	
 	
 	@FXML
-	private void onFavourites() {}
+	private void onFavourites() {
+		
+		System.out.println("Favoritos Usuario");
+		
+	}
 	
 	@FXML
-	private void onFollowing() {}
+	private void onFollowing() {
+		
+		System.out.println("Siguiendo Usuario");
+		
+	}
 	
 	@FXML
-	private void onPending() {}
+	private void onPending() {
+		
+		System.out.println("Pendiente Usuario");
+		
+	}
 	
 	@FXML
-	private void onFinished() {}
+	private void onFinished() {
+		
+		System.out.println("Finalizado Usuario");
+		
+	}
 	
 	@FXML
-	private void onAbandoned() {}
+	private void onAbandoned() {
+		
+		System.out.println("Abandonado Usuario");
+		
+	}
 
 
 	

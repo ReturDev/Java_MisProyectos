@@ -56,7 +56,7 @@ public class ItemsRootController implements Initializable {
 				for(int i = 0; i < 30; i++) {
 					
 					
-					Pane itemPane = (Pane) FXMLLoader.load(getClass().getResource("../view/ItemView.fxml"));
+					Pane itemPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/view/items/ItemView.fxml"));
 					Pane buttonsParent = (Pane) itemPane.getChildren().get(2);
 					Button fav = (Button) buttonsParent.getChildren().get(0);
 					Button fol = (Button) buttonsParent.getChildren().get(1);
