@@ -18,24 +18,21 @@ public class MainController implements Initializable{
 	private HBox hbRoot;
 	
 	@FXML
-	private MenuController menuRoot;
+	private MenuController menuRootController;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 	
-//		try {
-//			
-//			
-//			AnchorPane menuRoot = (AnchorPane)FXMLLoader.load(getClass().getResource("/com/sergio/main/view/menu/MenuView.fxml"));
-//			hbRoot.getChildren().add(0, menuRoot);
-//			
-//			
-//			
-//			
-//		} catch (IOException e) {
-//			
-//			e.printStackTrace();
-//		}
+		try {
+			
+			menuRootController.goToAnime();
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		}
 		
 	}
 	
