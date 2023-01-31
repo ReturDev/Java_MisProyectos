@@ -7,23 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.sergio.main.model.items.enums.ItemsType;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
-public class ItemsCatalogueRootController implements Initializable {
+public class ItemsCatalogueRootController {
 
 	
 	@FXML
@@ -40,11 +36,15 @@ public class ItemsCatalogueRootController implements Initializable {
 	
 	private List<Pane> itemsBlueprints;
 	
+	private ItemsType  shownItemType;
+	
 	private static ItemsCatalogueRootController instance;
 	
 	private ItemsCatalogueRootController() {
 		
 		itemsBlueprints = new ArrayList<>();
+		shownItemType = ItemsType.ANIME;
+		loadItemBlueprints();
 		
 	}
 	
@@ -60,57 +60,6 @@ public class ItemsCatalogueRootController implements Initializable {
 		
 	}
 	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-
-//		try {
-//			
-//			ArrayList<Pane> itemsBlueprints = DataSaver.ITEMS_BLUEPRINTS_LIST;
-//			
-//			if (itemsBlueprints.isEmpty()) {
-//				
-//				System.out.println("Carga de elementos");
-//
-//				for(int i = 0; i < 30; i++) {
-//					
-//					
-//					Pane itemPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/view/items/ItemView.fxml"));
-//					Pane buttonsParent = (Pane) itemPane.getChildren().get(2);
-//					Button fav = (Button) buttonsParent.getChildren().get(0);
-//					Button fol = (Button) buttonsParent.getChildren().get(1);
-//					
-//					
-//					itemPane.setOnMouseClicked(clickOnItemEvent());
-//					fav.setOnAction(buttonsItemEvent(fav, fol));
-//					fol.setOnAction(buttonsItemEvent(fav, fol));
-//					
-//					itemsBlueprints.add(itemPane);
-//					
-//				}
-//				
-//			}
-//			
-//			
-//			
-//			for(Pane itemPane : itemsBlueprints) {
-//				
-//				ImageView iv = (ImageView) itemPane.getChildren().get(0);
-//				Label name = (Label) ((Pane)itemPane.getChildren().get(1)).getChildren().get(0);
-//				
-//				itemsRoot.getChildren().add(itemPane);
-//				
-//			}
-//			
-//			
-//			
-//		} catch (IOException e) {
-//			
-//			e.printStackTrace();
-//			
-//		}
-		
-	}
 	
 	@FXML
 	private void onSearch() {
@@ -136,7 +85,7 @@ public class ItemsCatalogueRootController implements Initializable {
 	
 	
 	/**
-	 * Con el foco en el campo "Buscar" disparar� el evento de buscar al pulsar enter.
+	 * Con el foco en el campo "Buscar", disparará un evento que activaá el botón al pulsar enter.
 	 * @param event
 	 */
 	@FXML
@@ -150,66 +99,54 @@ public class ItemsCatalogueRootController implements Initializable {
 		
 	}
 	
+	private void loadItemBlueprints() {
+		
+		try {
+			
+			if (itemsBlueprints.isEmpty()) {
+				
+				System.out.println("Carga de elementos");
 
-	/**
-	 * Manejador de evento de acci�n para los botones de Favoritos y Seguir de los elementos listados.
-	 * @param btnFavourite Bot�n Favorito
-	 * @param btnFollow Bot�n Siguiendo
-	 * @return 
-	 */
-	private EventHandler<ActionEvent> buttonsItemEvent(Button btnFavourite, Button btnFollow){
-		
-		
-		return (event) -> {
+				for(int i = 0; i < 30; i++) {
+				
+				
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/items/ItemBlueprintView.fxml"));
+					loader.setController(new ItemBlueprintController());
+					
+					Pane itemPane = (Pane) loader.load();
+					itemsBlueprints.add(itemPane);
+					
+				}
+				
+				System.out.println("Fin carga de elementos");
+				
+			}
 			
-			Button btnActtivated = (Button) event.getSource();
+		} catch (IOException e) {
 			
-//			if(UserDataSaver.isUserLoged()) {
-//				
-//				if(btnActtivated.equals(btnFavourite)) {
-//					
-//					
-//					//TODO Acci�n al pulsar el bot�n de like.
-//					System.out.println("Like");
-//					
-//				}else if(btnActtivated.equals(btnFollow)) {
-//					
-//					//TODO Acci�n al pulsar el bot�n de Follow.
-//					System.out.println("Follow");
-//					
-//				}
-//				
-//				
-//			}else {
-//				
-//				System.out.println("El usuario no est� logueado.");
-//				//TODO Notificar que el usuario no esta logueado.
-//				
-//			}
+			e.printStackTrace();
 			
-			
-		};
+		}
 		
 	}
 	
-	/**
-	 *  Manejador de evento de click de rat�n que se asignar� al elemento raiz del elemento para que cuando se produzca un click en 
-	 *  cualquier lugar de este, abra la ventana de detalles.
-	 * @return
-	 */
-	private EventHandler<MouseEvent> clickOnItemEvent(){
-		
-		return (event) -> {
-			
-			
-			//TODO Ir a los detalles del elemento clicado.
-			System.out.println("Clicado");
-			
-		};
-		
-		
-		
+
+
+	public ItemsType getShownItemType() {
+		return shownItemType;
 	}
+
+	public void setShownItemType(ItemsType shownItemType) {
+		this.shownItemType = shownItemType;
+	}
+
+	public List<Pane> getItemsBlueprints() {
+		return itemsBlueprints;
+	}
+	
+	
+	
+	
 	
 	
 }

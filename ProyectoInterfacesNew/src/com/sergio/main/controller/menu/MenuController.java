@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sergio.main.controller.windows.items.ItemBlueprintController;
 import com.sergio.main.controller.windows.items.ItemsCatalogueRootController;
+import com.sergio.main.model.items.enums.ItemsType;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
@@ -19,7 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
-public class MenuController implements Initializable{
+public class MenuController{
 
 	
 	@FXML
@@ -37,14 +38,6 @@ public class MenuController implements Initializable{
 	
 	private boolean menuOpened;
 	
-	
-	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-
-		
-	}
 	
 	@FXML
 	private void openMenu() {
@@ -71,8 +64,6 @@ public class MenuController implements Initializable{
 			btnMangaMenu.setContentDisplay(ContentDisplay.LEFT);
 			btnUserConfig.setContentDisplay(ContentDisplay.LEFT);
 			
-			
-			
 		}
 		
 		
@@ -82,8 +73,7 @@ public class MenuController implements Initializable{
 	public void goToAnime() throws IOException {
 		
 		goToElementView();
-		
-		//DataSaver.setDataType(ElementsTags.ANIME);
+		ItemsCatalogueRootController.getInstance().setShownItemType(ItemsType.ANIME);
 		
 	}
 	
@@ -91,8 +81,7 @@ public class MenuController implements Initializable{
 	private void goToManga() throws IOException {
 		
 		goToElementView();
-
-		//DataSaver.setDataType(ElementsTags.MANGA);
+		ItemsCatalogueRootController.getInstance().setShownItemType(ItemsType.ANIME);
 		
 	}
 	
