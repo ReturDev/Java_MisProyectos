@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sergio.main.controller.user.actions.LoginController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sergio.main.controller.windows.user.actions.LoginController">
    <children>
-      <Label text="Login">
+      <Label text="Iniciar Sesión">
          <font>
-            <Font name="Comic Sans MS Bold" size="64.0" />
+            <Font name="Comic Sans MS Bold" size="48.0" />
          </font>
       </Label>
       <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" spacing="10.0" VBox.vgrow="NEVER">
@@ -28,7 +28,7 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Label fx:id="lblSignUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" text="Registrarse" />
+            <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" onMouseClicked="#onSignUp" text="Registrarse" />
          </children>
       </VBox>
    </children>

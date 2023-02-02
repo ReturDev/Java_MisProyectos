@@ -3,7 +3,7 @@ package com.sergio.main.controller.windows.items;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sergio.main.model.items.datasources.VisualWork;
+import com.sergio.main.model.datasources.items.VisualWork;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

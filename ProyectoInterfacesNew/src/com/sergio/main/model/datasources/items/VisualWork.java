@@ -1,9 +1,8 @@
-package com.sergio.main.model.items.datasources;
+package com.sergio.main.model.datasources.items;
 
 import java.util.List;
 
-
-import com.sergio.main.model.items.enums.ItemsType;
+import com.sergio.main.model.datasources.enums.ItemsType;
 
 import javafx.scene.image.Image;
 

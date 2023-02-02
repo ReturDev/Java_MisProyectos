@@ -7,7 +7,8 @@ import java.util.ResourceBundle;
 
 import com.sergio.main.controller.windows.items.ItemBlueprintController;
 import com.sergio.main.controller.windows.items.ItemsCatalogueRootController;
-import com.sergio.main.model.items.enums.ItemsType;
+import com.sergio.main.model.datasources.enums.ItemsType;
+import com.sergio.main.model.datasources.user.UserState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,43 +89,43 @@ public class MenuController{
 	@FXML
 	private void goToUserConfig() {
 		
-//		if (UserDataSaver.isUserLoged()) {
-//			
-//			try {
-//				
-//				Pane userPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/view/user/UserView.fxml"));
-//				
-//				Pane parent = (Pane) menuRoot.getParent();
-//				HBox.setHgrow(userPane, Priority.ALWAYS);
-//				parent.getChildren().set(1, userPane);
-//				
-//				
-//			}catch(IOException e) {
-//				
-//				e.printStackTrace();
-//				
-//			}
-//			
-//			
-//		}else {
-//			
-//			try {
-//				
-//				Pane loginPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/view/user/LoginView.fxml"));
-//				
-//				Pane parent = (Pane) menuRoot.getParent();
-//				HBox.setHgrow(loginPane, Priority.ALWAYS);
-//				parent.getChildren().set(1, loginPane);
-//				
-//				
-//			}catch(IOException e) {
-//				
-//				e.printStackTrace();
-//				
-//			}
-//			
-//			
-//		}
+		if (UserState.isUserLogged()) {
+			
+			try {
+				
+				Pane userPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/windows/view/user/UserView.fxml"));
+				
+				Pane parent = (Pane) menuRoot.getParent();
+				HBox.setHgrow(userPane, Priority.ALWAYS);
+				parent.getChildren().set(1, userPane);
+				
+				
+			}catch(IOException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+			
+		}else {
+			
+			try {
+				
+				Pane loginPane = (Pane) FXMLLoader.load(getClass().getResource("/com/sergio/main/windows/view/user/LoginView.fxml"));
+				
+				Pane parent = (Pane) menuRoot.getParent();
+				HBox.setHgrow(loginPane, Priority.ALWAYS);
+				parent.getChildren().set(1, loginPane);
+				
+				
+			}catch(IOException e) {
+			
+				e.printStackTrace();
+				
+			}
+			
+			
+		}
 		
 		
 	}
