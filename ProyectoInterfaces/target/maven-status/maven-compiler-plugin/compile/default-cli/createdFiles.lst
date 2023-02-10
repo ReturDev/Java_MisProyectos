@@ -1,0 +1,13 @@
+com\sergio\main\model\datasources\enums\ItemsType.class
+com\sergio\main\model\datasources\user\UserState.class
+com\sergio\main\controller\menu\MenuController.class
+com\sergio\main\controller\MainController.class
+com\sergio\main\controller\windows\items\ItemsCatalogueRootController.class
+com\sergio\main\controller\windows\user\data\UserController.class
+com\sergio\main\App.class
+com\sergio\main\controller\windows\user\actions\SignUpController.class
+com\sergio\main\controller\windows\user\actions\LoginController.class
+com\sergio\main\model\datasources\items\VisualWork.class
+com\sergio\main\controller\windows\user\data\StatusItemsMenuUserController.class
+com\sergio\main\controller\windows\items\ItemBlueprintController.class
+com\sergio\main\model\datasources\user\User.class
