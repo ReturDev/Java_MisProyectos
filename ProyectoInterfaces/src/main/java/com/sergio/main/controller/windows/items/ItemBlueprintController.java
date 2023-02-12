@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.sergio.main.model.datasources.items.VisualWork;
 
+import com.sergio.main.model.datasources.user.UserState;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
 
 public class ItemBlueprintController implements Initializable {
 	
@@ -42,7 +45,6 @@ public class ItemBlueprintController implements Initializable {
 		btnFavourites.setOnAction(buttonsItemEvent());
 		btnFollow.setOnAction(buttonsItemEvent());
 		
-		
 	}
 	
 	/**
@@ -62,8 +64,6 @@ public class ItemBlueprintController implements Initializable {
 	
 	/**
 	 * Manejador de evento de acci�n para los botones de Favoritos y Seguir de los elementos listados.
-	 * @param btnFavourite Bot�n Favorito
-	 * @param btnFollow Bot�n Siguiendo
 	 * @return 
 	 */
 	private EventHandler<ActionEvent> buttonsItemEvent(){
@@ -74,7 +74,7 @@ public class ItemBlueprintController implements Initializable {
 			Button btnActtivated = (Button) event.getSource();
 			
 			//TODO Cambiar este if a comprobar si el usuario está logueado.
-			if(item != null) {
+			if(UserState.isUserLogged()) {
 			
 				if(btnActtivated.equals(btnFavourites)) {
 					
@@ -107,8 +107,6 @@ public class ItemBlueprintController implements Initializable {
 		lblName.setText(item.getName());
 		
 	}
-	
-	
 
 	public VisualWork getItem() {
 		
@@ -122,8 +120,15 @@ public class ItemBlueprintController implements Initializable {
 		blindInfoToBlueprint();
 		
 	}
-	
-	
-	
-	
+
+	private void createPopup(){
+
+		Popup popup = new Popup();
+		Label label = new Label("Usuario no Logueado.");
+		popup.getContent().add(label);
+		Pane parent = (Pane) blueprintRoot.getParent();
+		popup.show(parent.getScene().getWindow(), 0,0);
+
+	}
+
 }

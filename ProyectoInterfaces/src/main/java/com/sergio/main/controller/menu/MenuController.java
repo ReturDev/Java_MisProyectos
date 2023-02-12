@@ -70,7 +70,10 @@ public class MenuController{
 	public void goToAnime() throws IOException {
 		
 		goToElementView();
-		ItemsCatalogueRootController.getInstance().setShownItemType(ItemsType.ANIME);
+		ItemsCatalogueRootController controller = ItemsCatalogueRootController.getInstance();
+		controller.setShownItemType(ItemsType.ANIME);
+		controller.resetButtons();
+		controller.loadData();
 		
 	}
 	
@@ -78,8 +81,12 @@ public class MenuController{
 	private void goToManga() throws IOException {
 		
 		goToElementView();
-		ItemsCatalogueRootController.getInstance().setShownItemType(ItemsType.ANIME);
-		
+		ItemsCatalogueRootController controller = ItemsCatalogueRootController.getInstance();
+		controller.setShownItemType(ItemsType.MANGA);
+		controller.resetButtons();
+		controller.getInstance().loadData();
+
+
 	}
 	
 	@FXML

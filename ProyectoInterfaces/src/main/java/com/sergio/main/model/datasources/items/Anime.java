@@ -1,4 +1,4 @@
-package com.sergio.main.model.datasources;
+package com.sergio.main.model.datasources.items;
 
 import java.util.List;
 
@@ -12,12 +12,9 @@ public class Anime extends VisualWork {
 	private List<String> studios;
 	private String source;
 	private String rating;
-	
-	
-	
-	
+
 	public Anime() {
-	// TODO Auto-generated constructor stub
+		super();
 	}
 	
 }
