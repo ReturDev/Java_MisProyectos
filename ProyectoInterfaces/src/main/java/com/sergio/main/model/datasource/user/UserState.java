@@ -1,4 +1,4 @@
-package com.sergio.main.model.datasources.user;
+package com.sergio.main.model.datasource.user;
 
 public class UserState {
 	

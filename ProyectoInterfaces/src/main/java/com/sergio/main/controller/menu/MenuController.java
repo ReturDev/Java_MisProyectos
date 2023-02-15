@@ -4,8 +4,8 @@ package com.sergio.main.controller.menu;
 import java.io.IOException;
 
 import com.sergio.main.controller.windows.items.ItemsCatalogueRootController;
-import com.sergio.main.model.datasources.enums.ItemsType;
-import com.sergio.main.model.datasources.user.UserState;
+import com.sergio.main.model.datasource.enums.ItemsType;
+import com.sergio.main.model.datasource.user.UserState;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

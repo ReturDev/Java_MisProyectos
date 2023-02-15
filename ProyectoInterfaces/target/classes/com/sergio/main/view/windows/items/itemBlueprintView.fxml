@@ -23,7 +23,7 @@
          <children>
             <Button fx:id="btnFavourites" maxWidth="125.0" mnemonicParsing="false" text="Favoritos" HBox.hgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="ivFavourites" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <font>
                   <Font name="Arial Black" size="12.0" />
@@ -31,7 +31,7 @@
             </Button>
             <Button fx:id="btnFollow" maxWidth="125.0" mnemonicParsing="false" text="Seguir" HBox.hgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="ivFollow" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <font>
                   <Font name="Arial Black" size="12.0" />

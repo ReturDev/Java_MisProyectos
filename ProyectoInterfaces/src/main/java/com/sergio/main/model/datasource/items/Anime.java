@@ -1,7 +1,6 @@
-package com.sergio.main.model.datasources.items;
+package com.sergio.main.model.datasource.items;
 
 import java.util.List;
-
 
 public class Anime extends VisualWork {
 

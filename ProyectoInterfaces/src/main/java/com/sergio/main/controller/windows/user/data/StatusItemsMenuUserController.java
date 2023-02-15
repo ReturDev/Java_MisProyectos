@@ -1,11 +1,7 @@
 package com.sergio.main.controller.windows.user.data;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.sergio.main.model.datasources.enums.ItemsType;
+import com.sergio.main.model.datasource.enums.ItemsType;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 public class StatusItemsMenuUserController{

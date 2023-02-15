@@ -5,10 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sergio.main.model.datasources.enums.ItemsType;
+import com.sergio.main.model.datasource.enums.ItemsType;
 
-import com.sergio.main.model.datasources.items.Anime;
-import com.sergio.main.model.datasources.items.VisualWork;
+import com.sergio.main.model.datasource.items.VisualWork;
 import com.sergio.main.model.repositories.api.dao.anime.AnimeDAOImpl;
 import com.sergio.main.model.repositories.api.dao.manga.MangaDAOImpl;
 import javafx.fxml.FXML;

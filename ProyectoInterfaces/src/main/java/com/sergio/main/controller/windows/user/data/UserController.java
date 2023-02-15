@@ -5,9 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import com.sergio.main.model.datasources.enums.ItemsType;
-import com.sergio.main.model.datasources.user.User;
-import com.sergio.main.model.datasources.user.UserState;
+import com.sergio.main.model.datasource.enums.ItemsType;
+import com.sergio.main.model.datasource.user.User;
+import com.sergio.main.model.datasource.user.UserState;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -18,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;

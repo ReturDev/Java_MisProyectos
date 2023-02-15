@@ -1,6 +1,6 @@
 package com.sergio.main.model.repositories.api.dao.anime;
 
-import com.sergio.main.model.datasources.items.Anime;
+import com.sergio.main.model.datasource.items.Anime;
 import com.sergio.main.model.repositories.api.APIConnection;
 import javafx.scene.image.Image;
 import org.json.JSONArray;

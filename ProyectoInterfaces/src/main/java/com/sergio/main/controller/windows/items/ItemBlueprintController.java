@@ -3,20 +3,24 @@ package com.sergio.main.controller.windows.items;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sergio.main.model.datasources.items.VisualWork;
+import com.sergio.main.model.datasource.items.Anime;
+import com.sergio.main.model.datasource.items.Manga;
+import com.sergio.main.model.datasource.items.VisualWork;
 
-import com.sergio.main.model.datasources.user.UserState;
+import com.sergio.main.model.datasource.notifications.NotificationCreator;
+import com.sergio.main.model.datasource.user.User;
+import com.sergio.main.model.datasource.user.UserState;
+import com.sergio.main.model.repositories.database.DataBaseTransactions;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 
 public class ItemBlueprintController implements Initializable {
 	
@@ -27,7 +31,13 @@ public class ItemBlueprintController implements Initializable {
     private Button btnFavourites;
 
     @FXML
+	private ImageView ivFavourites;
+
+    @FXML
     private Button btnFollow;
+
+    @FXML
+	private ImageView ivFollow;
     
     @FXML
     private ImageView imageVItem;
@@ -77,22 +87,22 @@ public class ItemBlueprintController implements Initializable {
 			if(UserState.isUserLogged()) {
 			
 				if(btnActtivated.equals(btnFavourites)) {
-					
-					//TODO Acci�n al pulsar el bot�n de like.
-					System.out.println("Like");
-					
+
+					NotificationCreator.createNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1);
+					validateFavourites(UserState.getUserLoggedData(), item.getId());
+
 				}else if(btnActtivated.equals(btnFollow)) {
 					
-					//TODO Acci�n al pulsar el bot�n de Follow.
-					System.out.println("Follow");
-					
+					NotificationCreator.createNotification(blueprintRoot,null, "Se ha añadido a siguiendo.",1);
+					validateFollowing(UserState.getUserLoggedData(), item.getId());
+
 				}
 				
 				
 			}else {			
 				
 				System.out.println("El usuario no está logueado.");
-				//TODO Notificar que el usuario no esta logueado.
+				NotificationCreator.createNotification(blueprintRoot,"Usuario no logueado", "Debes loguearte para realizar esa acción",3);
 				
 			}
 			
@@ -105,7 +115,97 @@ public class ItemBlueprintController implements Initializable {
 		
 		imageVItem.setImage(item.getImage());
 		lblName.setText(item.getName());
+		if (UserState.isUserLogged()){
+			validateFollowing(UserState.getUserLoggedData(), item.getId());
+			validateFavourites(UserState.getUserLoggedData(), item.getId());
+		}else {
+
+			setEmptyFollowing();
+			setEmptyFavourite();
+
+		}
 		
+	}
+
+	private void validateFavourites(User user, int id){
+
+		if (item instanceof Anime){
+
+			if (user.getAnimeFavourites().contains(id)){
+
+				user.removeAnimeFavourite(id);
+				setEmptyFavourite();
+
+			}else {
+
+				user.addAnimeFavourite(id);
+				setFilledFavourite();
+
+			}
+
+		}else if (item instanceof Manga){
+
+			if (user.getMangaFavourites().contains(id)){
+
+				user.removeMangaFavourite(id);
+				setEmptyFavourite();
+
+			}else {
+
+				user.addMangaFavourite(id);
+				setFilledFavourite();
+
+			}
+
+		}
+
+	}
+
+	private void validateFollowing(User user, int id){
+
+		if (item instanceof Anime){
+
+			if (user.getAnimeFollowing().contains(id)){
+
+				user.removeAnimeFollowing(id);
+				setEmptyFollowing();
+
+			}else {
+
+				user.addAnimeFollowing(id);
+				setFilledFollowing();
+
+			}
+
+		}else if (item instanceof Manga){
+
+			if (user.getMangaFollowing().contains(id)){
+
+				user.removeMangaFollowing(id);
+				setEmptyFollowing();
+
+			}else {
+
+				user.addMangaFollowing(id);
+				setFilledFollowing();
+
+			}
+
+		}
+
+	}
+
+	private void setFilledFavourite(){
+		ivFavourites.setImage(new Image("/icons/content/items/heart-filled.png"));
+	}
+	private void setFilledFollowing(){
+		ivFollow.setImage(new Image("/icons/content/items/follow-filled.png"));
+	}
+	private void setEmptyFavourite(){
+		ivFavourites.setImage(new Image("/icons/content/items/heart-empty.png"));
+	}
+	private void setEmptyFollowing(){
+		ivFollow.setImage(new Image("/icons/content/items/follow-empty.png"));
 	}
 
 	public VisualWork getItem() {
@@ -119,16 +219,6 @@ public class ItemBlueprintController implements Initializable {
 		this.item = item;
 		blindInfoToBlueprint();
 		
-	}
-
-	private void createPopup(){
-
-		Popup popup = new Popup();
-		Label label = new Label("Usuario no Logueado.");
-		popup.getContent().add(label);
-		Pane parent = (Pane) blueprintRoot.getParent();
-		popup.show(parent.getScene().getWindow(), 0,0);
-
 	}
 
 }
