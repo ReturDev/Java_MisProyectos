@@ -7,10 +7,9 @@ import com.sergio.main.model.datasource.items.Anime;
 import com.sergio.main.model.datasource.items.Manga;
 import com.sergio.main.model.datasource.items.VisualWork;
 
-import com.sergio.main.model.datasource.notifications.NotificationCreator;
+import com.sergio.main.model.datasource.dialogs.notifications.NotificationCreator;
 import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.datasource.user.UserState;
-import com.sergio.main.model.repositories.database.DataBaseTransactions;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -88,13 +87,13 @@ public class ItemBlueprintController implements Initializable {
 			
 				if(btnActtivated.equals(btnFavourites)) {
 
-					NotificationCreator.createNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1);
-					validateFavourites(UserState.getUserLoggedData(), item.getId());
+					NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1,true, null);
+					validateFavourites(UserState.getUserLoggedData(), item.getId(),true);
 
 				}else if(btnActtivated.equals(btnFollow)) {
 					
-					NotificationCreator.createNotification(blueprintRoot,null, "Se ha añadido a siguiendo.",1);
-					validateFollowing(UserState.getUserLoggedData(), item.getId());
+					NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a siguiendo.", 1, true,null);
+					validateFollowing(UserState.getUserLoggedData(), item.getId(),true);
 
 				}
 				
@@ -102,7 +101,7 @@ public class ItemBlueprintController implements Initializable {
 			}else {			
 				
 				System.out.println("El usuario no está logueado.");
-				NotificationCreator.createNotification(blueprintRoot,"Usuario no logueado", "Debes loguearte para realizar esa acción",3);
+				NotificationCreator.createAndShowNotification(blueprintRoot,"Usuario no logueado", "Debes loguearte para realizar esa acción", 3,true, null);
 				
 			}
 			
@@ -116,8 +115,8 @@ public class ItemBlueprintController implements Initializable {
 		imageVItem.setImage(item.getImage());
 		lblName.setText(item.getName());
 		if (UserState.isUserLogged()){
-			validateFollowing(UserState.getUserLoggedData(), item.getId());
-			validateFavourites(UserState.getUserLoggedData(), item.getId());
+			validateFollowing(UserState.getUserLoggedData(), item.getId(), false);
+			validateFavourites(UserState.getUserLoggedData(), item.getId(), false);
 		}else {
 
 			setEmptyFollowing();
@@ -127,18 +126,28 @@ public class ItemBlueprintController implements Initializable {
 		
 	}
 
-	private void validateFavourites(User user, int id){
+	private void validateFavourites(User user, int id, boolean btnPressed){
 
 		if (item instanceof Anime){
 
 			if (user.getAnimeFavourites().contains(id)){
 
-				user.removeAnimeFavourite(id);
+				if (btnPressed){
+
+					user.removeAnimeFavourite(id);
+
+				}
+
 				setEmptyFavourite();
 
 			}else {
 
-				user.addAnimeFavourite(id);
+				if (btnPressed){
+
+					user.addAnimeFavourite(id);
+
+				}
+
 				setFilledFavourite();
 
 			}
@@ -147,12 +156,20 @@ public class ItemBlueprintController implements Initializable {
 
 			if (user.getMangaFavourites().contains(id)){
 
-				user.removeMangaFavourite(id);
+				if (btnPressed){
+
+					user.removeMangaFavourite(id);
+
+				}
 				setEmptyFavourite();
 
 			}else {
 
-				user.addMangaFavourite(id);
+				if (btnPressed){
+
+					user.addMangaFavourite(id);
+
+				}
 				setFilledFavourite();
 
 			}
@@ -161,18 +178,26 @@ public class ItemBlueprintController implements Initializable {
 
 	}
 
-	private void validateFollowing(User user, int id){
+	private void validateFollowing(User user, int id, boolean btnPressed){
 
 		if (item instanceof Anime){
 
 			if (user.getAnimeFollowing().contains(id)){
 
-				user.removeAnimeFollowing(id);
+				if (btnPressed){
+
+					user.removeAnimeFollowing(id);
+
+				}
 				setEmptyFollowing();
 
 			}else {
 
-				user.addAnimeFollowing(id);
+				if (btnPressed){
+
+					user.addAnimeFollowing(id);
+
+				}
 				setFilledFollowing();
 
 			}
@@ -181,12 +206,20 @@ public class ItemBlueprintController implements Initializable {
 
 			if (user.getMangaFollowing().contains(id)){
 
-				user.removeMangaFollowing(id);
+				if (btnPressed){
+
+					user.removeMangaFollowing(id);
+
+				}
 				setEmptyFollowing();
 
 			}else {
 
-				user.addMangaFollowing(id);
+				if (btnPressed){
+
+					user.addMangaFollowing(id);
+
+				}
 				setFilledFollowing();
 
 			}

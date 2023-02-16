@@ -1,6 +1,5 @@
 package com.sergio.main.model.repositories.database;
 
-import com.sergio.main.model.datasource.user.User;
 
 import javax.persistence.*;
 
@@ -9,7 +8,7 @@ public class DataBaseTransactions {
     private static DataBaseTransactions instance;
 
     private final EntityManagerFactory EMF;
-    private final EntityManager EM;
+    public final EntityManager EM;
 
     private DataBaseTransactions(){
 
@@ -36,45 +35,24 @@ public class DataBaseTransactions {
 
     }
 
-    public void makeTransactionVisualWork(Query query){
-
-        EM.getTransaction().begin();
-        query.executeUpdate();
-        EM.getTransaction().commit();
-
-    }
-
     public void rollback(){
 
         EM.getTransaction().rollback();
 
     }
 
-    public boolean registerUser(User user){
+    public void persist(Object object){
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoInterfaces");
-        EntityManager em = emf.createEntityManager();
-        boolean transactionCompleted = false;
+        EM.getTransaction().begin();
+        EM.persist(object);
+        EM.getTransaction().commit();
 
-        try {
+    }
 
-            em.getTransaction().begin();
-            em.persist(user);
-            em.getTransaction().commit();
-            transactionCompleted = true;
+    public void close(){
 
-        }catch (Exception ex){
-
-            em.getTransaction().rollback();
-
-        }finally {
-
-            emf.close();
-            em.close();
-
-        }
-
-        return transactionCompleted;
+        EMF.close();
+        EM.close();
 
     }
 

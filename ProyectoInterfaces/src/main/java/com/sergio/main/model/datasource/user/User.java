@@ -2,8 +2,10 @@ package com.sergio.main.model.datasource.user;
 
 
 import com.sergio.main.model.repositories.database.DataBaseTransactions;
+import com.sergio.main.model.repositories.database.dao.UserDAOImpl;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "users")
@@ -15,6 +17,7 @@ public class User {
 	private String name;
 	private String email;
 	private String image;
+	private String password;
 
 	@ElementCollection()
 	@CollectionTable(
@@ -49,7 +52,13 @@ public class User {
 	private Set<Integer> mangaFollowing;
 	
 	
-	public User() {}
+	public User() {
+		this.animeFavourites = new HashSet<>();
+		this.animeFollowing = new HashSet<>();
+		this.mangaFavourites = new HashSet<>();
+		this.mangaFollowing = new HashSet<>();
+
+	}
 
 	public User(int id, String name, String email, String image, Set<Integer> animeFavourites, Set<Integer> animeFollowing, Set<Integer> mangaFavourites, Set<Integer> mangaFollowing) {
 		this.id = id;
@@ -64,144 +73,72 @@ public class User {
 
 	public boolean addAnimeFavourite(int idAnime){
 
-		boolean added = false;
-		animeFavourites.add(idAnime);
-		try {
-
-			makeTransaction("INSERT INTO users_anime_favourites VALUES :idUser, :id", idAnime);
-			added = true;
-
-		}catch (Exception e){
-
-			DataBaseTransactions.getInstance().rollback();
-			animeFavourites.remove(idAnime);
-
-		}
-
-		return added;
+		return add(idAnime, animeFavourites);
 
 	}
 
 	public boolean removeAnimeFavourite(int idAnime){
 
-		boolean removed = false;
-		animeFavourites.remove(idAnime);
-		try {
-
-			makeTransaction("DELETE FROM users_anime_favourites WHERE user_id = :idUser AND anime_id = :id", idAnime);
-			removed = true;
-
-		}catch (Exception e){
-
-			DataBaseTransactions.getInstance().rollback();
-			animeFavourites.add(idAnime);
-
-		}
-
-		return removed;
+		return remove(idAnime, animeFavourites);
 
 	}
 
+
+
 	public boolean addAnimeFollowing(int idAnime){
 
-		boolean added = false;
-		animeFollowing.add(idAnime);
-
-		try {
-
-			makeTransaction("INSERT INTO users_anime_following VALUES :idUser, :id", idAnime);
-			added = true;
-
-
-		}catch (Exception e){
-
-			DataBaseTransactions.getInstance().rollback();
-			animeFollowing.remove(idAnime);
-
-		}
-
-		return added;
+		return add(idAnime, animeFollowing);
 
 	}
 
 	public boolean removeAnimeFollowing(int idAnime){
 
-		boolean removed = false;
-		animeFollowing.remove(idAnime);
-		try {
-
-			makeTransaction("DELETE FROM users_anime_following WHERE user_id = :idUser AND anime_id = :id", idAnime);
-			removed = true;
-
-		}catch (Exception e){
-
-			DataBaseTransactions.getInstance().rollback();
-			animeFollowing.add(idAnime);
-
-		}
-
-		return removed;
+		return remove(idAnime, animeFollowing);
 
 	}
 
 	public boolean addMangaFavourite(int idManga){
 
-		boolean added = false;
-		mangaFavourites.add(idManga);
-
-		try {
-
-			makeTransaction("INSERT INTO users_manga_favourites VALUES :idUser, :id", idManga);
-			added = true;
-
-
-		}catch (Exception e){
-
-			DataBaseTransactions.getInstance().rollback();
-			mangaFavourites.remove(idManga);
-
-		}
-
-		return added;
+		return add(idManga, mangaFavourites);
 
 
 	}
 
 	public boolean removeMangaFavourite(int idManga){
 
-		boolean removed = false;
-		mangaFavourites.remove(idManga);
-		try {
-
-			makeTransaction("DELETE FROM users_manga_favourites WHERE user_id = :idUser AND manga_id = :id", idManga);
-			removed = true;
-
-		}catch (Exception e){
-
-			DataBaseTransactions.getInstance().rollback();
-			mangaFavourites.add(idManga);
-
-		}
-
-		return removed;
+		return remove(idManga, mangaFavourites);
 
 	}
 
 	public boolean addMangaFollowing(int idManga){
 
+		return add(idManga, mangaFollowing);
+
+	}
+
+
+
+	public boolean removeMangaFollowing(int idManga){
+
+		return remove(idManga, mangaFollowing);
+
+	}
+
+	private boolean add(int id, Set<Integer> visualWorks) {
+
 		boolean added = false;
-		mangaFollowing.add(idManga);
+		visualWorks.add(id);
 
 		try {
 
-			makeTransaction("INSERT INTO users_manga_following VALUES :idUser, :id", idManga);
+			new UserDAOImpl().registerUser(this);
 			added = true;
 
 
 		}catch (Exception e){
 
 			DataBaseTransactions.getInstance().rollback();
-			mangaFollowing.remove(idManga);
+			visualWorks.remove(id);
 
 		}
 
@@ -209,35 +146,22 @@ public class User {
 
 	}
 
-	public boolean removeMangaFollowing(int idManga){
-
+	private boolean remove(int id, Set<Integer> visualWorks) {
 		boolean removed = false;
-		mangaFollowing.remove(idManga);
+		visualWorks.remove(id);
 		try {
 
-			makeTransaction("DELETE FROM users_manga_following WHERE user_id = :idUser AND manga_id = :id", idManga);
+			new UserDAOImpl().registerUser(this);
 			removed = true;
 
 		}catch (Exception e){
 
 			DataBaseTransactions.getInstance().rollback();
-			mangaFollowing.add(idManga);
+			visualWorks.add(id);
 
 		}
 
 		return removed;
-
-	}
-
-
-	private void makeTransaction(String query, int id){
-
-		DataBaseTransactions dbt = DataBaseTransactions.getInstance();
-		Query q = dbt.createQuery(query);
-		q.setParameter("idUser", this.id);
-		q.setParameter("id", id);
-
-		dbt.makeTransactionVisualWork(q);
 
 	}
 
@@ -271,6 +195,14 @@ public class User {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Set<Integer> getAnimeFavourites() {

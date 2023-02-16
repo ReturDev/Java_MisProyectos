@@ -4,6 +4,7 @@ package com.sergio.main.controller.menu;
 import java.io.IOException;
 
 import com.sergio.main.controller.windows.items.ItemsCatalogueRootController;
+import com.sergio.main.controller.windows.user.actions.LoginController;
 import com.sergio.main.model.datasource.enums.ItemsType;
 import com.sergio.main.model.datasource.user.UserState;
 
@@ -18,7 +19,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 public class MenuController{
-
 	
 	@FXML
 	private Pane menuRoot;
@@ -90,7 +90,7 @@ public class MenuController{
 	}
 	
 	@FXML
-	private void goToUserConfig() {
+	public void goToUserConfig() {
 		
 		if (UserState.isUserLogged()) {
 			
@@ -113,9 +113,11 @@ public class MenuController{
 		}else {
 			
 			try {
-				
-				Pane loginPane = FXMLLoader.load(getClass().getResource("/com/sergio/main/view/windows/user/actions/loginView.fxml"));
-				
+
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/user/actions/loginView.fxml"));
+				loader.setController(LoginController.getInstance());
+
+				Pane loginPane = loader.load();
 				Pane parent = (Pane) menuRoot.getParent();
 				HBox.setHgrow(loginPane, Priority.ALWAYS);
 				parent.getChildren().set(1, loginPane);
@@ -127,10 +129,8 @@ public class MenuController{
 				
 			}
 			
-			
 		}
-		
-		
+
 	}
 	
 	private void goToElementView() throws IOException {
