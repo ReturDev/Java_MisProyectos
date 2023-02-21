@@ -59,7 +59,7 @@ public class UserDAOImpl implements UserDAO {
 
         String q = "SELECT id FROM users WHERE name = :name";
         Query query = DB_TRANSACTIONS.createQuery(q);
-        query.setParameter(1,username);
+        query.setParameter("name",username);
 
         return query.getResultList().isEmpty();
 
@@ -70,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
 
         String q = "SELECT id FROM users WHERE email = :email";
         Query query = DB_TRANSACTIONS.createQuery(q);
-        query.setParameter(1, email);
+        query.setParameter("email", email);
 
         return query.getResultList().isEmpty();
 

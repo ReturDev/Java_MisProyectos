@@ -70,6 +70,7 @@ public class SignUpController {
     void onLogin() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/user/actions/loginView.fxml"));
+        loader.setController(LoginController.getInstance());
         Pane loginRoot = loader.load();
         HBox.setHgrow(loginRoot, Priority.ALWAYS);
         Pane parent = (Pane) root.getParent();
@@ -103,7 +104,7 @@ public class SignUpController {
 
         }
 
-        if (tfPassword.getText().equals(tfConfirmPassword.getText())){
+        if (!tfPassword.getText().equals(tfConfirmPassword.getText())){
 
             throw new FillFieldException("Ambas contraseñas deben de ser la misma.");
 

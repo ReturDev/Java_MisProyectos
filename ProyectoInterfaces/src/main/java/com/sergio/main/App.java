@@ -14,12 +14,12 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		try {
 
-			HBox root = (HBox)FXMLLoader.load(getClass().getResource("view/mainView.fxml"));
-			Scene scene = new Scene(root,700,700);
+			HBox root = FXMLLoader.load(getClass().getResource("view/mainView.fxml"));
+			Scene scene = new Scene(root,900,700);
 			//scene.getStylesheets().add(getClass().getResource("/resources/application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			primaryStage.setMinWidth(1200);
-			primaryStage.setMinHeight(900);
+			primaryStage.setMinWidth(900);
+			primaryStage.setMinHeight(700);
 			primaryStage.show();
 
 
