@@ -88,12 +88,12 @@ public class ItemBlueprintController implements Initializable {
 				if(btnActtivated.equals(btnFavourites)) {
 
 					NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1,true, null);
-					validateFavourites(UserState.getUserLoggedData(), item.getId(),true);
+					btnFavouritesAction(UserState.getUserLoggedData());
 
 				}else if(btnActtivated.equals(btnFollow)) {
 					
 					NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a siguiendo.", 1, true,null);
-					validateFollowing(UserState.getUserLoggedData(), item.getId(),true);
+					btnFollowingAction(UserState.getUserLoggedData());
 
 				}
 				
@@ -114,9 +114,12 @@ public class ItemBlueprintController implements Initializable {
 		
 		imageVItem.setImage(item.getImage());
 		lblName.setText(item.getName());
+
 		if (UserState.isUserLogged()){
-			validateFollowing(UserState.getUserLoggedData(), item.getId(), false);
-			validateFavourites(UserState.getUserLoggedData(), item.getId(), false);
+
+			checkFavouritesUser(UserState.getUserLoggedData());
+			checkFollowingUser(UserState.getUserLoggedData());
+
 		}else {
 
 			setEmptyFollowing();
@@ -126,50 +129,32 @@ public class ItemBlueprintController implements Initializable {
 		
 	}
 
-	private void validateFavourites(User user, int id, boolean btnPressed){
+	private void btnFavouritesAction(User user){
 
 		if (item instanceof Anime){
 
-			if (user.getAnimeFavourites().contains(id)){
+			if (user.getAnimeFavourites().contains(item.getId())){
 
-				if (btnPressed){
-
-					user.removeAnimeFavourite(id);
-
-				}
-
+				user.removeAnimeFavourite(item.getId());
 				setEmptyFavourite();
 
 			}else {
 
-				if (btnPressed){
-
-					user.addAnimeFavourite(id);
-
-				}
-
+				user.addAnimeFavourite(item.getId());
 				setFilledFavourite();
 
 			}
 
 		}else if (item instanceof Manga){
 
-			if (user.getMangaFavourites().contains(id)){
+			if (user.getMangaFavourites().contains(item.getId())){
 
-				if (btnPressed){
-
-					user.removeMangaFavourite(id);
-
-				}
+				user.removeMangaFavourite(item.getId());
 				setEmptyFavourite();
 
 			}else {
 
-				if (btnPressed){
-
-					user.addMangaFavourite(id);
-
-				}
+				user.addMangaFavourite(item.getId());
 				setFilledFavourite();
 
 			}
@@ -178,48 +163,32 @@ public class ItemBlueprintController implements Initializable {
 
 	}
 
-	private void validateFollowing(User user, int id, boolean btnPressed){
+	private void btnFollowingAction(User user){
 
 		if (item instanceof Anime){
 
-			if (user.getAnimeFollowing().contains(id)){
+			if (user.getAnimeFollowing().contains(item.getId())){
 
-				if (btnPressed){
-
-					user.removeAnimeFollowing(id);
-
-				}
+				user.removeAnimeFollowing(item.getId());
 				setEmptyFollowing();
 
 			}else {
 
-				if (btnPressed){
-
-					user.addAnimeFollowing(id);
-
-				}
+				user.addAnimeFollowing(item.getId());
 				setFilledFollowing();
 
 			}
 
 		}else if (item instanceof Manga){
 
-			if (user.getMangaFollowing().contains(id)){
+			if (user.getMangaFollowing().contains(item.getId())){
 
-				if (btnPressed){
-
-					user.removeMangaFollowing(id);
-
-				}
+				user.removeMangaFollowing(item.getId());
 				setEmptyFollowing();
 
 			}else {
 
-				if (btnPressed){
-
-					user.addMangaFollowing(id);
-
-				}
+				user.addMangaFollowing(item.getId());
 				setFilledFollowing();
 
 			}
@@ -227,6 +196,67 @@ public class ItemBlueprintController implements Initializable {
 		}
 
 	}
+
+	private void checkFavouritesUser(User user){
+
+		if (item instanceof Anime){
+
+			if (user.getAnimeFavourites().contains(item.getId())){
+
+				setFilledFavourite();
+
+			}else {
+
+				setEmptyFavourite();
+
+			}
+
+		}else if (item instanceof Manga){
+
+			if (user.getMangaFavourites().contains(item.getId())){
+
+				setFilledFavourite();
+
+			}else {
+
+				setEmptyFavourite();
+
+			}
+
+		}
+
+	}
+
+	private void checkFollowingUser(User user){
+
+		if (item instanceof Anime){
+
+			if (user.getAnimeFollowing().contains(item.getId())){
+
+				setFilledFollowing();
+
+			}else {
+
+				setEmptyFollowing();
+
+			}
+
+		}else if (item instanceof Manga){
+
+			if (user.getMangaFollowing().contains(item.getId())){
+
+				setFilledFollowing();
+
+			}else {
+
+				setEmptyFollowing();
+
+			}
+
+		}
+
+	}
+
 
 	private void setFilledFavourite(){
 		ivFavourites.setImage(new Image("/icons/content/items/heart-filled.png"));

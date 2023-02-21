@@ -1,4 +1,4 @@
-package com.sergio.main.model.repositories.database;
+package com.sergio.main.model.repository.database;
 
 
 import javax.persistence.*;

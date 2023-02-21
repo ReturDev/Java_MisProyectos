@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+import com.sergio.main.controller.windows.user.ItemsUserRootController;
 import com.sergio.main.model.datasource.enums.ItemsType;
 import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.datasource.user.UserState;
@@ -47,7 +48,6 @@ public class UserController implements Initializable {
     private TabPane tabRoot;
 
     private GridPane rootStatusItemsMenu;
-    private User userData;
     
     
 	@Override
@@ -111,6 +111,7 @@ public class UserController implements Initializable {
     private void onLoadTab(ItemsType tag) {
 
     	StatusItemsMenuUserController.getInstance().getBtnFavourites().fire();
+		ItemsUserRootController.getInstance().setShownItemType(tag);
 
     }
     

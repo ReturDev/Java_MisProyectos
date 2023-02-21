@@ -30,10 +30,10 @@ public class MainController implements Initializable{
 	
 		try {
 
-			User user = new User();
-			user.setName("Pepe");
-			user.setEmail("correo");
-			UserState.userLogIn(new User());
+//			User user = new User();
+//			user.setName("Pepe");
+//			user.setEmail("correo");
+//			UserState.userLogIn(new User());
 			menuRootController.goToAnime();
 			
 		} catch (IOException e) {

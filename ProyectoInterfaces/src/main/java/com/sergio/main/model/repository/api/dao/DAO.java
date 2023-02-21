@@ -1,7 +1,4 @@
-package com.sergio.main.model.repositories.api.dao;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+package com.sergio.main.model.repository.api.dao;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

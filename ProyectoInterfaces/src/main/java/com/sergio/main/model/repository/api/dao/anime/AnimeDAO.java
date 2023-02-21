@@ -1,7 +1,7 @@
-package com.sergio.main.model.repositories.api.dao.anime;
+package com.sergio.main.model.repository.api.dao.anime;
 
 import com.sergio.main.model.datasource.items.Anime;
-import com.sergio.main.model.repositories.api.dao.DAO;
+import com.sergio.main.model.repository.api.dao.DAO;
 
 import java.io.IOException;
 import java.util.List;

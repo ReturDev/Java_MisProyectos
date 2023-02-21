@@ -1,7 +1,7 @@
-package com.sergio.main.model.repositories.api.dao.manga;
+package com.sergio.main.model.repository.api.dao.manga;
 
 import com.sergio.main.model.datasource.items.Manga;
-import com.sergio.main.model.repositories.api.APIConnection;
+import com.sergio.main.model.repository.api.APIConnection;
 import javafx.scene.image.Image;
 import org.json.JSONArray;
 import org.json.JSONObject;

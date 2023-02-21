@@ -3,10 +3,14 @@ package com.sergio.main.controller.windows.user.data;
 import com.sergio.main.model.datasource.enums.ItemsType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 
 public class StatusItemsMenuUserController{
 	
-	
+
+	@FXML
+	private GridPane gridRoot;
+
 	@FXML
 	private Button btnFavourites;
 	

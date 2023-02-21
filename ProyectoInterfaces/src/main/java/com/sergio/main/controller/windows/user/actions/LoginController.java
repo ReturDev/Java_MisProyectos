@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.sergio.main.controller.menu.MenuController;
+import com.sergio.main.model.datasource.user.User;
+import com.sergio.main.model.datasource.user.UserState;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,8 +76,9 @@ public class LoginController implements Initializable {
 		
 	}
 
-	public void userLoggedIn(){
+	public void userLoggedIn(User user){
 
+        UserState.userLogIn(user);
         new MenuController().goToUserConfig();
 
     }

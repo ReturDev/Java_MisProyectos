@@ -1,4 +1,4 @@
-package com.sergio.main.model.repositories.database.dao;
+package com.sergio.main.model.repository.database.dao;
 
 import com.sergio.main.model.datasource.user.User;
 

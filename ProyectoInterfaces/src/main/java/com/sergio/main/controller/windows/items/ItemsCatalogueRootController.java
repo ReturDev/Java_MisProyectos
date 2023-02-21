@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sergio.main.controller.windows.ItemsRootController;
 import com.sergio.main.model.datasource.enums.ItemsType;
 
 import com.sergio.main.model.datasource.items.VisualWork;
-import com.sergio.main.model.repositories.api.dao.anime.AnimeDAOImpl;
-import com.sergio.main.model.repositories.api.dao.manga.MangaDAOImpl;
+import com.sergio.main.model.repository.api.dao.anime.AnimeDAOImpl;
+import com.sergio.main.model.repository.api.dao.manga.MangaDAOImpl;
+import com.sergio.main.model.util.ItemsPaginationControllerUtilities;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -20,39 +22,22 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
-public class ItemsCatalogueRootController {
+public class ItemsCatalogueRootController extends ItemsRootController {
 
-	private final int BLUEPRINTS_QUANTITY = 25;
+	private static ItemsCatalogueRootController instance;
+	protected final int BLUEPRINTS_QUANTITY = 25;
 
-	@FXML
-	private ScrollPane scrollPane;
-	@FXML
-	private FlowPane itemsRoot;
 	@FXML
 	private TextField tfSearch;
 	@FXML
 	private Button btnSearch;
-	@FXML
-	private Button btnPreviousPage;
-	@FXML
-	private Button btnNextPage;
 
-	
-	
-	private List<Pane> itemsBlueprints;
-	
-	private ItemsType  shownItemType;
 
-	private int page;
-
-	private boolean hasNextPage;
-
-	private static ItemsCatalogueRootController instance;
-	
 	private ItemsCatalogueRootController() {
-		
+
+		super(new ItemsPaginationControllerUtilities());
 		itemsBlueprints = new ArrayList<>();
-		shownItemType = ItemsType.ANIME;
+		setShownItemType(ItemsType.ANIME);
 		loadItemBlueprints();
 		
 	}
@@ -82,13 +67,11 @@ public class ItemsCatalogueRootController {
 	/**
 	 * Evento que volver� a una p�gina anteriror de elementos.
 	 */
-	@FXML
-	private void onPreviousPage() {
+	@Override
+	public void onPreviousPage() {
 
-		page--;
-		cleanRoot();
+		IPCU.onPreviousPage(itemsRoot, scrollPane);
 		loadData();
-
 
 	}
 	
@@ -96,11 +79,10 @@ public class ItemsCatalogueRootController {
 	/**
 	 * Evento que avanzar� a una siguiente p�gina con elementos.
 	 */
-	@FXML
-	private void onNextPage() {
+	@Override
+	public void onNextPage() {
 
-		page++;
-		cleanRoot();
+		IPCU.onNextPage(itemsRoot, scrollPane);
 		loadData();
 
 	}
@@ -120,8 +102,9 @@ public class ItemsCatalogueRootController {
 		}
 		
 	}
-	
-	private void loadItemBlueprints() {
+
+	@Override
+	protected void loadItemBlueprints() {
 		
 		try {
 			
@@ -135,7 +118,7 @@ public class ItemsCatalogueRootController {
 
 					loader.setController(controller);
 					
-					Pane itemPane = (Pane) loader.load();
+					Pane itemPane = loader.load();
 					itemPane.getProperties().put("controller", controller);
 					itemsBlueprints.add(itemPane);
 					
@@ -151,22 +134,23 @@ public class ItemsCatalogueRootController {
 		
 	}
 
+	@Override
 	public void loadData(){
 
 		List<VisualWork> list;
 
 		try {
 
-			if(shownItemType.equals(ItemsType.ANIME)){
+			if(IPCU.getShownItemType().equals(ItemsType.ANIME)){
 
 				AnimeDAOImpl dao = new AnimeDAOImpl();
-				list = new ArrayList(dao.getPageAnime(page));
+				list = new ArrayList(dao.getPageAnime(IPCU.getPage()));
 				hasNextPage = dao.hasNextPage();
 
 			}else {
 
 				MangaDAOImpl dao = new MangaDAOImpl();
-				list = new ArrayList(dao.getPageManga(page));
+				list = new ArrayList(dao.getPageManga(IPCU.getPage()));
 				hasNextPage = dao.hasNextPage();
 
 			}
@@ -181,6 +165,7 @@ public class ItemsCatalogueRootController {
 
 	}
 
+	@Override
 	public void prepareElements(List<VisualWork> list){
 
 		for(int i = 0; i < list.size(); i++){
@@ -192,7 +177,7 @@ public class ItemsCatalogueRootController {
 
 		}
 
-		if (page == 1){
+		if (IPCU.getPage() == 1){
 
 			btnPreviousPage.setDisable(true);
 
@@ -214,27 +199,6 @@ public class ItemsCatalogueRootController {
 
 	}
 
-	public void resetButtons(){
 
-		page = 1;
-
-		btnNextPage.setDisable(true);
-
-		btnPreviousPage.setDisable(true);
-
-
-	}
-
-	private void cleanRoot(){
-
-		itemsRoot.getChildren().clear();
-
-		scrollPane.vvalueProperty().set(scrollPane.getVmin());
-
-	}
-
-	public void setShownItemType(ItemsType shownItemType) {
-		this.shownItemType = shownItemType;
-	}
 	
 }

@@ -18,8 +18,10 @@ public class App extends Application {
 			Scene scene = new Scene(root,700,700);
 			//scene.getStylesheets().add(getClass().getResource("/resources/application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setMinWidth(1200);
+			primaryStage.setMinHeight(900);
 			primaryStage.show();
-			//UserDataSaver.setUserLoged(true);
+
 
 			
 		} catch(Exception e) {

@@ -5,8 +5,7 @@ import com.sergio.main.model.datasource.exceptions.FillFieldException;
 import com.sergio.main.model.datasource.dialogs.notifications.NotificationCreator;
 import com.sergio.main.model.datasource.dialogs.notifications.NotificationType;
 import com.sergio.main.model.datasource.user.User;
-import com.sergio.main.model.datasource.user.UserState;
-import com.sergio.main.model.repositories.database.dao.UserDAOImpl;
+import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -149,9 +148,13 @@ public class SignUpController {
 
         boolean registered = false;
 
-        if (result.equals(ButtonType.OK)){
+        if (result.isPresent()){
 
-            registered = userDAO.registerUser(user);
+            if (result.get().equals(ButtonType.OK)){
+
+                registered = userDAO.registerUser(user);
+
+            }
 
         }
 
@@ -161,8 +164,7 @@ public class SignUpController {
 
     private void loginRegisteredUser(User user){
 
-        UserState.userLogIn(user);
-        LoginController.getInstance().userLoggedIn();
+        LoginController.getInstance().userLoggedIn(user);
 
     }
 

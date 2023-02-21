@@ -1,8 +1,8 @@
 package com.sergio.main.model.datasource.user;
 
 
-import com.sergio.main.model.repositories.database.DataBaseTransactions;
-import com.sergio.main.model.repositories.database.dao.UserDAOImpl;
+import com.sergio.main.model.repository.database.DataBaseTransactions;
+import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 
 import javax.persistence.*;
 import java.util.HashSet;

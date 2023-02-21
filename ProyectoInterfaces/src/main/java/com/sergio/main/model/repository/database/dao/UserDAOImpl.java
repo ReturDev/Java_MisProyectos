@@ -1,10 +1,9 @@
-package com.sergio.main.model.repositories.database.dao;
+package com.sergio.main.model.repository.database.dao;
 
 import com.sergio.main.model.datasource.user.User;
-import com.sergio.main.model.repositories.database.DataBaseTransactions;
+import com.sergio.main.model.repository.database.DataBaseTransactions;
 
 import javax.persistence.Query;
-import java.util.Date;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
