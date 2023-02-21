@@ -17,15 +17,6 @@ public abstract class ItemsRootController {
     protected final ItemsPaginationControllerUtilities IPCU;
     protected List<Pane> itemsBlueprints;
 
-    @FXML
-    protected Button btnPreviousPage;
-    @FXML
-    protected Button btnNextPage;
-    @FXML
-    protected FlowPane itemsRoot;
-    @FXML
-    protected ScrollPane scrollPane;
-
     protected ItemsRootController(ItemsPaginationControllerUtilities ipcu) {
 
         IPCU = ipcu;
@@ -43,7 +34,7 @@ public abstract class ItemsRootController {
 
     protected abstract void loadData();
 
-    protected void prepareElements(List<VisualWork> list){
+    protected void prepareElements(List<VisualWork> list, Pane itemsRoot,Button btnNextPage,Button btnPreviousPage){
 
         for(int i = 0; i < list.size(); i++){
 
@@ -82,10 +73,6 @@ public abstract class ItemsRootController {
 
     }
 
-    public void resetButtons(){
-
-        IPCU.resetButtons(btnNextPage, btnPreviousPage);
-
-    }
+    public abstract void resetButtons();
 
 }

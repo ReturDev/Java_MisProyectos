@@ -15,9 +15,11 @@ import com.sergio.main.model.util.ItemsPaginationControllerUtilities;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 public class ItemsCatalogueRootController extends ItemsRootController {
@@ -25,6 +27,14 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	private static ItemsCatalogueRootController instance;
 	protected final int BLUEPRINTS_QUANTITY = 25;
 
+	@FXML
+	protected Button btnPreviousPage;
+	@FXML
+	protected Button btnNextPage;
+	@FXML
+	protected FlowPane itemsRoot;
+	@FXML
+	protected ScrollPane scrollPane;
 	@FXML
 	private TextField tfSearch;
 	@FXML
@@ -153,7 +163,7 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 
 			}
 
-			prepareElements(list);
+			prepareElements(list, itemsRoot, btnNextPage, btnPreviousPage);
 
 		} catch (IOException e) {
 
@@ -163,6 +173,10 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 
 	}
 
+	@Override
+	public void resetButtons() {
+		IPCU.resetButtons(btnNextPage, btnPreviousPage);
+	}
 
-	
+
 }

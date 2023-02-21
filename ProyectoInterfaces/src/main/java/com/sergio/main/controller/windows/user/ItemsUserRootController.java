@@ -13,7 +13,11 @@ import com.sergio.main.model.datasource.user.UserState;
 import com.sergio.main.model.repository.api.dao.anime.AnimeDAOImpl;
 import com.sergio.main.model.repository.api.dao.manga.MangaDAOImpl;
 import com.sergio.main.model.util.ItemsPaginationControllerUtilities;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -25,6 +29,15 @@ public class ItemsUserRootController extends ItemsRootController {
     private static final int BLUEPRINTS_QUANTITY = 20;
 
     private static ItemsUserRootController instance;
+
+    @FXML
+    protected Button btnPreviousPage;
+    @FXML
+    protected Button btnNextPage;
+    @FXML
+    protected FlowPane itemsRoot;
+    @FXML
+    protected ScrollPane scrollPane;
 
     private ItemsUserRootController(){
 
@@ -108,7 +121,7 @@ public class ItemsUserRootController extends ItemsRootController {
 
         }
 
-        prepareElements(list);
+        prepareElements(list, itemsRoot, btnNextPage, btnPreviousPage);
 
     }
 
@@ -169,6 +182,9 @@ public class ItemsUserRootController extends ItemsRootController {
 
     }
 
-
+    @Override
+    public void resetButtons() {
+        IPCU.resetButtons(btnNextPage, btnPreviousPage);
+    }
 
 }

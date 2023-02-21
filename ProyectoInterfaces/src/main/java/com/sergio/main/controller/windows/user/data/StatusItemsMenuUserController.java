@@ -39,7 +39,7 @@ public class StatusItemsMenuUserController{
 	@FXML
 	private void onFavourites() {
 
-		ItemsUserRootController.getInstance().resetButtons();
+		//ItemsUserRootController.getInstance().resetButtons();
 		actionSelected = ActionSelected.FAVOURITE;
 		
 	}

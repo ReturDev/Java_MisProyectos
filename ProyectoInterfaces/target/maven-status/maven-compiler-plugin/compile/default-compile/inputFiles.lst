@@ -25,6 +25,7 @@ C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces
 C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\anime\AnimeDAOImpl.java
 C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\user\User.java
 C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\ItemsRootController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\enums\ActionSelected.java
 C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\manga\MangaDAOImpl.java
 C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\data\StatusItemsMenuUserController.java
 C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\items\Anime.java

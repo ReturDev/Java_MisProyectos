@@ -11,6 +11,7 @@ com\sergio\main\model\datasource\items\Anime.class
 com\sergio\main\model\repository\database\dao\UserDAO.class
 com\sergio\main\controller\windows\items\ItemBlueprintController.class
 com\sergio\main\model\datasource\dialogs\notifications\NotificationCreator.class
+com\sergio\main\model\datasource\enums\ActionSelected.class
 com\sergio\main\model\datasource\user\UserState.class
 com\sergio\main\controller\menu\MenuController.class
 com\sergio\main\model\datasource\dialogs\alerts\AlertCreator.class
