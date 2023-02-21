@@ -107,7 +107,7 @@ public class LoginController implements Initializable {
 	public void userLoggedIn(User user){
 
         UserState.userLogIn(user);
-        new MenuController().goToUserConfig();
+        MenuController.getInstance().goToUserConfig();
 
     }
 	

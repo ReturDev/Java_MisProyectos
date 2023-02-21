@@ -34,8 +34,23 @@ public class MenuController{
 	private Button btnUserConfig;
 	
 	private boolean menuOpened;
-	
-	
+
+	private static MenuController instance;
+
+	public static MenuController getInstance() {
+
+		if (instance == null){
+
+			instance = new MenuController();
+
+		}
+
+		return instance;
+
+	}
+
+	private MenuController(){}
+
 	@FXML
 	private void openMenu() {
 		
@@ -97,7 +112,6 @@ public class MenuController{
 			try {
 				
 				Pane userPane = FXMLLoader.load(getClass().getResource("/com/sergio/main/view/windows/user/data/userView.fxml"));
-				
 				Pane parent = (Pane) menuRoot.getParent();
 				HBox.setHgrow(userPane, Priority.ALWAYS);
 				parent.getChildren().set(1, userPane);

@@ -9,6 +9,7 @@ import com.sergio.main.controller.menu.MenuController;
 import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.datasource.user.UserState;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 
@@ -21,23 +22,26 @@ public class MainController implements Initializable{
 	@FXML
 	private HBox hbRoot;
 	
-	@FXML
-	private MenuController menuRootController;
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-	
+
 		try {
 
-			menuRootController.goToAnime();
-			
+			MenuController controller = MenuController.getInstance();
+
+			FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/menu/menuView.fxml"));
+			menuLoader.setController(controller);
+			hbRoot.getChildren().add(0, menuLoader.load());
+
+			controller.goToAnime();
+
+
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
-			
+
 		}
-		
+
 	}
 	
 	

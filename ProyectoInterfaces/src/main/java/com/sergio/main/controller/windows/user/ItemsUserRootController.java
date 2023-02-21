@@ -105,7 +105,7 @@ public class ItemsUserRootController extends ItemsRootController {
     }
 
     @Override
-    protected void loadData() {
+    public void loadData() {
 
         User user = UserState.getUserLoggedData();
         List<VisualWork> list = new ArrayList<>();

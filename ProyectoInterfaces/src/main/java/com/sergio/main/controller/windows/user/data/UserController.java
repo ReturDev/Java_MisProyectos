@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+import com.sergio.main.controller.menu.MenuController;
 import com.sergio.main.controller.windows.user.ItemsUserRootController;
 import com.sergio.main.model.datasource.enums.ItemsType;
 import com.sergio.main.model.datasource.user.User;
@@ -15,10 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -48,6 +46,7 @@ public class UserController implements Initializable {
     private TabPane tabRoot;
 
     private GridPane rootStatusItemsMenu;
+    private ScrollPane rootItemsUser;
     
     
 	@Override
@@ -60,9 +59,13 @@ public class UserController implements Initializable {
 
 		try {
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/user/data/statusItemsMenuUserView.fxml"));
-			loader.setController(StatusItemsMenuUserController.getInstance());
-			rootStatusItemsMenu = loader.load();
+			FXMLLoader loaderItemsRoot = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/user/items/itemsUserRootView.fxml"));
+			loaderItemsRoot.setController(ItemsUserRootController.getInstance());
+			rootItemsUser = loaderItemsRoot.load();
+
+			FXMLLoader loaderStatus = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/user/data/statusItemsMenuUserView.fxml"));
+			loaderStatus.setController(StatusItemsMenuUserController.getInstance());
+			rootStatusItemsMenu = loaderStatus.load();
 
 			onAnimeTab();
 
@@ -75,14 +78,10 @@ public class UserController implements Initializable {
 	}
 
     @FXML
-    void onLogout(ActionEvent event) {
+    void onLogout() {
 
-    	Button btn = (Button) event.getSource();
-    	Pane appRoot = (Pane) btn.getScene().getRoot();
-    	Button btnToUserView = (Button) appRoot.lookup("#btnUserConfig");
-
-    	UserState.userLogOut();
-    	btnToUserView.fire();
+		UserState.userLogOut();
+		MenuController.getInstance().goToUserConfig();
     	
     }
     
@@ -121,6 +120,7 @@ public class UserController implements Initializable {
 		System.out.println("Anime");
     	onLoadTab(ItemsType.ANIME);
     	rootTabAnime.getChildren().add(rootStatusItemsMenu);
+    	rootTabAnime.getChildren().add(rootItemsUser);
     	
     }
     
@@ -130,6 +130,7 @@ public class UserController implements Initializable {
 		System.out.println("Manga");
     	onLoadTab(ItemsType.MANGA);
     	rootTabManga.getChildren().add(rootStatusItemsMenu);
+    	rootTabManga.getChildren().add(rootItemsUser);
     	
     }
 

@@ -5,7 +5,6 @@
 
 <HBox fx:id="hbRoot" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sergio.main.controller.MainController">
    <children>
-      <fx:include fx:id="menuRoot" source="menu/menuView.fxml" />
       <Pane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </HBox>
