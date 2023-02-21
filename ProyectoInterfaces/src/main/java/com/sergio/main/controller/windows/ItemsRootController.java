@@ -16,7 +16,6 @@ public abstract class ItemsRootController {
 
     protected final ItemsPaginationControllerUtilities IPCU;
     protected List<Pane> itemsBlueprints;
-    protected boolean hasNextPage;
 
     @FXML
     protected Button btnPreviousPage;
@@ -65,7 +64,7 @@ public abstract class ItemsRootController {
 
         }
 
-        if (hasNextPage){
+        if (IPCU.hasNextPage()){
 
             btnNextPage.setDisable(false);
 

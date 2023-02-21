@@ -114,7 +114,7 @@ public class SignUpController {
     private User getUserData(){
 
         User user = new User();
-        user.setName(tfUsername.getText());
+        user.setUsername(tfUsername.getText());
         user.setEmail(tfEmail.getText());
         user.setPassword(tfPassword.getText());
         user.setImage(imageDirText.getText());
@@ -128,7 +128,7 @@ public class SignUpController {
         User user = getUserData();
         UserDAOImpl userDAO = new UserDAOImpl();
 
-        if (userDAO.checkUsernameRegistered(user.getName())){
+        if (userDAO.checkUsernameRegistered(user.getUsername())){
 
             throw new FillFieldException("Ya existe un usario con ese username.");
 

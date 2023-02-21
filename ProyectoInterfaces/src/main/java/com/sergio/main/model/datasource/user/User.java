@@ -5,8 +5,7 @@ import com.sergio.main.model.repository.database.DataBaseTransactions;
 import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "users")
 public class User {
@@ -14,7 +13,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
+	private String username;
 	private String email;
 	private String image;
 	private String password;
@@ -25,7 +24,7 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
 	)
 	@Column(name = "anime_id")
-	private Set<Integer> animeFavourites;
+	private List<Integer> animeFavourites;
 
 	@ElementCollection
 	@CollectionTable(
@@ -33,7 +32,7 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
 	)
 	@Column(name = "anime_id")
-	private Set<Integer> animeFollowing;
+	private List<Integer> animeFollowing;
 
 	@ElementCollection
 	@CollectionTable(
@@ -41,7 +40,7 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
 	)
 	@Column(name = "manga_id")
-	private Set<Integer> mangaFavourites;
+	private List<Integer> mangaFavourites;
 
 	@ElementCollection
 	@CollectionTable(
@@ -49,20 +48,20 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
 	)
 	@Column(name = "manga_id")
-	private Set<Integer> mangaFollowing;
+	private List<Integer> mangaFollowing;
 	
 	
 	public User() {
-		this.animeFavourites = new HashSet<>();
-		this.animeFollowing = new HashSet<>();
-		this.mangaFavourites = new HashSet<>();
-		this.mangaFollowing = new HashSet<>();
+		this.animeFavourites = new ArrayList<>();
+		this.animeFollowing = new ArrayList<>();
+		this.mangaFavourites = new ArrayList<>();
+		this.mangaFollowing = new ArrayList<>();
 
 	}
 
-	public User(int id, String name, String email, String image, Set<Integer> animeFavourites, Set<Integer> animeFollowing, Set<Integer> mangaFavourites, Set<Integer> mangaFollowing) {
+	public User(int id, String username, String email, String image, List<Integer> animeFavourites, List<Integer> animeFollowing, List<Integer> mangaFavourites, List<Integer> mangaFollowing) {
 		this.id = id;
-		this.name = name;
+		this.username = username;
 		this.email = email;
 		this.image = image;
 		this.animeFavourites = animeFavourites;
@@ -124,7 +123,7 @@ public class User {
 
 	}
 
-	private boolean add(int id, Set<Integer> visualWorks) {
+	private boolean add(int id, List<Integer> visualWorks) {
 
 		boolean added = false;
 		visualWorks.add(id);
@@ -146,7 +145,7 @@ public class User {
 
 	}
 
-	private boolean remove(int id, Set<Integer> visualWorks) {
+	private boolean remove(int id, List<Integer> visualWorks) {
 		boolean removed = false;
 		visualWorks.remove(id);
 		try {
@@ -173,12 +172,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 
 	public String getEmail() {
@@ -205,35 +204,35 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Integer> getAnimeFavourites() {
+	public List<Integer> getAnimeFavourites() {
 		return animeFavourites;
 	}
 
-	public void setAnimeFavourites(Set<Integer> animeFavourites) {
+	public void setAnimeFavourites(List<Integer> animeFavourites) {
 		this.animeFavourites = animeFavourites;
 	}
 
-	public Set<Integer> getAnimeFollowing() {
+	public List<Integer> getAnimeFollowing() {
 		return animeFollowing;
 	}
 
-	public void setAnimeFollowing(Set<Integer> animeFollowing) {
+	public void setAnimeFollowing(List<Integer> animeFollowing) {
 		this.animeFollowing = animeFollowing;
 	}
 
-	public Set<Integer> getMangaFavourites() {
+	public List<Integer> getMangaFavourites() {
 		return mangaFavourites;
 	}
 
-	public void setMangaFavourites(Set<Integer> mangaFavourites) {
+	public void setMangaFavourites(List<Integer> mangaFavourites) {
 		this.mangaFavourites = mangaFavourites;
 	}
 
-	public Set<Integer> getMangaFollowing() {
+	public List<Integer> getMangaFollowing() {
 		return mangaFollowing;
 	}
 
-	public void setMangaFollowing(Set<Integer> mangaFollowing) {
+	public void setMangaFollowing(List<Integer> mangaFollowing) {
 		this.mangaFollowing = mangaFollowing;
 	}
 }

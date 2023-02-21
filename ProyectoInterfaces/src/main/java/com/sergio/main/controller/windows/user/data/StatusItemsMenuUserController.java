@@ -1,5 +1,7 @@
 package com.sergio.main.controller.windows.user.data;
 
+import com.sergio.main.controller.windows.user.ItemsUserRootController;
+import com.sergio.main.model.datasource.enums.ActionSelected;
 import com.sergio.main.model.datasource.enums.ItemsType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,27 +30,25 @@ public class StatusItemsMenuUserController{
 
 	private static StatusItemsMenuUserController instance;
 
-	private ItemsType itemsType;
+	private ActionSelected actionSelected;
 	
-	private StatusItemsMenuUserController(){
-
-		itemsType = ItemsType.ANIME;
-
-	}
+	private StatusItemsMenuUserController(){}
 
 
 	
 	@FXML
 	private void onFavourites() {
-		
-		System.out.println("Favoritos Usuario");
+
+		ItemsUserRootController.getInstance().resetButtons();
+		actionSelected = ActionSelected.FAVOURITE;
 		
 	}
 	
 	@FXML
 	private void onFollowing() {
-		
-		System.out.println("Siguiendo Usuario");
+
+		ItemsUserRootController.getInstance().resetButtons();
+		actionSelected = ActionSelected.FOLLOWING;
 		
 	}
 	
@@ -85,31 +85,11 @@ public class StatusItemsMenuUserController{
 
 	}
 
-	public ItemsType getItemsType() {
-		return itemsType;
-	}
-
-	public void setItemsType(ItemsType itemsType) {
-		this.itemsType = itemsType;
-	}
-
 	public Button getBtnFavourites() {
 		return btnFavourites;
 	}
 
-	public Button getBtnFollowing() {
-		return btnFollowing;
-	}
-
-	public Button getBtnPending() {
-		return btnPending;
-	}
-
-	public Button getBtnFinished() {
-		return btnFinished;
-	}
-
-	public Button getBtnAbandoned() {
-		return btnAbandoned;
+	public ActionSelected getActionSelected() {
+		return actionSelected;
 	}
 }
