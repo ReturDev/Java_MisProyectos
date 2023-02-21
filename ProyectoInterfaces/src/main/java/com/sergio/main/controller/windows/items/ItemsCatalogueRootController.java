@@ -15,11 +15,9 @@ import com.sergio.main.model.util.ItemsPaginationControllerUtilities;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 public class ItemsCatalogueRootController extends ItemsRootController {
@@ -145,13 +143,13 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 
 				AnimeDAOImpl dao = new AnimeDAOImpl();
 				list = new ArrayList(dao.getPageAnime(IPCU.getPage()));
-				hasNextPage = dao.hasNextPage();
+				IPCU.setHasNextPage(dao.hasNextPage());
 
 			}else {
 
 				MangaDAOImpl dao = new MangaDAOImpl();
 				list = new ArrayList(dao.getPageManga(IPCU.getPage()));
-				hasNextPage = dao.hasNextPage();
+				IPCU.setHasNextPage(dao.hasNextPage());
 
 			}
 
@@ -160,40 +158,6 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 		} catch (IOException e) {
 
 			e.printStackTrace();
-
-		}
-
-	}
-
-	@Override
-	public void prepareElements(List<VisualWork> list){
-
-		for(int i = 0; i < list.size(); i++){
-
-			Pane itemBlueprint = itemsBlueprints.get(i);
-			ItemBlueprintController controller = (ItemBlueprintController) itemBlueprint.getProperties().get("controller");
-			controller.setItem(list.get(i));
-			itemsRoot.getChildren().add(itemBlueprint);
-
-		}
-
-		if (IPCU.getPage() == 1){
-
-			btnPreviousPage.setDisable(true);
-
-		}else {
-
-			btnPreviousPage.setDisable(false);
-
-		}
-
-		if (hasNextPage){
-
-			btnNextPage.setDisable(false);
-
-		}else {
-
-			btnNextPage.setDisable(true);
 
 		}
 

@@ -9,12 +9,22 @@ public class ItemsPaginationControllerUtilities {
 
     private int page;
     private ItemsType shownItemType;
+    private boolean hasNextPage;
+    private int itemsPerPage;
+    private int numFirstItem;
 
     public ItemsPaginationControllerUtilities(){}
+
+    public ItemsPaginationControllerUtilities(int itemsPerPage){
+
+        this.itemsPerPage = itemsPerPage;
+
+    }
 
     public void onPreviousPage(Pane itemsRoot, ScrollPane scrollPane) {
 
         page--;
+        setNumFirstItem();
         cleanRoot(itemsRoot,scrollPane);
 
     }
@@ -22,6 +32,7 @@ public class ItemsPaginationControllerUtilities {
     public void onNextPage(Pane itemsRoot, ScrollPane scrollPane) {
 
         page++;
+        setNumFirstItem();
         cleanRoot(itemsRoot, scrollPane);
 
     }
@@ -37,10 +48,17 @@ public class ItemsPaginationControllerUtilities {
 
         page = 1;
 
+        setNumFirstItem();
+
         btnNextPage.setDisable(true);
 
         btnPreviousPage.setDisable(true);
 
+    }
+
+    private void setNumFirstItem(){
+
+        this.numFirstItem = page * itemsPerPage;
 
     }
 
@@ -54,5 +72,17 @@ public class ItemsPaginationControllerUtilities {
 
     public void setShownItemType(ItemsType shownItemType) {
         this.shownItemType = shownItemType;
+    }
+
+    public boolean hasNextPage() {
+        return hasNextPage;
+    }
+
+    public void setHasNextPage(boolean hasNextPage) {
+        this.hasNextPage = hasNextPage;
+    }
+
+    public int getNumFirstItem() {
+        return numFirstItem;
     }
 }

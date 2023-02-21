@@ -5,12 +5,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.sergio.main.controller.menu.MenuController;
+import com.sergio.main.model.datasource.dialogs.notifications.NotificationCreator;
+import com.sergio.main.model.datasource.dialogs.notifications.NotificationType;
 import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.datasource.user.UserState;
+import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -55,12 +59,36 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void toLogin(ActionEvent event) {
+    private void toLogin() {
+
+        UserDAOImpl userDAO = new UserDAOImpl();
+
+        if (tfUser.getText().isBlank() || tfPassword.getText().isBlank()){
+
+            NotificationCreator.createAndShowNotification(root.getParent(), "Campo vacío", "Debes rellenar ambos campos.", 2, true, NotificationType.INFORMATION, Pos.TOP_CENTER);
+
+        }else{
+
+            if (!userDAO.checkUsernameRegistered(tfUser.getText())){
+
+                NotificationCreator.createAndShowNotification(root.getParent(), "Usuario invalido", "No existe ningún usuario con ese nombre.", 2, true, NotificationType.ERROR, Pos.TOP_CENTER);
+
+            } else if (!userDAO.checkUserRegistered(tfUser.getText(), tfPassword.getText())){
+
+                NotificationCreator.createAndShowNotification(root.getParent(), "Contraseña incorrecta", "La contraseña introducida es incorrecta.", 2, true, NotificationType.ERROR, Pos.TOP_CENTER);
+
+            }else {
+
+                userLoggedIn(userDAO.getUserByUsername(tfUser.getText()));
+
+            }
+
+        }
 
     }
     
     @FXML
-    private void onSignUp(MouseEvent event) throws IOException {
+    private void onSignUp() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/user/actions/signUpView.fxml"));
         Pane signUpRoot = loader.load();

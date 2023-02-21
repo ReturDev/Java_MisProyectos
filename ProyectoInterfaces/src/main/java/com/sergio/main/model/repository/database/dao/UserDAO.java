@@ -14,4 +14,6 @@ public interface UserDAO {
 
     boolean checkEmailRegistered(String email);
 
+    boolean checkUserRegistered(String username, String password);
+
 }
