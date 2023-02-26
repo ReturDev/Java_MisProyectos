@@ -1,6 +1,7 @@
 package com.sergio.main.model.datasource.user;
 
 
+import com.sergio.main.model.datasource.exceptions.ActionFailedException;
 import com.sergio.main.model.repository.database.DataBaseTransactions;
 import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 
@@ -11,8 +12,7 @@ import java.util.*;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(length = 50)
 	private String username;
 	private String email;
 	private String image;
@@ -21,7 +21,7 @@ public class User {
 	@ElementCollection()
 	@CollectionTable(
 			name = "users_anime_favourites",
-			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+			joinColumns = @JoinColumn(name = "username", referencedColumnName = "username")
 	)
 	@Column(name = "anime_id")
 	private List<Integer> animeFavourites;
@@ -29,7 +29,7 @@ public class User {
 	@ElementCollection
 	@CollectionTable(
 			name = "users_anime_following",
-			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+			joinColumns = @JoinColumn(name = "username", referencedColumnName = "username")
 	)
 	@Column(name = "anime_id")
 	private List<Integer> animeFollowing;
@@ -37,7 +37,7 @@ public class User {
 	@ElementCollection
 	@CollectionTable(
 			name = "users_manga_favourites",
-			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+			joinColumns = @JoinColumn(name = "username", referencedColumnName = "username")
 	)
 	@Column(name = "manga_id")
 	private List<Integer> mangaFavourites;
@@ -45,7 +45,7 @@ public class User {
 	@ElementCollection
 	@CollectionTable(
 			name = "users_manga_following",
-			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+			joinColumns = @JoinColumn(name = "username", referencedColumnName = "username")
 	)
 	@Column(name = "manga_id")
 	private List<Integer> mangaFollowing;
@@ -59,8 +59,7 @@ public class User {
 
 	}
 
-	public User(int id, String username, String email, String image, List<Integer> animeFavourites, List<Integer> animeFollowing, List<Integer> mangaFavourites, List<Integer> mangaFollowing) {
-		this.id = id;
+	public User(String username, String email, String image, List<Integer> animeFavourites, List<Integer> animeFollowing, List<Integer> mangaFavourites, List<Integer> mangaFollowing) {
 		this.username = username;
 		this.email = email;
 		this.image = image;
@@ -70,67 +69,67 @@ public class User {
 		this.mangaFollowing = mangaFollowing;
 	}
 
-	public boolean addAnimeFavourite(int idAnime){
+	public void addAnimeFavourite(int idAnime) throws ActionFailedException {
 
-		return add(idAnime, animeFavourites);
-
-	}
-
-	public boolean removeAnimeFavourite(int idAnime){
-
-		return remove(idAnime, animeFavourites);
+		add(idAnime, animeFavourites);
 
 	}
 
+	public void removeAnimeFavourite(int idAnime) throws ActionFailedException {
 
-
-	public boolean addAnimeFollowing(int idAnime){
-
-		return add(idAnime, animeFollowing);
-
-	}
-
-	public boolean removeAnimeFollowing(int idAnime){
-
-		return remove(idAnime, animeFollowing);
-
-	}
-
-	public boolean addMangaFavourite(int idManga){
-
-		return add(idManga, mangaFavourites);
-
-
-	}
-
-	public boolean removeMangaFavourite(int idManga){
-
-		return remove(idManga, mangaFavourites);
-
-	}
-
-	public boolean addMangaFollowing(int idManga){
-
-		return add(idManga, mangaFollowing);
+		remove(idAnime, animeFavourites);
 
 	}
 
 
 
-	public boolean removeMangaFollowing(int idManga){
+	public void addAnimeFollowing(int idAnime) throws ActionFailedException {
 
-		return remove(idManga, mangaFollowing);
+		add(idAnime, animeFollowing);
 
 	}
 
-	private boolean add(int id, List<Integer> visualWorks) {
+	public void removeAnimeFollowing(int idAnime) throws ActionFailedException {
+
+		remove(idAnime, animeFollowing);
+
+	}
+
+	public void addMangaFavourite(int idManga) throws ActionFailedException {
+
+		add(idManga, mangaFavourites);
+
+
+	}
+
+	public void removeMangaFavourite(int idManga) throws ActionFailedException {
+
+		remove(idManga, mangaFavourites);
+
+	}
+
+	public void addMangaFollowing(int idManga) throws ActionFailedException {
+
+		add(idManga, mangaFollowing);
+
+	}
+
+
+
+	public void removeMangaFollowing(int idManga) throws ActionFailedException {
+
+		remove(idManga, mangaFollowing);
+
+	}
+
+	private void add(int id, List<Integer> visualWorks) throws ActionFailedException {
 
 		boolean added = false;
 		visualWorks.add(id);
 
 		try {
 
-			new UserDAOImpl().registerUser(this);
+			new UserDAOImpl().updateUser(this);
 			added = true;
 
 
@@ -141,16 +140,20 @@ public class User {
 
 		}
 
-		return added;
+		if (!added){
+
+			throw new ActionFailedException();
+
+		}
 
 	}
 
-	private boolean remove(int id, List<Integer> visualWorks) {
+	private void remove(int id, List<Integer> visualWorks) throws ActionFailedException {
 		boolean removed = false;
 		visualWorks.remove(id);
 		try {
 
-			new UserDAOImpl().registerUser(this);
+			new UserDAOImpl().updateUser(this);
 			removed = true;
 
 		}catch (Exception e){
@@ -160,16 +163,12 @@ public class User {
 
 		}
 
-		return removed;
+		if (!removed){
 
-	}
+			throw new ActionFailedException();
 
-	public int getId() {
-		return id;
-	}
+		}
 
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUsername() {

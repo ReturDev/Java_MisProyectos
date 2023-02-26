@@ -15,7 +15,8 @@ public class AlertCreator {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setContentText(text);
-        alert.initStyle(StageStyle.UNDECORATED);
+        alert.setHeaderText(null);
+
 
         return alert.showAndWait();
 

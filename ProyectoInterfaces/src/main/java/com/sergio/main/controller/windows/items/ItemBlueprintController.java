@@ -3,6 +3,7 @@ package com.sergio.main.controller.windows.items;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sergio.main.model.datasource.exceptions.ActionFailedException;
 import com.sergio.main.model.datasource.items.Anime;
 import com.sergio.main.model.datasource.items.Manga;
 import com.sergio.main.model.datasource.items.VisualWork;
@@ -87,16 +88,32 @@ public class ItemBlueprintController implements Initializable {
 			
 				if(btnActtivated.equals(btnFavourites)) {
 
-					NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1,true, null);
-					btnFavouritesAction(UserState.getUserLoggedData());
+					try {
 
+						btnFavouritesAction(UserState.getUserLoggedData());
+						NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1,true, null);
+
+					} catch (ActionFailedException e) {
+
+						//TODO Añadir Mensaje
+						e.printStackTrace();
+
+					}
 				}else if(btnActtivated.equals(btnFollow)) {
-					
-					NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a siguiendo.", 1, true,null);
-					btnFollowingAction(UserState.getUserLoggedData());
+
+					try {
+
+						btnFollowingAction(UserState.getUserLoggedData());
+						NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a siguiendo.", 1, true,null);
+
+					} catch (ActionFailedException e) {
+
+						e.printStackTrace();
+						//TODO Añadir Mensaje
+
+					}
 
 				}
-				
 				
 			}else {			
 				
@@ -129,7 +146,7 @@ public class ItemBlueprintController implements Initializable {
 		
 	}
 
-	private void btnFavouritesAction(User user){
+	private void btnFavouritesAction(User user) throws ActionFailedException {
 
 		if (item instanceof Anime){
 
@@ -163,7 +180,7 @@ public class ItemBlueprintController implements Initializable {
 
 	}
 
-	private void btnFollowingAction(User user){
+	private void btnFollowingAction(User user) throws ActionFailedException {
 
 		if (item instanceof Anime){
 

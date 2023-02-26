@@ -5,6 +5,7 @@ import com.sergio.main.model.datasource.exceptions.FillFieldException;
 import com.sergio.main.model.datasource.dialogs.notifications.NotificationCreator;
 import com.sergio.main.model.datasource.dialogs.notifications.NotificationType;
 import com.sergio.main.model.datasource.user.User;
+import com.sergio.main.model.repository.database.dao.UserDAO;
 import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +54,7 @@ public class SignUpController {
             checkFields();
             if (toRegisterUser()){
 
-                loginRegisteredUser(getUserData());
+                loginRegisteredUser(tfUsername.getText());
 
             }
 
@@ -144,7 +145,7 @@ public class SignUpController {
         Optional<ButtonType> result = AlertCreator.createAndShowAlert(
                 Alert.AlertType.CONFIRMATION,
                 "Imagen de perfil",
-                "La imagen de perfil seleccionada luego no podrña ser modificada. ¿Estas seguro?."
+                "La imagen de perfil seleccionada luego no podrá ser modificada."
         );
 
         boolean registered = false;
@@ -163,9 +164,10 @@ public class SignUpController {
 
     }
 
-    private void loginRegisteredUser(User user){
+    private void loginRegisteredUser(String userName){
 
-        LoginController.getInstance().userLoggedIn(user);
+        UserDAOImpl dao = new UserDAOImpl();
+        LoginController.getInstance().userLoggedIn(dao.getUserByUsername(userName));
 
     }
 

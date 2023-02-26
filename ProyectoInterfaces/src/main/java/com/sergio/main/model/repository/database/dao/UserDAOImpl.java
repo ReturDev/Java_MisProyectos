@@ -19,11 +19,12 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User getUserByUsername(String username) {
 
-        String q = "SELECT * FROM users WHERE username = :username";
+        String q = "FROM users WHERE username = :username";
         Query query = DB_TRANSACTIONS.createQuery(q);
         query.setParameter("username" ,username);
-        List<User> users = query.getResultList();
-        User user = users.isEmpty() ? users.get(0) : null;
+        List users = query.getResultList();
+        users.forEach(System.out::println);
+        User user = !users.isEmpty() ? (User) users.get(0) : null;
 
         return user;
 
@@ -57,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean checkUsernameRegistered(String username) {
 
-        String q = "SELECT id FROM users WHERE username = :username";
+        String q = "SELECT username FROM users WHERE username = :username";
         Query query = DB_TRANSACTIONS.createQuery(q);
         query.setParameter("username",username);
 
@@ -68,7 +69,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean checkEmailRegistered(String email) {
 
-        String q = "SELECT id FROM users WHERE email = :email";
+        String q = "SELECT username FROM users WHERE email = :email";
         Query query = DB_TRANSACTIONS.createQuery(q);
         query.setParameter("email", email);
 
@@ -79,7 +80,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean checkUserRegistered(String username, String password) {
 
-        String q = "SELECT id FROM users WHERE username = :username AND password = :password";
+        String q = "SELECT username FROM users WHERE username = :username AND password = :password";
         Query query = DB_TRANSACTIONS.createQuery(q);
         query.setParameter("username", username);
         query.setParameter("password", password);

@@ -26,7 +26,7 @@ import java.util.List;
 
 public class ItemsUserRootController extends ItemsRootController {
 
-    private static final int BLUEPRINTS_QUANTITY = 20;
+    private static final int BLUEPRINTS_QUANTITY = 3;
 
     private static ItemsUserRootController instance;
 
@@ -64,6 +64,7 @@ public class ItemsUserRootController extends ItemsRootController {
     protected void onPreviousPage() {
 
         IPCU.onPreviousPage(itemsRoot, scrollPane);
+        loadData();
 
     }
 
@@ -71,6 +72,7 @@ public class ItemsUserRootController extends ItemsRootController {
     protected void onNextPage() {
 
         IPCU.onNextPage(itemsRoot, scrollPane);
+        loadData();
 
     }
 
@@ -121,6 +123,7 @@ public class ItemsUserRootController extends ItemsRootController {
 
         }
 
+        clearItemsRoot();
         prepareElements(list, itemsRoot, btnNextPage, btnPreviousPage);
 
     }
@@ -144,11 +147,21 @@ public class ItemsUserRootController extends ItemsRootController {
 
     private void addAnime(List<VisualWork> list, List<Integer> idList, AnimeDAOImpl dao){
 
-        for (int i = IPCU.getNumFirstItem(); i < idList.size(); i++){
+        try {
 
-            int id = idList.get(i);
-            Anime anime = dao.getAnimeByID(id);
-            list.add(anime);
+            for (int i = IPCU.getNumFirstItem(); i < idList.size() && i < (IPCU.getNumFirstItem() + IPCU.getItemsPerPage()); i++){
+
+                int id = idList.get(i);
+                Anime anime = dao.getAnimeByID(id);
+                list.add(anime);
+
+            }
+
+            IPCU.checkNextPageLocalPagination(idList.size());
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
 
         }
 
@@ -172,11 +185,21 @@ public class ItemsUserRootController extends ItemsRootController {
 
     private void addManga(List<VisualWork> list, List<Integer> idList, MangaDAOImpl dao){
 
-        for (int i = IPCU.getNumFirstItem(); i < idList.size(); i++){
+        try {
 
-            int id = idList.get(i);
-            Manga manga = dao.getMangaByID(id);
-            list.add(manga);
+            for (int i = IPCU.getNumFirstItem(); i < idList.size() && i < (IPCU.getNumFirstItem() + IPCU.getItemsPerPage()); i++){
+
+                int id = idList.get(i);
+                Manga manga = dao.getMangaByID(id);
+                list.add(manga);
+
+            }
+
+            IPCU.checkNextPageLocalPagination(idList.size());
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
 
         }
 
@@ -185,6 +208,12 @@ public class ItemsUserRootController extends ItemsRootController {
     @Override
     public void resetButtons() {
         IPCU.resetButtons(btnNextPage, btnPreviousPage);
+    }
+
+    public void clearItemsRoot(){
+
+        itemsRoot.getChildren().clear();
+
     }
 
 }

@@ -15,5 +15,11 @@ public class Anime extends VisualWork {
 	public Anime() {
 		super();
 	}
+
+	public Anime(VisualWork visualWork){
+		this.id = visualWork.id;
+		this.name = visualWork.name;
+		this.image = visualWork.image;
+	}
 	
 }

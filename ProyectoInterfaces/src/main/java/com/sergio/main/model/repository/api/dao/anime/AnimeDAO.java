@@ -10,6 +10,6 @@ public interface AnimeDAO extends DAO {
 
     List<Anime> getPageAnime(int page) throws IOException;
 
-    Anime getAnimeByID(int id);
+    Anime getAnimeByID(int id) throws IOException;
 
 }

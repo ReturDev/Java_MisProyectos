@@ -1,5 +1,8 @@
 package com.sergio.main.model.repository.api.dao;
 
+import com.sergio.main.model.datasource.dialogs.alerts.AlertCreator;
+import javafx.scene.control.Alert;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -10,9 +13,17 @@ public interface DAO {
 
         int responseCode = connection.getResponseCode();
 
+
+
+        if (responseCode == 429){
+
+            throw new IOException("Demasiadas peticiones por minuto/segundo.");
+
+        }
+
         if (responseCode != 200){
 
-            throw new IOException();
+            throw new IOException("Error al contactar con la API");
 
         }
 
@@ -27,6 +38,5 @@ public interface DAO {
         return sb;
 
     }
-
 
 }

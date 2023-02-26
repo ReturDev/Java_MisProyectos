@@ -13,7 +13,13 @@
    <content>
       <VBox alignment="TOP_CENTER">
          <children>
-            <FlowPane fx:id="itemsRoot" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" rowValignment="TOP" vgap="50.0" VBox.vgrow="ALWAYS" />
+            <FlowPane fx:id="itemsRoot" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" rowValignment="TOP" vgap="50.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets top="30.0" />
+               </padding></FlowPane>
             <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="100.0">
                <children>
                   <Button fx:id="btnPreviousPage" contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" onAction="#onPreviousPage">

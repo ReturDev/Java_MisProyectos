@@ -6,14 +6,13 @@ import com.sergio.main.model.datasource.enums.ItemsType;
 
 import javafx.scene.image.Image;
 
-public abstract class VisualWork {
+public class VisualWork {
 
 	
-	private int id;
-	private ItemsType itemType;
-	private Image image;
-	private String name;
-	private String synopsis;
+	protected int id;
+	protected Image image;
+	protected String name;
+	protected String synopsis;
 	//Information
 	private String type;
 	private String status;
@@ -22,18 +21,9 @@ public abstract class VisualWork {
 	private String demographic;
 	
 	public VisualWork() {}
-	
-	public VisualWork(int id, ItemsType itemType) {
+
+	public VisualWork(int id, Image image, String name, String synopsis, String type, String status, List<String> genres, List<String> themes, String demographic) {
 		this.id = id;
-		this.itemType = itemType;
-	}
-	
-	
-	
-	public VisualWork(int id, ItemsType itemType, Image image, String name, String synopsis, String type,
-			String status, List<String> genres, List<String> themes, String demographic) {
-		this.id = id;
-		this.itemType = itemType;
 		this.image = image;
 		this.name = name;
 		this.synopsis = synopsis;
@@ -98,7 +88,6 @@ public abstract class VisualWork {
 	public void setDemographic(String demographic) {
 		this.demographic = demographic;
 	}
-	
 	
 
 }

@@ -56,9 +56,26 @@ public class ItemsPaginationControllerUtilities {
 
     }
 
+    public void checkNextPageLocalPagination(int totalItems){
+
+        if (totalItems - itemsPerPage > numFirstItem){
+
+            System.out.println(totalItems);
+            System.out.println(numFirstItem);
+
+            hasNextPage = true;
+
+        }else{
+
+            hasNextPage = false;
+
+        }
+
+    }
+
     private void setNumFirstItem(){
 
-        this.numFirstItem = page * itemsPerPage;
+        this.numFirstItem = (page-1) * itemsPerPage;
 
     }
 
@@ -84,5 +101,9 @@ public class ItemsPaginationControllerUtilities {
 
     public int getNumFirstItem() {
         return numFirstItem;
+    }
+
+    public int getItemsPerPage() {
+        return itemsPerPage;
     }
 }

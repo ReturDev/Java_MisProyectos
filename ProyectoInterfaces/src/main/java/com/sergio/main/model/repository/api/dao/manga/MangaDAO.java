@@ -10,6 +10,6 @@ public interface MangaDAO extends DAO {
 
     List<Manga> getPageManga(int page) throws IOException;
 
-    Manga getMangaByID(int id);
+    Manga getMangaByID(int id) throws IOException;
 
 }
