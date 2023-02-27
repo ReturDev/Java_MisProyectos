@@ -53,7 +53,7 @@ public class DAOImplApiHelper {
         visualWork.setName(obj.getString(TITLE_TAG));
 
         JSONObject image = (JSONObject) ((JSONObject) obj.get(IMAGE_TAG)).get(IMAGE_FORMAT_TAG);
-        visualWork.setImage(new Image(image.getString(IMAGE_TYPE_TAG)));
+        visualWork.setImage(image.getString(IMAGE_TYPE_TAG));
 
         return visualWork;
 

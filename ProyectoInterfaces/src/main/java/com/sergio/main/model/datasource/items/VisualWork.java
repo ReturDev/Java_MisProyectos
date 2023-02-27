@@ -10,7 +10,7 @@ public class VisualWork {
 
 	
 	protected int id;
-	protected Image image;
+	protected String image;
 	protected String name;
 	protected String synopsis;
 	//Information
@@ -22,7 +22,7 @@ public class VisualWork {
 	
 	public VisualWork() {}
 
-	public VisualWork(int id, Image image, String name, String synopsis, String type, String status, List<String> genres, List<String> themes, String demographic) {
+	public VisualWork(int id, String image, String name, String synopsis, String type, String status, List<String> genres, List<String> themes, String demographic) {
 		this.id = id;
 		this.image = image;
 		this.name = name;
@@ -40,12 +40,15 @@ public class VisualWork {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Image getImage() {
+
+	public String getImage() {
 		return image;
 	}
-	public void setImage(Image image) {
+
+	public void setImage(String image) {
 		this.image = image;
 	}
+
 	public String getName() {
 		return name;
 	}
