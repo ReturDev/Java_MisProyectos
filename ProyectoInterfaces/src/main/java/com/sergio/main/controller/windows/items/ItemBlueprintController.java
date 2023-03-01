@@ -129,7 +129,7 @@ public class ItemBlueprintController implements Initializable {
 	
 	private void blindInfoToBlueprint() {
 		
-		imageVItem.setImage(item.getImage());
+		imageVItem.setImage(new Image(item.getImage(),imageVItem.getFitWidth(),imageVItem.getFitHeight(),false,true));
 		lblName.setText(item.getName());
 
 		if (UserState.isUserLogged()){

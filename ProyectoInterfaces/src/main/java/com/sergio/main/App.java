@@ -17,7 +17,7 @@ public class App extends Application {
 
 			HBox root = FXMLLoader.load(getClass().getResource("view/mainView.fxml"));
 			Scene scene = new Scene(root,900,700);
-			//scene.getStylesheets().add(getClass().getResource("/resources/application.css").toExternalForm());
+			//scene.getStylesheets().add(getClass().getResource("/resources/main.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setMinWidth(900);
 			primaryStage.setMinHeight(700);

@@ -1,0 +1,41 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+@import "comunStyles.css";
+
+/*#145DC9*/
+/*#3B5E93*/
+/*#0C397D*/
+/*#5181C9*/
+/*#07224A*/
+
+*{
+
+    -white-color: #ffffff;
+    -black-color: #000000;
+    -primary-color: #0C397D;
+
+}
+
+.root{
+
+    -fx-font-size: 14px;
+    -fx-font-family: Elephant;
+
+}
+
+.header{
+
+    -fx-background-color: #07224A;
+
+}
+
+.button{
+
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+
+}
+
+
+
+

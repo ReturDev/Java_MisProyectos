@@ -1,0 +1,33 @@
+
+
+*{
+
+    -menu-bg-color: #0C397D;
+    -item-selected-bg-color: #5181C9;
+    -menu-header-bg-color: #07224A;
+
+}
+
+*{
+
+    -fx-text-fill: -white-color;
+
+}
+
+.lateral-menu{
+
+    -fx-background-color: -menu-bg-color;
+
+}
+
+.icon_menu_selected{
+
+    -fx-background-color: -item-selected-bg-color;
+
+}
+
+.menu-header{
+
+    -fx-background-color: -menu-header-bg-color;
+
+}

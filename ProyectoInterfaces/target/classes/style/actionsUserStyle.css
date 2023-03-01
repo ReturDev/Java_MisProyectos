@@ -1,0 +1,27 @@
+
+
+
+.root-action{
+
+    -fx-background-color: -primary-color;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+
+}
+
+.button{
+
+    -fx-background-color: #5181C9;
+    -fx-background-radius: 5px;
+    -fx-text-fill: black;
+
+}
+
+.title{
+
+    -fx-font-size: 45px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -white-color;
+
+}
+
