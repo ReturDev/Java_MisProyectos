@@ -4,16 +4,22 @@
 .root-action{
 
     -fx-background-color: -primary-color;
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-background-radius: 5px;
 
 }
 
 .button{
 
-    -fx-background-color: #5181C9;
+    -fx-background-color: -primary-color-light;
     -fx-background-radius: 5px;
-    -fx-text-fill: black;
+
+}
+
+.button:focused, .button:hover{
+
+    -fx-background-color: -on-primary-color;
+    -fx-text-fill: -on-secondary-color;
 
 }
 
@@ -21,7 +27,33 @@
 
     -fx-font-size: 45px;
     -fx-font-weight: bold;
-    -fx-text-fill: -white-color;
+    -fx-text-fill: -on-primary-color;
 
 }
+
+.change-action{
+
+    -fx-background-color: transparent;
+    -fx-text-fill: -primary-color-light;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-underline: true;
+    -fx-font-size: 14px;
+
+}
+
+.change-action:hover, .change-action:focused{
+
+    -fx-text-fill: -on-primary-color;
+    -fx-background-color: transparent;
+
+}
+
+.change-action:pressed{
+
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+
+}
+
 

@@ -56,6 +56,13 @@ public class ItemsPaginationControllerUtilities {
 
     }
 
+    public void resetButtons(Button btnNextPage, Button btnPreviousPage, Pane itemsRoot, ScrollPane scrollPane){
+
+        cleanRoot(itemsRoot, scrollPane);
+        resetButtons(btnNextPage,btnPreviousPage);
+
+    }
+
     public void checkNextPageLocalPagination(int totalItems){
 
         if (totalItems - itemsPerPage > numFirstItem){

@@ -12,4 +12,6 @@ public interface AnimeDAO extends DAO {
 
     Anime getAnimeByID(int id) throws IOException;
 
+    List<Anime> getAnimeSearched(int page, String name) throws IOException;
+
 }

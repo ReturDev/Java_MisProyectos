@@ -25,7 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class LoginController implements Initializable {
+public class LoginController{
 
     @FXML
     private VBox root;
@@ -98,20 +98,17 @@ public class LoginController implements Initializable {
 
     }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void userLoggedIn(User user){
 
         UserState.userLogIn(user);
         MenuController.getInstance().goToUserConfig();
 
     }
-	
-	
-	
+
+    public void setDefaultFocus(){
+
+        tfUser.requestFocus();
+
+    }
 
 }

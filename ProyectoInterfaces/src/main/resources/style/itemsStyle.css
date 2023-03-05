@@ -1,23 +1,22 @@
 
-
-*{
-
-    -fx-text-fill: -white-color;
-    -fx-font-weight: bold;
-
-}
-
 .root-item{
 
     -fx-background-color: -primary-color;
     -fx-background-radius: 5px;
-    -fx-effect: dropshadow(gaussian,-black-color,20.0,0.10,5,5);
+    -fx-effect: dropshadow(gaussian,black,20.0,0.10,5,5);
+
+}
+
+.label{
+
+    -fx-text-fill: -on-primary-color;
+    -fx-font-weight: bold;
 
 }
 
 .label-root{
 
-    -fx-border-color: #5181C9;
+    -fx-border-color: -primary-color;
     -fx-border-style: solid;
     -fx-border-width: 1px;
     -fx-border-radius: 5px;
@@ -26,7 +25,13 @@
 
 .button{
 
-    -fx-background-color: #5181C9;
+    -fx-background-color: -primary-color-light;
     -fx-background-radius: 5px;
+
+}
+
+.button:hover, .button:focused{
+
+    -fx-background-color: -primary-color-variant;
 
 }

@@ -12,10 +12,10 @@ import com.sergio.main.controller.windows.user.ItemsUserRootController;
 import com.sergio.main.model.datasource.enums.ItemsType;
 import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.datasource.user.UserState;
-import com.sergio.main.model.repository.database.dao.UserDAOImpl;
+import com.sergio.main.model.util.StylesConstants;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,11 +23,17 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 public class UserController implements Initializable {
-	
+
 	@FXML
-    private ImageView ivUserImage;
+	private VBox rootUserView;
+
+	@FXML
+    private Circle userImageFrame;
 
     @FXML
     private Label lblUserName;
@@ -79,25 +85,35 @@ public class UserController implements Initializable {
 		lblUserName.setText(username);
 
 		String dir;
+		File userImgDir = new File(userData.getImage());
+		if (userImgDir.exists()){
 
-		if (new File(userData.getImage()).exists()){
-
-			dir = userData.getImage();
+			dir = userImgDir.toURI().toString();
 
 		}else{
 
-			dir = "/icons/user/user_image_empty.png";
+			dir = "/images/user-image-empty.png";
 
 		}
 
+		Image image = new Image(dir);
 
-		ivUserImage.setImage(new Image(dir,
-				ivUserImage.getFitWidth(),
-				ivUserImage.getFitHeight(),
-				true,
-				true)
-		);
+		userImageFrame.setFill(new ImagePattern(image));
 
+
+		tabRoot.widthProperty().addListener((observableValue, oldNumber, newNumber) -> {
+
+			if (!oldNumber.equals(newNumber)){
+
+				double size = tabRoot.getWidth()/2-30;
+				tabRoot.setTabMaxWidth(size);
+				tabRoot.setTabMinWidth(size);
+
+			}
+
+		});
+
+		Platform.runLater(()-> rootStatusItemsMenu.requestFocus());
 
 	}
 
@@ -108,7 +124,6 @@ public class UserController implements Initializable {
 		MenuController.getInstance().goToUserConfig();
     	
     }
-    
 
     private ChangeListener<Tab> changeTabEvent() {
     	
@@ -142,6 +157,8 @@ public class UserController implements Initializable {
     private void onAnimeTab() {
 
     	onLoadTab(ItemsType.ANIME);
+    	tabAnime.getStyleClass().add(StylesConstants.TAB_SELECTED);
+    	tabManga.getStyleClass().remove(StylesConstants.TAB_SELECTED);
     	rootTabAnime.getChildren().add(rootStatusItemsMenu);
     	rootTabAnime.getChildren().add(rootItemsUser);
     	
@@ -149,6 +166,8 @@ public class UserController implements Initializable {
     
     private void onMangaTab() {
 
+		tabManga.getStyleClass().add(StylesConstants.TAB_SELECTED);
+		tabAnime.getStyleClass().remove(StylesConstants.TAB_SELECTED);
     	onLoadTab(ItemsType.MANGA);
     	rootTabManga.getChildren().add(rootStatusItemsMenu);
     	rootTabManga.getChildren().add(rootItemsUser);

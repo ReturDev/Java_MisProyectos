@@ -12,6 +12,7 @@ import com.sergio.main.model.datasource.items.VisualWork;
 import com.sergio.main.model.repository.api.dao.anime.AnimeDAOImpl;
 import com.sergio.main.model.repository.api.dao.manga.MangaDAOImpl;
 import com.sergio.main.model.util.ItemsPaginationControllerUtilities;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -40,6 +41,9 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	@FXML
 	private Button btnSearch;
 
+	private String searchText;
+	private boolean searching;
+
 
 	private ItemsCatalogueRootController() {
 
@@ -66,8 +70,19 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	@FXML
 	private void onSearch() {
 		
-		//TODO Filtrar por el texto de busqueda y obtener todos los elementos con el nombre;
-		System.out.println("Buscando");
+		if (tfSearch.getText().isBlank()){
+
+			resetButtons();
+			loadData();
+
+		}else {
+
+			resetButtons();
+			searchText = tfSearch.getText();
+			searching = true;
+			loadSearchData(searchText);
+
+		}
 		
 	}
 	
@@ -79,7 +94,17 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	public void onPreviousPage() {
 
 		IPCU.onPreviousPage(itemsRoot, scrollPane);
-		loadData();
+
+		if (searching){
+
+			tfSearch.setText(searchText);
+			loadSearchData(searchText);
+
+		}else {
+
+			loadData();
+
+		}
 
 	}
 	
@@ -91,7 +116,17 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	public void onNextPage() {
 
 		IPCU.onNextPage(itemsRoot, scrollPane);
-		loadData();
+
+		if (searching){
+
+			tfSearch.setText(searchText);
+			loadSearchData(searchText);
+
+		}else {
+
+			loadData();
+
+		}
 
 	}
 	
@@ -152,13 +187,13 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 			if(IPCU.getShownItemType().equals(ItemsType.ANIME)){
 
 				AnimeDAOImpl dao = new AnimeDAOImpl();
-				list = new ArrayList(dao.getPageAnime(IPCU.getPage()));
+				list = new ArrayList<>(dao.getPageAnime(IPCU.getPage()));
 				IPCU.setHasNextPage(dao.hasNextPage());
 
 			}else {
 
 				MangaDAOImpl dao = new MangaDAOImpl();
-				list = new ArrayList(dao.getPageManga(IPCU.getPage()));
+				list = new ArrayList<>(dao.getPageManga(IPCU.getPage()));
 				IPCU.setHasNextPage(dao.hasNextPage());
 
 			}
@@ -173,9 +208,44 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 
 	}
 
+	private void loadSearchData(String stringSearched){
+
+		List<VisualWork> list;
+
+		try {
+
+			if(IPCU.getShownItemType().equals(ItemsType.ANIME)){
+
+				AnimeDAOImpl dao = new AnimeDAOImpl();
+				list = new ArrayList<>(dao.getAnimeSearched(IPCU.getPage(), stringSearched));
+				IPCU.setHasNextPage(dao.hasNextPage());
+
+			}else {
+
+				MangaDAOImpl dao = new MangaDAOImpl();
+				list = new ArrayList<>(dao.getMangaSearched(IPCU.getPage(), stringSearched));
+				IPCU.setHasNextPage(dao.hasNextPage());
+
+			}
+
+			prepareElements(list, itemsRoot, btnNextPage, btnPreviousPage);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
+
+	}
+
 	@Override
 	public void resetButtons() {
-		IPCU.resetButtons(btnNextPage, btnPreviousPage);
+
+		searching = false;
+		searchText = "";
+		IPCU.resetButtons(btnNextPage, btnPreviousPage,itemsRoot, scrollPane);
+
 	}
 
 

@@ -1,36 +1,37 @@
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\database\DataBaseTransactions.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\menu\MenuController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\items\Anime.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\items\ItemBlueprintController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\dataprovider\AnimeProvider.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\exceptions\ActionFailedException.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\dataprovider\Provider.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\user\UserState.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\actions\LoginController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\database\dao\UserDAOImpl.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\manga\MangaDAO.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\App.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\MainController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\exceptions\FillFieldException.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\dialogs\alerts\AlertCreator.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\enums\ItemsType.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\database\dao\UserDAO.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\data\UserController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\user\User.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\items\VisualWork.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\items\Manga.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\DAO.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\actions\SignUpController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\manga\MangaDAOImpl.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\enums\ActionSelected.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\ItemsRootController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\util\ItemsPaginationControllerUtilities.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\APIConnection.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\data\StatusItemsMenuUserController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\dialogs\notifications\NotificationType.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\anime\AnimeDAO.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\ItemsUserRootController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\dialogs\notifications\NotificationCreator.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\items\ItemsCatalogueRootController.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\anime\AnimeDAOImpl.java
-E:\Programacion\Ejercicios Programacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\util\DAOImplApiHelper.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\App.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\dialogs\notifications\NotificationType.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\items\ItemsCatalogueRootController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\dataprovider\AnimeProvider.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\manga\MangaDAO.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\MainController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\dialogs\notifications\NotificationCreator.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\exceptions\FillFieldException.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\dataprovider\Provider.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\database\DataBaseTransactions.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\util\StylesConstants.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\actions\LoginController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\dialogs\alerts\AlertCreator.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\util\ItemsPaginationControllerUtilities.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\items\ItemBlueprintController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\database\dao\UserDAO.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\user\UserState.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\items\VisualWork.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\items\Manga.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\menu\MenuController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\ItemsUserRootController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\enums\ItemsType.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\util\DAOImplApiHelper.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\data\UserController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\database\dao\UserDAOImpl.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\exceptions\ActionFailedException.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\APIConnection.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\actions\SignUpController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\anime\AnimeDAO.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\anime\AnimeDAOImpl.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\user\User.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\ItemsRootController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\enums\ActionSelected.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\manga\MangaDAOImpl.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\controller\windows\user\data\StatusItemsMenuUserController.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\datasource\items\Anime.java
+C:\Programacion\EjerciciosProgramacion\Java\Java_MisProyectos\ProyectoInterfaces\src\main\java\com\sergio\main\model\repository\api\dao\DAO.java

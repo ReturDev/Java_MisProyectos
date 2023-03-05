@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -28,21 +29,21 @@
       </VBox>
       <HBox alignment="CENTER" prefWidth="200.0" spacing="5.0" styleClass="button-root" VBox.vgrow="NEVER">
          <children>
-            <Button fx:id="btnFavourites" maxWidth="125.0" mnemonicParsing="false" HBox.hgrow="SOMETIMES">
-               <graphic>
-                  <ImageView fx:id="ivFavourites" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
+            <Button fx:id="btnFavourites" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" HBox.hgrow="SOMETIMES">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
+               <graphic>
+                  <Region fx:id="favRegion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" styleClass="fav-region" />
+               </graphic>
             </Button>
-            <Button fx:id="btnFollow" maxWidth="125.0" mnemonicParsing="false" HBox.hgrow="SOMETIMES">
-               <graphic>
-                  <ImageView fx:id="ivFollow" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
+            <Button fx:id="btnFollow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="72.0" HBox.hgrow="SOMETIMES">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>
+               <graphic>
+                  <Region fx:id="followRegion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" styleClass="follow-region" />
+               </graphic>
             </Button>
          </children>
          <VBox.margin>

@@ -11,6 +11,7 @@ import com.sergio.main.model.datasource.items.VisualWork;
 import com.sergio.main.model.datasource.dialogs.notifications.NotificationCreator;
 import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.datasource.user.UserState;
+import com.sergio.main.model.util.StylesConstants;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class ItemBlueprintController implements Initializable {
@@ -31,13 +33,13 @@ public class ItemBlueprintController implements Initializable {
     private Button btnFavourites;
 
     @FXML
-	private ImageView ivFavourites;
+	private Region favRegion;
 
     @FXML
     private Button btnFollow;
 
     @FXML
-	private ImageView ivFollow;
+	private Region followRegion;
     
     @FXML
     private ImageView imageVItem;
@@ -276,16 +278,16 @@ public class ItemBlueprintController implements Initializable {
 
 
 	private void setFilledFavourite(){
-		ivFavourites.setImage(new Image("/icons/content/items/heart-filled.png"));
+		favRegion.getStyleClass().add(StylesConstants.FAV_SELECTED);
 	}
 	private void setFilledFollowing(){
-		ivFollow.setImage(new Image("/icons/content/items/follow-filled.png"));
+		followRegion.getStyleClass().add(StylesConstants.FOLLOW_SELECTED);
 	}
 	private void setEmptyFavourite(){
-		ivFavourites.setImage(new Image("/icons/content/items/heart-empty.png"));
+		favRegion.getStyleClass().remove(StylesConstants.FAV_SELECTED);
 	}
 	private void setEmptyFollowing(){
-		ivFollow.setImage(new Image("/icons/content/items/follow-empty.png"));
+		followRegion.getStyleClass().remove(StylesConstants.FOLLOW_SELECTED);
 	}
 
 	public VisualWork getItem() {

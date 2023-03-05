@@ -3,6 +3,7 @@ package com.sergio.main.controller.windows.user.data;
 import com.sergio.main.controller.windows.user.ItemsUserRootController;
 import com.sergio.main.model.datasource.enums.ActionSelected;
 import com.sergio.main.model.datasource.enums.ItemsType;
+import com.sergio.main.model.util.StylesConstants;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -52,6 +53,9 @@ public class StatusItemsMenuUserController{
 	@FXML
 	private void onFavourites() {
 
+		removeFilledStyle();
+		btnFavourites.getGraphic().getStyleClass().add(StylesConstants.FAV_SELECTED);
+		btnFavourites.getStyleClass().add(StylesConstants.STATUS_SELECTED);
 		ItemsUserRootController.getInstance().resetButtons();
 		actionSelected = ActionSelected.FAVOURITE;
 		ItemsUserRootController.getInstance().loadData();
@@ -61,6 +65,9 @@ public class StatusItemsMenuUserController{
 	@FXML
 	private void onFollowing() {
 
+		removeFilledStyle();
+		btnFollowing.getGraphic().getStyleClass().add(StylesConstants.FOLLOW_SELECTED);
+		btnFollowing.getStyleClass().add(StylesConstants.STATUS_SELECTED);
 		ItemsUserRootController.getInstance().resetButtons();
 		actionSelected = ActionSelected.FOLLOWING;
 		ItemsUserRootController.getInstance().loadData();
@@ -88,13 +95,15 @@ public class StatusItemsMenuUserController{
 		
 	}
 
-	private void insertItemsRoot(){
+	private void removeFilledStyle(){
 
+		btnFavourites.getGraphic().getStyleClass().remove(StylesConstants.FAV_SELECTED);
+		btnFollowing.getGraphic().getStyleClass().remove(StylesConstants.FOLLOW_SELECTED);
 
+		btnFavourites.getStyleClass().remove(StylesConstants.STATUS_SELECTED);
+		btnFollowing.getStyleClass().remove(StylesConstants.STATUS_SELECTED);
 
 	}
-
-
 
 	public Button getBtnFavourites() {
 		return btnFavourites;

@@ -148,7 +148,7 @@ public class User {
 
 	}
 
-	private void remove(int id, List<Integer> visualWorks) throws ActionFailedException {
+	private void remove(Integer id, List<Integer> visualWorks) throws ActionFailedException {
 		boolean removed = false;
 		visualWorks.remove(id);
 		try {

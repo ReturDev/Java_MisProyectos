@@ -5,11 +5,12 @@ import com.sergio.main.model.datasource.exceptions.FillFieldException;
 import com.sergio.main.model.datasource.dialogs.notifications.NotificationCreator;
 import com.sergio.main.model.datasource.dialogs.notifications.NotificationType;
 import com.sergio.main.model.datasource.user.User;
-import com.sergio.main.model.repository.database.dao.UserDAO;
 import com.sergio.main.model.repository.database.dao.UserDAOImpl;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
@@ -17,11 +18,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class SignUpController {
+public class SignUpController implements Initializable {
 
     @FXML
     private VBox root;
@@ -43,6 +48,27 @@ public class SignUpController {
 
     @FXML
     private void addImage(ActionEvent event) {
+
+        //Se crea el seleccionador de directorios.
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg", "*jpe"));
+        //Se le asigna un título a la ventana que se abrirá.
+        chooser.setTitle("Selecciona una imagen.");
+
+        //Muestra el examinador de directorios se almacenará en la variable.
+        File nuevaDireccion = chooser.showOpenDialog(imageDirText.getScene().getWindow());
+
+        //Comprueba que se haya seleccionado algún directorio en el examinador.
+        if(nuevaDireccion != null) {
+
+            //Se almacena la nueva dirección como texto en el TextField.
+            imageDirText.setText(nuevaDireccion.getAbsolutePath());
+
+        }else{
+
+            imageDirText.setText("");
+
+        }
 
     }
 
@@ -171,5 +197,14 @@ public class SignUpController {
 
     }
 
+    private void setDefaultFocus(){
 
+        tfUsername.requestFocus();
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(this::setDefaultFocus);
+    }
 }

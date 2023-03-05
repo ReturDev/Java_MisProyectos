@@ -21,7 +21,7 @@
                   <PasswordField fx:id="tfConfirmPassword" promptText="Confirmar Contraseña" />
                   <HBox alignment="CENTER_LEFT" spacing="15.0">
                      <children>
-                        <TextField fx:id="imageDirText" alignment="CENTER" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="177.0" promptText="Imagen Perfil" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="imageDirText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="177.0" promptText="Imagen Perfil" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#addImage" text="Añadir Imagen" />
                      </children>
                   </HBox>
@@ -31,11 +31,11 @@
                   <Insets />
                </VBox.margin>
             </VBox>
-            <Label alignment="CENTER" maxHeight="-Infinity" onMouseClicked="#onLogin" text="Login">
+            <Button mnemonicParsing="false" onAction="#onLogin" styleClass="change-action" text="Login">
                <VBox.margin>
-                  <Insets top="-20.0" />
+                  <Insets top="-15.0" />
                </VBox.margin>
-            </Label>
+            </Button>
          </children>
          <VBox.margin>
             <Insets />

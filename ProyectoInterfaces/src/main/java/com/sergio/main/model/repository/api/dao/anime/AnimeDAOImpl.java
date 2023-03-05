@@ -18,11 +18,8 @@ public class AnimeDAOImpl implements AnimeDAO{
     public List<Anime> getPageAnime(int page) throws IOException {
 
         HttpURLConnection connection = APIConnection.getInstance().getAnimeConnection("?page=" + page);
-        StringBuilder sb = getResult(connection);
-        JSONObject fullObj = new JSONObject(sb.toString());
-        hasNextPage = DAOImplApiHelper.getHasNextPage(fullObj);
 
-        return DAOImplApiHelper.getDataFromPageApi(fullObj).stream().map(Anime::new).collect(Collectors.toList());
+        return getAnimePages(connection);
 
     }
 
@@ -34,6 +31,25 @@ public class AnimeDAOImpl implements AnimeDAO{
         JSONObject jsonObject = (JSONObject) new JSONObject(sb.toString()).get(DAOImplApiHelper.DATA_TAG);
 
         return bindAnime(jsonObject);
+
+    }
+
+    @Override
+    public List<Anime> getAnimeSearched(int page, String name) throws IOException {
+
+        HttpURLConnection connection = APIConnection.getInstance().getAnimeConnection("?q=" + name + "&page=" + page);
+
+        return getAnimePages(connection);
+
+    }
+
+    private List<Anime> getAnimePages(HttpURLConnection connection) throws IOException {
+
+        StringBuilder sb = getResult(connection);
+        JSONObject fullObj = new JSONObject(sb.toString());
+        hasNextPage = DAOImplApiHelper.getHasNextPage(fullObj);
+
+        return DAOImplApiHelper.getDataFromPageApi(fullObj).stream().map(Anime::new).collect(Collectors.toList());
 
     }
 

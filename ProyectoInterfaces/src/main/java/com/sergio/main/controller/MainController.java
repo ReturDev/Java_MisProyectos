@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.sergio.main.controller.menu.MenuController;
 
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,8 +29,8 @@ public class MainController implements Initializable{
 			FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/menu/menuView.fxml"));
 			menuLoader.setController(controller);
 			hbRoot.getChildren().add(0, menuLoader.load());
-
 			controller.goToAnime();
+			Platform.runLater(() -> hbRoot.requestFocus());
 
 
 		} catch (IOException e) {

@@ -3,13 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" styleClass="root-item" stylesheets="/style/itemsStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="edge-to-edge" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox alignment="TOP_CENTER">
          <children>
@@ -22,22 +21,14 @@
                </padding></FlowPane>
             <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="100.0">
                <children>
-                  <Button fx:id="btnPreviousPage" contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" onAction="#onPreviousPage">
+                  <Button fx:id="btnPreviousPage" contentDisplay="GRAPHIC_ONLY" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPreviousPage" prefHeight="60.0" prefWidth="70.0" styleClass="previous-page">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../icons/content/black_arrow_left_icon.png" />
-                           </image>
-                        </ImageView>
+                        <Region styleClass="region" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnNextPage" contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" onAction="#onNextPage">
+                  <Button fx:id="btnNextPage" contentDisplay="GRAPHIC_ONLY" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNextPage" prefHeight="60.0" prefWidth="70.0" styleClass="next-page">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../icons/content/black_arrow_right_icon.png" />
-                           </image>
-                        </ImageView>
+                        <Region styleClass="region" />
                      </graphic>
                   </Button>
                </children>
