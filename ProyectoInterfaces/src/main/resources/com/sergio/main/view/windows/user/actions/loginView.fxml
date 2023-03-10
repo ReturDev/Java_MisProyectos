@@ -14,8 +14,8 @@
             <Label styleClass="title" text="Iniciar Sesión" />
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" VBox.vgrow="NEVER">
                <children>
-                  <TextField fx:id="tfUser" promptText="Usuario" />
-                  <PasswordField fx:id="tfPassword" promptText="Contraseña" />
+                  <TextField fx:id="tfUser" onKeyPressed="#onPressEnter" promptText="Usuario" />
+                  <PasswordField fx:id="tfPassword" onKeyPressed="#onPressEnter" promptText="Contraseña" />
                   <Button fx:id="btnLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#toLogin" text="IniciarSesion" />
                </children>
             </VBox>

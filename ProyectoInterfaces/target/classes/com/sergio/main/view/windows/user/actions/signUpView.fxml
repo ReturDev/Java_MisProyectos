@@ -15,17 +15,17 @@
             <Label styleClass="title" text="Registro" />
             <VBox maxWidth="-Infinity" spacing="10.0" VBox.vgrow="NEVER">
                <children>
-                  <TextField fx:id="tfUsername" layoutX="10.0" layoutY="10.0" promptText="Nombre usuario" />
-                  <TextField fx:id="tfEmail" layoutX="10.0" layoutY="10.0" promptText="Email" />
-                  <PasswordField fx:id="tfPassword" promptText="Contraseña" />
-                  <PasswordField fx:id="tfConfirmPassword" promptText="Confirmar Contraseña" />
+                  <TextField fx:id="tfUsername" layoutX="10.0" layoutY="10.0" onKeyPressed="#onPressEnter" promptText="Nombre usuario" />
+                  <TextField fx:id="tfEmail" layoutX="10.0" layoutY="10.0" onKeyPressed="#onPressEnter" promptText="Email" />
+                  <PasswordField fx:id="tfPassword" onKeyPressed="#onPressEnter" promptText="Contraseña" />
+                  <PasswordField fx:id="tfConfirmPassword" onKeyPressed="#onPressEnter" promptText="Confirmar Contraseña" />
                   <HBox alignment="CENTER_LEFT" spacing="15.0">
                      <children>
                         <TextField fx:id="imageDirText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="177.0" promptText="Imagen Perfil" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#addImage" text="Añadir Imagen" />
                      </children>
                   </HBox>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signUpUser" text="Registrarse" />
+                  <Button fx:id="btnSignUp" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signUpUser" text="Registrarse" />
                </children>
                <VBox.margin>
                   <Insets />

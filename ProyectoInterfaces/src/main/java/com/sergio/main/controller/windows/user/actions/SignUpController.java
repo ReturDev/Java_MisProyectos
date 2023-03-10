@@ -8,12 +8,16 @@ import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -45,6 +49,14 @@ public class SignUpController implements Initializable {
 
     @FXML
     private TextField imageDirText;
+
+    @FXML
+    private Button btnSignUp;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(this::setDefaultFocus);
+    }
 
     @FXML
     private void addImage(ActionEvent event) {
@@ -203,8 +215,16 @@ public class SignUpController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(this::setDefaultFocus);
+    @FXML
+    private void onPressEnter(KeyEvent event) {
+
+        if (event.getCode() == KeyCode.ENTER) {
+
+            btnSignUp.fire();
+
+        }
+
     }
+
+
 }

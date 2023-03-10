@@ -15,5 +15,4 @@ public interface MangaDAO extends DAO {
 
     List<Manga> getMangaSearched(int page, String name) throws IOException;
 
-
 }

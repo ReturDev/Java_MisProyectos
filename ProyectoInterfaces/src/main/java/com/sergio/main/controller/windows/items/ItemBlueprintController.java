@@ -93,7 +93,6 @@ public class ItemBlueprintController implements Initializable {
 					try {
 
 						btnFavouritesAction(UserState.getUserLoggedData());
-						NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1,true, null);
 
 					} catch (ActionFailedException e) {
 
@@ -106,7 +105,6 @@ public class ItemBlueprintController implements Initializable {
 					try {
 
 						btnFollowingAction(UserState.getUserLoggedData());
-						NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a siguiendo.", 1, true,null);
 
 					} catch (ActionFailedException e) {
 
@@ -156,11 +154,14 @@ public class ItemBlueprintController implements Initializable {
 
 				user.removeAnimeFavourite(item.getId());
 				setEmptyFavourite();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha eliminado de favoritos.",1,true, null);
+
 
 			}else {
 
 				user.addAnimeFavourite(item.getId());
 				setFilledFavourite();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1,true, null);
 
 			}
 
@@ -170,11 +171,14 @@ public class ItemBlueprintController implements Initializable {
 
 				user.removeMangaFavourite(item.getId());
 				setEmptyFavourite();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha eliminado de favoritos.",1,true, null);
+
 
 			}else {
 
 				user.addMangaFavourite(item.getId());
 				setFilledFavourite();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a favoritos.",1,true, null);
 
 			}
 
@@ -190,11 +194,13 @@ public class ItemBlueprintController implements Initializable {
 
 				user.removeAnimeFollowing(item.getId());
 				setEmptyFollowing();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha dejado de seguir.", 1, true,null);
 
 			}else {
 
 				user.addAnimeFollowing(item.getId());
 				setFilledFollowing();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a siguiendo.", 1, true,null);
 
 			}
 
@@ -204,11 +210,13 @@ public class ItemBlueprintController implements Initializable {
 
 				user.removeMangaFollowing(item.getId());
 				setEmptyFollowing();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha dejado de seguir.", 1, true,null);
 
 			}else {
 
 				user.addMangaFollowing(item.getId());
 				setFilledFollowing();
+				NotificationCreator.createAndShowNotification(blueprintRoot,null, "Se ha añadido a siguiendo.", 1, true,null);
 
 			}
 

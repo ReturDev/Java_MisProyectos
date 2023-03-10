@@ -6,6 +6,12 @@
 
 }
 
+.label-username{
+
+    -fx-font-size: 25;
+
+}
+
 .tab-pane > .tab-header-area{
 
     -fx-padding: 5 0 5 15;
@@ -132,4 +138,10 @@
 
     -fx-stroke-width: 2;
     -fx-stroke: -on-primary-color;
+}
+
+.status-menu .button:hover, .status-menu .button:focused{
+
+    -fx-text-fill: -on-primary-color;
+
 }
