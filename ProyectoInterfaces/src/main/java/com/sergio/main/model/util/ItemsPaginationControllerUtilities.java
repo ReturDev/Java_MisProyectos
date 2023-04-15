@@ -5,6 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 
+
+/**
+ * Clase encargada de la paginación de elementos.
+ */
 public class ItemsPaginationControllerUtilities {
 
     private int page;

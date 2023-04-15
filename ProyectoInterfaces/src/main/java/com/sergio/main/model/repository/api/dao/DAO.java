@@ -7,6 +7,11 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
+
+/**
+ * Interfaz que contiene métodos comunes entre los daos, cualquier dao que obtiene datos de la API
+ * tiene que implementar esta interfaz.
+ */
 public interface DAO {
 
     default StringBuilder getResult(HttpURLConnection connection) throws IOException {

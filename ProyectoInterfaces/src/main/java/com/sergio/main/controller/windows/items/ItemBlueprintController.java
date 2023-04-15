@@ -24,6 +24,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+/**
+ * Clase controladora de la plantilla donde se mostrarán los elementos.
+ */
 public class ItemBlueprintController implements Initializable {
 	
     @FXML
@@ -49,7 +52,12 @@ public class ItemBlueprintController implements Initializable {
     
 	private VisualWork item;
 
-	
+
+	/**
+	 * Realiza acciones en la inicialización de la clase.
+	 * @param arg0
+	 * @param arg1
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -60,7 +68,7 @@ public class ItemBlueprintController implements Initializable {
 	}
 	
 	/**
-	 *  Manejador de evento de click de rat�n que se asignar� al elemento raiz del elemento para que cuando se produzca un click en 
+	 *  Manejador de evento de click de ratón que se asignará al elemento raiz del elemento para que cuando se produzca un click en
 	 *  cualquier lugar de este, abra la ventana de detalles.
 	 * @return
 	 */
@@ -75,7 +83,7 @@ public class ItemBlueprintController implements Initializable {
 	}
 	
 	/**
-	 * Manejador de evento de acci�n para los botones de Favoritos y Seguir de los elementos listados.
+	 * Manejador de evento de acción para los botones de Favoritos y Seguir de los elementos listados.
 	 * @return 
 	 */
 	private EventHandler<ActionEvent> buttonsItemEvent(){
@@ -84,8 +92,7 @@ public class ItemBlueprintController implements Initializable {
 		return (event) -> {
 			
 			Button btnActtivated = (Button) event.getSource();
-			
-			//TODO Cambiar este if a comprobar si el usuario está logueado.
+
 			if(UserState.isUserLogged()) {
 			
 				if(btnActtivated.equals(btnFavourites)) {
@@ -96,7 +103,6 @@ public class ItemBlueprintController implements Initializable {
 
 					} catch (ActionFailedException e) {
 
-						//TODO Añadir Mensaje
 						e.printStackTrace();
 
 					}
@@ -109,7 +115,6 @@ public class ItemBlueprintController implements Initializable {
 					} catch (ActionFailedException e) {
 
 						e.printStackTrace();
-						//TODO Añadir Mensaje
 
 					}
 
@@ -126,7 +131,10 @@ public class ItemBlueprintController implements Initializable {
 		};
 		
 	}
-	
+
+	/**
+	 * Establece los datos del elemento en la vista.
+	 */
 	private void blindInfoToBlueprint() {
 		
 		imageVItem.setImage(new Image(item.getImage(),imageVItem.getFitWidth(),imageVItem.getFitHeight(),false,true));
@@ -146,6 +154,12 @@ public class ItemBlueprintController implements Initializable {
 		
 	}
 
+	/**
+	 * Acción del botón de favoritos que añadirá o eliminará el elemento que representa de los favoritos
+	 * del usuario.
+	 * @param user Usuario logueado.
+	 * @throws ActionFailedException
+	 */
 	private void btnFavouritesAction(User user) throws ActionFailedException {
 
 		if (item instanceof Anime){
@@ -186,6 +200,12 @@ public class ItemBlueprintController implements Initializable {
 
 	}
 
+	/**
+	 * Acción del botón de seguir que añadirá o eliminará el elemento que representa de los elementos seguidos
+	 * del usuario.
+	 * @param user Usuario logueado.
+	 * @throws ActionFailedException
+	 */
 	private void btnFollowingAction(User user) throws ActionFailedException {
 
 		if (item instanceof Anime){
@@ -224,6 +244,10 @@ public class ItemBlueprintController implements Initializable {
 
 	}
 
+	/**
+	 * Comprueba los elementos que el usuario ya tiene en sus favoritos para cambiar como se muestra en la vista.
+	 * @param user Usuario logueado
+	 */
 	private void checkFavouritesUser(User user){
 
 		if (item instanceof Anime){
@@ -254,6 +278,10 @@ public class ItemBlueprintController implements Initializable {
 
 	}
 
+	/**
+	 * Comprueba los elementos que el usuario ya tiene en sus seguidos para cambiar como se muestra en la vista.
+	 * @param user Usuario logueado
+	 */
 	private void checkFollowingUser(User user){
 
 		if (item instanceof Anime){
@@ -298,12 +326,10 @@ public class ItemBlueprintController implements Initializable {
 		followRegion.getStyleClass().remove(StylesConstants.FOLLOW_SELECTED);
 	}
 
-	public VisualWork getItem() {
-		
-		return item;
-		
-	}
-
+	/**
+	 * Asigna el elemento que va a representar.
+	 * @param item Elemento a representar
+	 */
 	public void setItem(VisualWork item) {
 		
 		this.item = item;

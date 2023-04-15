@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Clase encargada de la conexión con la API
+ */
 public class APIConnection {
 
     private final String ANIME_DEFAULT_URL = "https://api.jikan.moe/v4/anime";

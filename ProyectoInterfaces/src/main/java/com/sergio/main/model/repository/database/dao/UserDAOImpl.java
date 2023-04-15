@@ -6,6 +6,10 @@ import com.sergio.main.model.repository.database.DataBaseTransactions;
 import javax.persistence.Query;
 import java.util.List;
 
+
+/**
+ * Implementación de los métodos del dao.
+ */
 public class UserDAOImpl implements UserDAO {
 
     private final DataBaseTransactions DB_TRANSACTIONS;

@@ -2,6 +2,9 @@ package com.sergio.main.model.datasource.items;
 
 import java.util.List;
 
+/**
+ * Clase que almacena los datos mostrados en un Anime.
+ */
 public class Anime extends VisualWork {
 
 	//Information

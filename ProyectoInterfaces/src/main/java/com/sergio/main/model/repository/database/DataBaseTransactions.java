@@ -3,6 +3,9 @@ package com.sergio.main.model.repository.database;
 
 import javax.persistence.*;
 
+/**
+ * Clase que se encarga de las transacciones con la base de datos.
+ */
 public class DataBaseTransactions {
 
     private static DataBaseTransactions instance;

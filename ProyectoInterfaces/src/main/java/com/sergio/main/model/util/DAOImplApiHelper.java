@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Clase de apoyo a la implementación de los dao
+ */
 public class DAOImplApiHelper {
 
     private static final String PAGINATION_TAG = "pagination";

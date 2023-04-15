@@ -20,6 +20,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
+/**
+ * Controlador de la vista menú.
+ */
 public class MenuController{
 	
 	@FXML
@@ -39,6 +42,10 @@ public class MenuController{
 
 	private static MenuController instance;
 
+	/**
+	 *Devuelve la instancia de esta clase, si no está creada, la crea.
+	 * @return instancia de MenuController
+	 */
 	public static MenuController getInstance() {
 
 		if (instance == null){
@@ -53,6 +60,9 @@ public class MenuController{
 
 	private MenuController(){}
 
+	/**
+	 * Se encarga de la apertura del menú.
+	 */
 	@FXML
 	private void openMenu() {
 		
@@ -87,7 +97,11 @@ public class MenuController{
 		}
 
 	}
-	
+
+	/**
+	 * Lleva a la ventana de Anime
+	 * @throws IOException
+	 */
 	@FXML
 	public void goToAnime() throws IOException {
 		
@@ -95,11 +109,16 @@ public class MenuController{
 		ItemsCatalogueRootController controller = ItemsCatalogueRootController.getInstance();
 		controller.setShownItemType(ItemsType.ANIME);
 		goToElementView(controller);
+		controller.setTitle(ItemsType.ANIME.name());
 
 		btnAnimeMenu.getStyleClass().add(StylesConstants.ITEM_MENU_SELECTED);
 		
 	}
-	
+
+	/**
+	 * Lleva a la ventana de manga.
+	 * @throws IOException
+	 */
 	@FXML
 	private void goToManga() throws IOException {
 		
@@ -107,11 +126,16 @@ public class MenuController{
 		ItemsCatalogueRootController controller = ItemsCatalogueRootController.getInstance();
 		controller.setShownItemType(ItemsType.MANGA);
 		goToElementView(controller);
+		controller.setTitle(ItemsType.MANGA.name());
 
 		btnMangaMenu.getStyleClass().add(StylesConstants.ITEM_MENU_SELECTED);
 
 	}
-	
+
+	/**
+	 * Lleva a la ventana de Usuario si uno se encuentra logueado. En caso contrario abre la ventana de
+	 * inicio de sesión.
+	 */
 	@FXML
 	public void goToUserConfig() {
 		
@@ -153,11 +177,16 @@ public class MenuController{
 			
 		}
 
-		removeStyleClass();
+		removeSelectedStyleClass();
 		btnUserConfig.getStyleClass().add(StylesConstants.ITEM_MENU_SELECTED);
 
 	}
-	
+
+	/**
+	 * Método común de apoyo para la apertura de Anime o Manga.
+	 * @param controller
+	 * @throws IOException
+	 */
 	private void goToElementView(ItemsCatalogueRootController controller) throws IOException {
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sergio/main/view/windows/items/itemsCatalogueRootView.fxml"));
@@ -166,14 +195,16 @@ public class MenuController{
 		Pane parent = (Pane) menuRoot.getParent();
 		HBox.setHgrow(itemsPane, Priority.ALWAYS);
 		parent.getChildren().set(1, itemsPane);
-
 		controller.resetButtons();
 		controller.loadData();
-		removeStyleClass();
+		removeSelectedStyleClass();
 
 	}
-	
-	private void removeStyleClass(){
+
+	/**
+	 * Elimina el estilo de elemento seleccionado de los botones del menú.
+	 */
+	private void removeSelectedStyleClass(){
 
 		btnAnimeMenu.getStyleClass().remove(StylesConstants.ITEM_MENU_SELECTED);
 		btnMangaMenu.getStyleClass().remove(StylesConstants.ITEM_MENU_SELECTED);

@@ -14,6 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 
 
+/**
+ * Controlador de la ventana principal donde se añadiras las diferentes ventanas.
+ */
 public class MainController implements Initializable{
 
 	@FXML

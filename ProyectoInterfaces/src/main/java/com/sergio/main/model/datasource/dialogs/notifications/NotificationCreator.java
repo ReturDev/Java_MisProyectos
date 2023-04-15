@@ -4,16 +4,19 @@ import javafx.geometry.Pos;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
+/**
+ * Creador de notificaciones.
+ */
 public class NotificationCreator {
 
     /**
-     *
-     * @param owner
-     * @param title
-     * @param text
-     * @param seconds
-     * @param darkTheme
-     * @param type
+     * Crea una notificación.
+     * @param owner Vista que actuará como propietaria de la notificación.
+     * @param title Título que mostrará la notificación, puede ser null.
+     * @param text Contenido de texto que se mostrará en la notificación.
+     * @param seconds Segundos que durará la notificación en pantalla.
+     * @param darkTheme Habilitar o deshabilitar el tema oscuro.
+     * @param type Tipo de notificación que se mostrará.
      */
     public static void createAndShowNotification(Object owner, String title, String text, long seconds, boolean darkTheme, NotificationType type){
 
@@ -25,14 +28,14 @@ public class NotificationCreator {
 
 
     /**
-     *
-     * @param owner
-     * @param title
-     * @param text
-     * @param seconds
-     * @param darkTheme
-     * @param type
-     * @param position
+     * Crea una notificación.
+     * @param owner Vista que actuará como propietaria de la notificación.
+     * @param title Título que mostrará la notificación, puede ser null.
+     * @param text Contenido de texto que se mostrará en la notificación.
+     * @param seconds Segundos que durará la notificación en pantalla.
+     * @param darkTheme Habilitar o deshabilitar el tema oscuro.
+     * @param type Tipo de notificación que se mostrará.
+     * @param position Posición en la que se mostrará la notificación.
      */
     public static void createAndShowNotification(Object owner, String title, String text, long seconds, boolean darkTheme, NotificationType type, Pos position){
 
@@ -43,13 +46,13 @@ public class NotificationCreator {
     }
 
     /**
-     *
-     * @param owner
-     * @param title
-     * @param text
-     * @param seconds
-     * @param darkTheme
-     * @return
+     * Crea una notificación básica.
+     * @param owner Vista que actuará como propietaria de la notificación.
+     * @param title Título que mostrará la notificación, puede ser null.
+     * @param text Contenido de texto que se mostrará en la notificación.
+     * @param seconds Segundos que durará la notificación en pantalla.
+     * @param darkTheme Habilitar o deshabilitar el tema oscuro.
+     * @return Notificación base.
      */
     private static Notifications createBaseNotification(Object owner, String title, String text, long seconds, boolean darkTheme){
 

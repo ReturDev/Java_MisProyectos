@@ -10,6 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ * Controlador del menú de usuario donde seleccionar la categoría de la que visualizar los elementos.
+ */
 public class StatusItemsMenuUserController{
 	
 

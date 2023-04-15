@@ -8,7 +8,6 @@ import com.sergio.main.model.datasource.user.User;
 import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +29,10 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+/**
+ * Contolador de la vista de registro.
+ */
 public class SignUpController implements Initializable {
 
     @FXML

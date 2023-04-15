@@ -12,10 +12,10 @@ import com.sergio.main.model.datasource.items.VisualWork;
 import com.sergio.main.model.repository.api.dao.anime.AnimeDAOImpl;
 import com.sergio.main.model.repository.api.dao.manga.MangaDAOImpl;
 import com.sergio.main.model.util.ItemsPaginationControllerUtilities;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -23,6 +23,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * Controlador de la ventana donde se mostrarán todos los elementos.
+ */
 public class ItemsCatalogueRootController extends ItemsRootController {
 
 	private static ItemsCatalogueRootController instance;
@@ -40,6 +43,8 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	private TextField tfSearch;
 	@FXML
 	private Button btnSearch;
+	@FXML
+	private Label title;
 
 	private String searchText;
 	private boolean searching;
@@ -53,7 +58,11 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 		loadItemBlueprints();
 		
 	}
-	
+
+	/**
+	 * Devuelve la instancia de esta clase, si no existe la crea antes.
+	 * @return instancia de ItemsCatalogueRootController.
+	 */
 	public static ItemsCatalogueRootController getInstance() {
 
 		if(instance == null) {
@@ -65,8 +74,11 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 		return instance;
 
 	}
-	
-	
+
+
+	/**
+	 * Método encargado de cargar los datos de una busqueda.
+	 */
 	@FXML
 	private void onSearch() {
 		
@@ -88,7 +100,7 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	
 	
 	/**
-	 * Evento que volver� a una p�gina anteriror de elementos.
+	 * Evento que volverá a una página anterior de elementos.
 	 */
 	@Override
 	public void onPreviousPage() {
@@ -110,7 +122,7 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 	
 	
 	/**
-	 * Evento que avanzar� a una siguiente p�gina con elementos.
+	 * Evento que avanzará a una siguiente página con elementos.
 	 */
 	@Override
 	public void onNextPage() {
@@ -146,6 +158,9 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 		
 	}
 
+	/**
+	 * Crea y almacena 25 plantillas donde mostrar items.
+	 */
 	@Override
 	protected void loadItemBlueprints() {
 		
@@ -177,6 +192,10 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 		
 	}
 
+	/**
+	 * Obtiene los datos de los elementos de la api, añade la información a las plantillas cargadas y
+	 * las muestra en la vista.
+	 */
 	@Override
 	public void loadData(){
 
@@ -208,6 +227,11 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 
 	}
 
+	/**
+	 * Obtiene los datos de los elementos de la api que coinciden con los datos buscados,
+	 * añade la información a las plantillas cargadas y las muestra en la vista.
+	 * @param stringSearched Cadena de texto introducida en la búsqueda.
+	 */
 	private void loadSearchData(String stringSearched){
 
 		List<VisualWork> list;
@@ -239,6 +263,9 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 
 	}
 
+	/**
+	 * Resetea el valor de algunas vistas.
+	 */
 	@Override
 	public void resetButtons() {
 
@@ -246,6 +273,14 @@ public class ItemsCatalogueRootController extends ItemsRootController {
 		searchText = "";
 		IPCU.resetButtons(btnNextPage, btnPreviousPage,itemsRoot, scrollPane);
 
+	}
+
+	/**
+	 * Añade el texto al label que actúa como título de la vista.
+	 * @param title Texto que asignar al título.
+	 */
+	public void setTitle(String title){
+		this.title.setText(title);
 	}
 
 

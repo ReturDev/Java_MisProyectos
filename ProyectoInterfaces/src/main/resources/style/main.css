@@ -141,3 +141,10 @@
     -fx-border-color: -on-primary-color;
 
 }
+
+.items-title{
+
+    -fx-text-fill: -on-primary-color;
+    -fx-font-size: 35;
+
+}

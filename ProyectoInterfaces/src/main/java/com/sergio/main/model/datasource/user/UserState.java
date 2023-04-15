@@ -1,5 +1,9 @@
 package com.sergio.main.model.datasource.user;
 
+
+/**
+ * Controla el estado en el que se encuentra la aplicación respecto al logueo del usuario.
+ */
 public class UserState {
 	
 	private static boolean userLogged;

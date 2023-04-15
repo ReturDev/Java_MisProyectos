@@ -8,6 +8,9 @@ import com.sergio.main.model.repository.database.dao.UserDAOImpl;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Clase entidad que almacena los datos del usuario y que serán guardados en la base de datos.
+ */
 @Entity(name = "users")
 public class User {
 

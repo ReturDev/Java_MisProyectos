@@ -2,7 +2,6 @@ package com.sergio.main;
 	
 
 
-import com.sergio.main.controller.menu.MenuController;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -10,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.fxml.FXMLLoader;
 
-
+/**
+ * Clase que pone en funcionamiento la aplicación.
+ */
 public class App extends Application {
 
 	private static final double STAGE_MIN_WIDTH = 900;

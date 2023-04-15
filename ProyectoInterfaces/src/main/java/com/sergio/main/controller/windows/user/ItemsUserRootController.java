@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controlador de la vista donde se mostrarán los animes y mangas del usuario.
+ */
 public class ItemsUserRootController extends ItemsRootController {
 
     private static final int BLUEPRINTS_QUANTITY = 3;

@@ -10,6 +10,9 @@ import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementación de los métodos del dao.
+ */
 public class AnimeDAOImpl implements AnimeDAO{
 
     private boolean hasNextPage;

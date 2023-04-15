@@ -12,6 +12,10 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Clase abstracta de la que heredarán los controladores de las vistas donde se mostrarán los animes y mangas.
+ */
 public abstract class ItemsRootController {
 
     protected final ItemsPaginationControllerUtilities IPCU;

@@ -1,5 +1,9 @@
 package com.sergio.main.model.util;
 
+
+/**
+ * Almacena constantes con los nombres de los estilos con los que interactuará la aplicación.
+ */
 public class StylesConstants {
 
     public static final String ITEM_MENU_SELECTED = "icon-menu-selected";

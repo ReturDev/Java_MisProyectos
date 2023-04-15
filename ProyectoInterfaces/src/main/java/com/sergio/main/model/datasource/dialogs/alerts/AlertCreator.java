@@ -6,6 +6,9 @@ import javafx.stage.StageStyle;
 
 import java.util.Optional;
 
+/**
+ *  Creador de ventanas de alertas.
+ */
 public class AlertCreator {
 
     private AlertCreator(){}

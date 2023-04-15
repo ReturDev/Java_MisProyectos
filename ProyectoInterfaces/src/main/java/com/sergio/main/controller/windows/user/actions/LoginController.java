@@ -29,6 +29,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+/**
+ * Controlador de la vista de inicio de sesión.
+ */
 public class LoginController{
 
     @FXML
@@ -50,6 +53,10 @@ public class LoginController{
 
     private LoginController(){}
 
+    /**
+     * Devuelve la instancia de esta clase, si no existe la crea antes.
+     * @return instancia de LoginController.
+     */
     public static LoginController getInstance(){
 
         if (instance == null){
@@ -62,6 +69,10 @@ public class LoginController{
 
     }
 
+
+    /**
+     * Método que inicia la sesión del usuario si cuenta con los datos correctos.
+     */
     @FXML
     private void toLogin() {
 
@@ -90,7 +101,12 @@ public class LoginController{
         }
 
     }
-    
+
+
+    /**
+     * Evento que se produce al pulsar el botón para ir a la ventana de registro.
+     * @throws IOException
+     */
     @FXML
     private void onSignUp() throws IOException {
 
@@ -102,6 +118,11 @@ public class LoginController{
 
     }
 
+
+    /**
+     * Inicia la sesión del usuario.
+     * @param user Usuario que iniciará sesión.
+     */
 	public void userLoggedIn(User user){
 
         UserState.userLogIn(user);
@@ -109,12 +130,19 @@ public class LoginController{
 
     }
 
+    /**
+     * Establece el focus en el campo de nombre de usuario.
+     */
     public void setDefaultFocus(){
 
         tfUser.requestFocus();
 
     }
 
+    /**
+     * Evento al pulsar enter en el último campo de login.
+     * @param event Tecla que activa el evento.
+     */
     @FXML
     private void onPressEnter(KeyEvent event) {
 

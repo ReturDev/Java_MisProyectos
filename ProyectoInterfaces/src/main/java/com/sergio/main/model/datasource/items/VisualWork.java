@@ -6,6 +6,9 @@ import com.sergio.main.model.datasource.enums.ItemsType;
 
 import javafx.scene.image.Image;
 
+/**
+ * Clase padre de que contiene los atributos comunes de los Animes y Mangas.
+ */
 public class VisualWork {
 
 	
